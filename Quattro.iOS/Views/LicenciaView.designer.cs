@@ -14,8 +14,16 @@ namespace Quattro.iOS.Views
     [Register ("LicenciaView")]
     partial class LicenciaView
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UILabel LabelPrueba { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (LabelPrueba != null) {
+                LabelPrueba.Dispose ();
+                LabelPrueba = null;
+            }
         }
     }
 }
