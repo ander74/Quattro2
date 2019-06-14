@@ -2,19 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:gravity="center_vertical"
+    android:gravity="bottom"
     android:layout_height="match_parent">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
-        android:textSize="36dp"
-        android:gravity="center_vertical"
-        android:text="SPLASH"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:gravity="center_vertical"
-        android:text="@string/app_name"/>
+        android:textSize="24dp"
+        android:textColor="#000000"
+        android:gravity="bottom"
+        android:layout_marginBottom="75dp"
+        android:text="Cargando..."/>
 </LinearLayout>

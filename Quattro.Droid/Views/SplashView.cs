@@ -1,9 +1,8 @@
-﻿
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using MvvmCross.Platforms.Android.Core;
+using Android.OS;
+using Android.Runtime;
 using MvvmCross.Platforms.Android.Views;
-using Quattro.Core;
 
 namespace Quattro.Droid.Views {
 
@@ -15,11 +14,21 @@ namespace Quattro.Droid.Views {
         NoHistory = true,
         ScreenOrientation = ScreenOrientation.Portrait
         )]
-    public class SplashView : MvxSplashScreenActivity<MvxAndroidSetup<App>, App> {
+    public class SplashView : MvxSplashScreenActivity {
 
         public SplashView() : base(Resource.Layout.SplashPage) {
 
         }
 
+        protected override void OnCreate(Bundle bundle) {
+            base.OnCreate(bundle);
+            Xamarin.Essentials.Platform.Init(this, bundle);
+        }
+
+        // AÑADIR ESTO A TODAS LAS VIEWS (ACTIVITIES)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults) {
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 }

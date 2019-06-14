@@ -1,13 +1,21 @@
-﻿using System.Threading.Tasks;
+﻿using System.IO;
+using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using MvvmCross.Commands;
 using MvvmCross.ViewModels;
+using Quattro.Core.Interfaces;
+using Xamarin.Essentials;
 
 namespace Quattro.Core.ViewModels {
+
     public class LicenciaViewModel : MvxViewModel {
 
         // ====================================================================================================
         #region CAMPOS PRIVADOS
         // ====================================================================================================
 
+        private readonly IDialogService dialog;
 
         #endregion
         // ====================================================================================================
@@ -17,6 +25,9 @@ namespace Quattro.Core.ViewModels {
         #region CONSTRUCTOR
         // ====================================================================================================
 
+        public LicenciaViewModel(IDialogService dialog) {
+            this.dialog = dialog;
+        }
 
         #endregion
         // ====================================================================================================
@@ -28,7 +39,14 @@ namespace Quattro.Core.ViewModels {
 
         public override async Task Initialize() {
             await base.Initialize();
-            this.Prueba = "Andresito";
+
+            // Leemos el archivo de licencia de los recursos incrustrados y lo asignamos a la propiedad Licencia.
+            //TODO: Intentar meter esto en un método estatico en Utils o algo así.
+            var assembly = typeof(LicenciaViewModel).GetTypeInfo().Assembly;
+            Stream stream = assembly.GetManifestResourceStream("Quattro.Core.licencia.txt");
+            using (var reader = new StreamReader(stream)) {
+                this.Licencia = reader.ReadToEnd();
+            }
         }
 
         #endregion
@@ -39,6 +57,28 @@ namespace Quattro.Core.ViewModels {
         #region COMANDOS
         // ====================================================================================================
 
+        private MvxCommand aceptarCommand;
+        public ICommand AceptarCommand {
+            get {
+                aceptarCommand = aceptarCommand ?? new MvxCommand(DoAceptar);
+                return aceptarCommand;
+            }
+        }
+        private void DoAceptar() {
+            dialog.Alert("Licencia Aceptada", "Ok", "Aceptar");
+        }
+
+
+        private MvxCommand cancelarCommand;
+        public ICommand CancelarCommand {
+            get {
+                cancelarCommand = cancelarCommand ?? new MvxCommand(DoCancelar);
+                return cancelarCommand;
+            }
+        }
+        private void DoCancelar() {
+            dialog.Alert("Licencia Cancelada", "ERROR", "Aceptar");
+        }
 
         #endregion
         // ====================================================================================================
@@ -49,10 +89,10 @@ namespace Quattro.Core.ViewModels {
         // ====================================================================================================
 
 
-        private string prueba;
-        public string Prueba {
-            get => prueba;
-            set => SetProperty(ref prueba, value);
+        private string licencia;
+        public string Licencia {
+            get => licencia;
+            set => SetProperty(ref licencia, value);
         }
 
         #endregion
