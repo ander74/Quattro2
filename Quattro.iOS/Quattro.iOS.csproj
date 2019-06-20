@@ -84,7 +84,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MvvmCross">
-      <Version>6.3.0</Version>
+      <Version>6.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.Color">
+      <Version>6.3.1</Version>
+    </PackageReference>
+    <PackageReference Include="MvvmCross.Plugin.Visibility">
+      <Version>6.3.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
   </ItemGroup>
@@ -134,7 +140,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
-    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Quattro.Core\Quattro.Core.csproj">

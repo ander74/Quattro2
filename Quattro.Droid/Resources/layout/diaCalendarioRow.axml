@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="2dp"
+        local:cardCornerRadius="3dp"
+        local:cardElevation="3dp">
+
+        <android.support.constraint.ConstraintLayout
+            local:MvxBind="BackgroundColor ColorTipoFondo(TipoFondo)"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/marcadorFranqueo"
+                android:layout_width="6dp"
+                android:layout_height="0dp"
+                android:text=""
+                android:layout_margin="0dp"
+                android:background="#1069AA"
+                local:MvxBind="Visibility Visibility(EsFranqueo)"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+            <TextView
+                android:id="@+id/numeroDia"
+                local:MvxBind="Text Format('{0:00}', Fecha.Day)"
+                android:textSize="26sp"
+                android:textAlignment="center"
+                android:textFontWeight="bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="0dp"
+                android:layout_marginLeft="6dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/textoDia"
+                local:MvxBind="Text DiaSemana"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="6dp"
+                android:layout_marginLeft="6dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="@id/numeroDia"
+                app:layout_constraintTop_toBottomOf="@id/numeroDia"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/textoServicio"
+                android:text="01/1 - 2314: Plaza Circular - UPV"
+                android:textSize="16sp"
+                android:textAlignment="textStart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="2dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="2dp"
+                app:layout_constraintLeft_toRightOf="@id/numeroDia"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/numeroDia"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/textoHorario"
+                local:MvxBind="Text Format('{0:hm} - {1:hm}', Inicio, Final)"
+                android:textSize="14sp"
+                android:textAlignment="textStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="2dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                app:layout_constraintLeft_toRightOf="@id/numeroDia"
+                app:layout_constraintTop_toBottomOf="@id/textoServicio"/>
+
+            <TextView
+                android:id="@+id/textoNocturnas"
+                local:MvxBind="Text Format('{0:0.00}', Nocturnas)"
+                android:textSize="14sp"
+                android:textColor="#0000ff"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textoServicio"/>
+
+            <TextView
+                android:id="@+id/guionAcumuladas"
+                android:text="-"
+                android:textSize="14sp"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                app:layout_constraintRight_toLeftOf="@id/textoNocturnas"
+                app:layout_constraintTop_toBottomOf="@id/textoServicio"/>
+
+            <TextView
+                android:id="@+id/textoAcumuladas"
+                local:MvxBind="Text Format('{0:0.00}', Acumuladas)"
+                android:textSize="14sp"
+                android:textColor="#ff0000"
+                android:textAlignment="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="6dp"
+                android:paddingRight="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                app:layout_constraintRight_toLeftOf="@id/guionAcumuladas"
+                app:layout_constraintTop_toBottomOf="@id/textoServicio"/>
+
+
+            <TextView
+                android:id="@+id/textoRelevo"
+                local:MvxBind="Text Format('{0}: {1}', Matricula, Apellidos)"
+                android:textSize="16sp"
+                android:textAlignment="textStart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="2dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="4dp"
+                app:layout_constraintLeft_toRightOf="@id/numeroDia"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/textoHorario" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="152dp"
+        local:MvxBind="Visibility Visibility(EsUltimoDia)"/>
+
+</LinearLayout>
+

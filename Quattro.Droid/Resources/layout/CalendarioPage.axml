@@ -1,0 +1,100 @@
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:local="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#cccccc"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        local:MvxItemTemplate="@layout/diacalendariorow"
+        local:MvxBind="ItemsSource ListaDias; ItemClick DiaPulsadoCommand; ItemLongClick DiaPulsadoLargoCommand" />
+
+    <!--
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|bottom"
+        local:backgroundTint="@android:color/white"
+        android:src="@drawable/ic_anterior"
+        android:layout_margin="16dp"
+        local:layout_anchorGravity="bottom|left|start"
+        local:MvxBind="Click AnteriorCommand" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        local:backgroundTint="@android:color/white"
+        android:src="@drawable/ic_siguiente"
+        android:layout_margin="16dp"
+        local:layout_anchorGravity="bottom|right|end"
+        local:MvxBind="Click SiguienteCommand" />
+    -->
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="16dp"
+        local:cardBackgroundColor="#ffffff"
+        local:cardCornerRadius="6dp"
+        local:cardElevation="2dp">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="4">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_columnWeight="1"
+                android:layout_column="0"
+                android:layout_margin="5dp"
+                android:scaleType="fitCenter"
+                android:clickable="true"
+                local:MvxBind="Click AnteriorPulsadoCommand"
+                android:src="@drawable/ic_anterior"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_columnWeight="3"
+                android:layout_column="1"
+                android:padding="6dp"
+                android:textSize="16sp"
+                android:text="Acum: 23,67"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_columnWeight="3"
+                android:layout_column="2"
+                android:padding="6dp"
+                android:textSize="16sp"
+                android:textColor="#0000ff"
+                android:text="Noct: 12,09"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:layout_columnWeight="1"
+                android:layout_column="3"
+                android:layout_margin="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_siguiente"/>
+
+        </GridLayout>
+    </android.support.v7.widget.CardView>
+
+</android.support.design.widget.CoordinatorLayout>

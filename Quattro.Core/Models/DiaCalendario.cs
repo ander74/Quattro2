@@ -1,4 +1,5 @@
 ﻿using System;
+using Quattro.Core.Common;
 using SQLite.Net.Attributes;
 
 namespace Quattro.Core.Models {
@@ -6,6 +7,9 @@ namespace Quattro.Core.Models {
     [Table("Calendario")]
     public class DiaCalendario : Servicio {
 
+        // ====================================================================================================
+        #region PROPIEDADES EN BASE DE DATOS
+        // ====================================================================================================
 
         private DateTime fecha;
         public DateTime Fecha {
@@ -76,6 +80,66 @@ namespace Quattro.Core.Models {
             get => bus;
             set => SetValue(ref bus, value);
         }
+
+
+        #endregion
+        // ====================================================================================================
+
+
+        // ====================================================================================================
+        #region PROPIEDADES SÓLO LECTURA
+        // ====================================================================================================
+
+        [Ignore]
+        public string DiaSemana {
+            get {
+                switch (Fecha.DayOfWeek) {
+                    case DayOfWeek.Monday: return "LUN";
+                    case DayOfWeek.Tuesday: return "MAR";
+                    case DayOfWeek.Wednesday: return "MIE";
+                    case DayOfWeek.Thursday: return "JUE";
+                    case DayOfWeek.Friday: return "VIE";
+                    case DayOfWeek.Saturday: return "SAB";
+                    case DayOfWeek.Sunday: return "DOM";
+                }
+                return "";
+            }
+        }
+
+        [Ignore]
+        public bool EsUltimoDia { get => Fecha.Day == DateTime.DaysInMonth(Fecha.Year, Fecha.Month); }
+
+
+        private bool isSelected;
+        [Ignore]
+        public bool IsSelected {
+            get => isSelected;
+            set {
+                if (SetValue(ref isSelected, value)) PropiedadCambiada(nameof(TipoFondo));
+            }
+        }
+
+
+        [Ignore]
+        public Fondo TipoFondo {
+            get {
+                if (IsSelected) {
+                    if (Fecha.Day % 2 == 0) {
+                        return Fondo.AlternoSeleccionado;
+                    } else {
+                        return Fondo.NormalSeleccionado;
+                    }
+                }
+                if (Fecha.Day % 2 == 0) {
+                    return Fondo.Alterno;
+                } else {
+                    return Fondo.Normal;
+                }
+            }
+        }
+
+        #endregion
+        // ====================================================================================================
 
 
 

@@ -32,28 +32,6 @@ namespace Quattro.Core.Repositories {
             lista[3].Inicio = new Tiempo(14, 10);
             lista[3].Final = new Tiempo(22, 55);
             return lista;
-            return new List<DiaCalendario>() {
-                    new DiaCalendario { Fecha = new DateTime(2019,6,1), Inicio= new Tiempo(6,30), Final= new Tiempo(14,0), EsFranqueo=true,
-                    Desayuno=false, Comida=false, Cena=false},
-                    new DiaCalendario { Fecha = new DateTime(2019,6,2), Inicio= new Tiempo(7,30), Final= new Tiempo(14,35), EsFranqueo=false,
-                    Desayuno=true, Comida=false, Cena=false},
-                    new DiaCalendario { Fecha = new DateTime(2019,6,3), Inicio= new Tiempo(8,30), Final= new Tiempo(14,55), EsFranqueo=false,
-                    Desayuno=false, Comida=true, Cena=false},
-                    new DiaCalendario { Fecha = new DateTime(2019,6,4), Inicio= new Tiempo(10,15), Final= new Tiempo(16,20), EsFranqueo=true,
-                    Desayuno=false, Comida=false, Cena=false},
-                    new DiaCalendario { Fecha = new DateTime(2019,6,5), Inicio= new Tiempo(11,20), Final= new Tiempo(17,0), EsFranqueo=true,
-                    Desayuno=false, Comida=false, Cena=false},
-                    new DiaCalendario { Fecha = new DateTime(2019,6,6), Inicio= new Tiempo(10,25), Final= new Tiempo(15,20), EsFranqueo=false,
-                    Desayuno=false, Comida=false, Cena=true},
-                    new DiaCalendario { Fecha = new DateTime(2019,6,7), Inicio= new Tiempo(6,05), Final= new Tiempo(13,40), EsFranqueo=false,
-                    Desayuno=true, Comida=true, Cena=false},
-                    new DiaCalendario { Fecha = new DateTime(2019,6,8), Inicio= new Tiempo(5,50), Final= new Tiempo(13,10), EsFranqueo=true,
-                    Desayuno=false, Comida=false, Cena=true},
-                    new DiaCalendario { Fecha = new DateTime(2019,6,9), Inicio= new Tiempo(5,55), Final= new Tiempo(13,0), EsFranqueo=true,
-                    Desayuno=false, Comida=false, Cena=false},
-                    new DiaCalendario { Fecha = new DateTime(2019,6,10), Inicio= new Tiempo(6,45), Final= new Tiempo(14,05), EsFranqueo=false,
-                    Desayuno=false, Comida=false, Cena=false},
-                };
 
         }
 

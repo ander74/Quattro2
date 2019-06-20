@@ -1,6 +1,7 @@
 ﻿using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 using Quattro.Core.ViewModels;
+using Xamarin.Essentials;
 
 namespace Quattro.Core {
 
@@ -14,9 +15,19 @@ namespace Quattro.Core {
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
 
+            // Inyecta cualquier clase que termine en 'Repository' como un singleton, por medio de una interfaz.
+            this.CreatableTypes()
+                .EndingWith("Repository")
+                .AsInterfaces()
+                .RegisterAsLazySingleton();
+
             // Inicia la aplicación usando el ViewModel indicado.
-            // Este s encargará de inicializar la vista, etc.
-            this.RegisterAppStart<LicenciaViewModel>();
+            // Este se encargará de inicializar la vista, etc.
+            if (Preferences.Get("PrimerInicio", true)) {
+                this.RegisterAppStart<LicenciaViewModel>();
+            } else {
+                this.RegisterAppStart<CalendarioViewModel>();//TODO: Cambiar por el menú.
+            }
         }
 
     }

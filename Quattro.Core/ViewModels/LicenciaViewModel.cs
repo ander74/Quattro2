@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmCross.Commands;
+using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Quattro.Core.Interfaces;
 using Xamarin.Essentials;
@@ -16,6 +17,7 @@ namespace Quattro.Core.ViewModels {
         // ====================================================================================================
 
         private readonly IDialogService dialog;
+        private readonly IMvxNavigationService navigation;
 
         #endregion
         // ====================================================================================================
@@ -25,8 +27,9 @@ namespace Quattro.Core.ViewModels {
         #region CONSTRUCTOR
         // ====================================================================================================
 
-        public LicenciaViewModel(IDialogService dialog) {
+        public LicenciaViewModel(IDialogService dialog, IMvxNavigationService navigation) {
             this.dialog = dialog;
+            this.navigation = navigation;
         }
 
         #endregion
@@ -64,8 +67,9 @@ namespace Quattro.Core.ViewModels {
                 return aceptarCommand;
             }
         }
-        private void DoAceptar() {
-            dialog.Alert("Licencia Aceptada", "Ok", "Aceptar");
+        private async void DoAceptar() {
+            Preferences.Set("PrimerInicio", false); // TODO: Cambiar esto por true, para volver a ver la licencia.
+            await navigation.Navigate<CalendarioViewModel>();
         }
 
 
@@ -77,7 +81,8 @@ namespace Quattro.Core.ViewModels {
             }
         }
         private void DoCancelar() {
-            dialog.Alert("Licencia Cancelada", "ERROR", "Aceptar");
+            dialog.Confirmar("Debe aceptar la licencia para usar este programa", "AVISO", "Salir", "Volver", () => { navigation.Close(this); }, null);
+            
         }
 
         #endregion
