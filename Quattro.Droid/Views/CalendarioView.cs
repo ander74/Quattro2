@@ -2,9 +2,11 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using MvvmCross.Binding.BindingContext;
+using Android.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Quattro.Core.ViewModels;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
+
 
 namespace Quattro.Droid.Views {
 
@@ -15,9 +17,18 @@ namespace Quattro.Droid.Views {
             base.OnCreate(bundle);
             this.SetContentView(Resource.Layout.CalendarioPage);
 
-            //ENLACE AL TITULO DE LA ACTIVITY
-            this.CreateBinding().For("Title").To<CalendarioViewModel>(vm => vm.Titulo).Apply();
+            // Definimos la ToolBar.
+            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            this.SetSupportActionBar(toolbar);
+            SupportActionBar?.SetDisplayHomeAsUpEnabled(true);
+
         }
+
+        public override bool OnOptionsItemSelected(IMenuItem item) {
+            if (item.ItemId == global::Android.Resource.Id.Home) { OnBackPressed(); }
+            return base.OnOptionsItemSelected(item);
+        }
+
 
 
         // AÑADIR ESTO A TODAS LAS VIEWS (ACTIVITIES)

@@ -10,5 +10,9 @@ namespace Quattro.Core.Interfaces {
 
         void Confirmar(string mensaje, string titulo, string textoBotonOk, string textoBotonCancel, Action confirmar, Action cancelar);
 
+        void ShortToast(string mensaje);
+
+        void LongToast(string mensaje);
+
     }
 }

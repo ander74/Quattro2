@@ -69,6 +69,7 @@
     <Content Include="Entitlements.plist" />
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Views\LicenciaView.xib" />
+    <Compile Include="Services\DialogService.cs" />
     <Compile Include="Views\LicenciaView.cs" />
     <Compile Include="Views\LicenciaView.designer.cs">
       <DependentUpon>LicenciaView.cs</DependentUpon>

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmCross.Commands;
@@ -11,6 +10,7 @@ using Quattro.Core.Common;
 using Quattro.Core.Interfaces;
 using Quattro.Core.Models;
 using Quattro.Core.Repositories;
+using Xamarin.Essentials;
 
 namespace Quattro.Core.ViewModels {
     public class CalendarioViewModel : MvxViewModel {
@@ -76,7 +76,10 @@ namespace Quattro.Core.ViewModels {
         public void DoDiaPulsado(DiaCalendario dia) {
             if (IsInSelectMode) {
                 dia.IsSelected = !dia.IsSelected;
-                if (ListaDias.Count(d => d.IsSelected) == 0) IsInSelectMode = false;
+                if (ListaDias.Count(d => d.IsSelected) == 0) {
+                    IsInSelectMode = false;
+                }
+                Vibration.Vibrate(15);
                 RaisePropertyChanged(nameof(Titulo));
                 return;
             }
@@ -95,6 +98,7 @@ namespace Quattro.Core.ViewModels {
         }
         private void DoDiaPulsadoLargo(DiaCalendario dia) {
             if (IsInSelectMode) return;
+            Vibration.Vibrate(50);
             dia.IsSelected = true;
             IsInSelectMode = true;
         }
@@ -110,7 +114,7 @@ namespace Quattro.Core.ViewModels {
             }
         }
         private void DoAnteriorPulsado() {
-            this.dialog.Alert("ANTERIOR", "OK", "Aceptar");
+            this.dialog.LongToast("ANTERIOR");
         }
         #endregion
 
@@ -124,7 +128,7 @@ namespace Quattro.Core.ViewModels {
             }
         }
         private void DoSiguientePulsado() {
-            this.dialog.Alert("SIGUIENTE", "OK", "Aceptar");
+            this.dialog.LongToast("SIGUIENTE");
         }
         #endregion
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.App;
+using Android.Widget;
 using MvvmCross;
 using MvvmCross.Platforms.Android;
 using Quattro.Core.Interfaces;
@@ -7,6 +8,12 @@ using Quattro.Core.Interfaces;
 namespace Quattro.Droid.Services {
 
     public class DialogService : IDialogService {
+
+
+        // ====================================================================================================
+        #region MÉTODOS DE INTERFAZ
+        // ====================================================================================================
+
         public void Alert(string mensaje, string titulo, string textoBotonOk) {
 
             var top = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
@@ -14,7 +21,7 @@ namespace Quattro.Droid.Services {
             var adb = new AlertDialog.Builder(act);
             adb.SetTitle(titulo);
             adb.SetMessage(mensaje);
-            adb.SetPositiveButton(textoBotonOk, (sender, args) => { /* Aquí puede ir código que se ejecute. */ });
+            adb.SetPositiveButton(textoBotonOk, (sender, args) => {  });
             adb.Create().Show();
         }
 
@@ -40,6 +47,20 @@ namespace Quattro.Droid.Services {
             adb.SetNegativeButton(textoBotonCancel, (sender, args) => { if (cancelar != null) cancelar.Invoke(); });
             adb.Create().Show();
         }
+
+
+        public void ShortToast(string mensaje) {
+            Toast.MakeText(Application.Context, mensaje, ToastLength.Short).Show();
+        }
+
+
+        public void LongToast(string mensaje) {
+            Toast.MakeText(Application.Context, mensaje, ToastLength.Long).Show();
+        }
+
+        #endregion
+        // ====================================================================================================
+
 
     }
 }
