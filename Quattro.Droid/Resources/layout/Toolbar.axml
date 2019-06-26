@@ -13,7 +13,7 @@
         android:id="@+id/txtAbTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         app:MvxBind="Text Titulo"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title" />
 

@@ -64,9 +64,7 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\CalendarioView.cs" />
-    <Compile Include="Views\HomeView.cs" />
     <Compile Include="Views\LicenciaView.cs" />
-    <Compile Include="Views\MenuView.cs" />
     <Compile Include="Views\SplashView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -193,7 +191,7 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\CalendarioPage.axml">
+    <AndroidResource Include="Resources\layout\CalendarioPage2.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -224,12 +222,7 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_menu.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\HomePage.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\MenuPage.axml">
+    <AndroidResource Include="Resources\layout\CalendarioPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

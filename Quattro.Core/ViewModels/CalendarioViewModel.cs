@@ -133,6 +133,20 @@ namespace Quattro.Core.ViewModels {
         #endregion
 
 
+        #region GotoLicencia
+        private MvxAsyncCommand gotoLicenciaCommand;
+        public ICommand GotoLicenciaCommand {
+            get {
+                gotoLicenciaCommand = gotoLicenciaCommand ?? new MvxAsyncCommand(DoGotoLicencia);
+                return gotoLicenciaCommand;
+            }
+        }
+        private async Task DoGotoLicencia() {
+            await navigation.Navigate<LicenciaViewModel>();
+        }
+        #endregion
+
+
 
         #endregion
         // ====================================================================================================
