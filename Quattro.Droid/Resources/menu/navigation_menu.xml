@@ -1,0 +1,13 @@
+﻿<menu
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:local="http://schemas.android.com/apk/res-auto">
+  <group
+		android:id="@+id/nav_items">
+    <item
+			android:id="@+id/nav_calendario"
+			android:title="Calendario" />
+    <item
+			android:id="@+id/nav_licencia"
+			android:title="Licencia" />
+  </group>
+</menu>

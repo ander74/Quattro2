@@ -64,7 +64,9 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\CalendarioView.cs" />
+    <Compile Include="Views\HomeView.cs" />
     <Compile Include="Views\LicenciaView.cs" />
+    <Compile Include="Views\MenuView.cs" />
     <Compile Include="Views\SplashView.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +222,24 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xxxhdpi\ic_menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\HomePage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\MenuPage.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\navigation_header.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\menu\navigation_menu.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
