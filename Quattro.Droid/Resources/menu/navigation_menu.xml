@@ -1,13 +1,41 @@
 ﻿<menu
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:local="http://schemas.android.com/apk/res-auto">
-	<group
-		android:id="@+id/nav_items">
-		<item
+  <group android:id="@+id/grupoPrincipal">
+    <item
       android:id="@+id/nav_calendario"
+      android:icon="@drawable/ic_calendario"
 			android:title="Calendario" />
-		<item
-      android:id="@+id/nav_licencia"
-			android:title="Licencia"/>
-	</group>
+    <item
+      android:id="@+id/nav_companeros"
+      android:icon="@drawable/ic_companero"
+			android:title="Compañer@s"/>
+    <item
+      android:id="@+id/nav_lineas"
+      android:icon="@drawable/ic_autobus"
+			android:title="Líneas"/>
+    <item
+      android:id="@+id/nav_ajenas"
+      android:icon="@drawable/ic_reloj"
+			android:title="Horas Ajenas"/>
+  </group>
+  <group android:id="@+id/grupoSeparacion" />
+  <group android:id="@+id/grupoHerramientas">
+    <item
+      android:id="@+id/nav_datos"
+      android:icon="@drawable/ic_estadisticas"
+      android:title="Datos"/>
+    <item
+      android:id="@+id/nav_seguridad"
+      android:icon="@drawable/ic_incidencias"
+      android:title="Seguridad"/>
+  </group>
+  <group android:id="@+id/grupoSeparacion2" />
+  <group android:id="@+id/grupoConfiguracion">
+    <item
+      android:id="@+id/nav_configuracion"
+      android:icon="@drawable/ic_ajustes"
+      android:title="Configuración"/>
+  </group>
 </menu>
+

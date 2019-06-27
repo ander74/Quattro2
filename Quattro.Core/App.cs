@@ -26,7 +26,7 @@ namespace Quattro.Core {
             if (Preferences.Get("PrimerInicio", true)) {
                 this.RegisterAppStart<LicenciaViewModel>();
             } else {
-                this.RegisterAppStart<CalendarioViewModel>();//TODO: Cambiar por el menú.
+                this.RegisterAppStart<HomeViewModel>();//TODO: Cambiar por el menú.
             }
         }
 

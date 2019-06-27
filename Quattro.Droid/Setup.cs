@@ -2,13 +2,15 @@
 using System.Linq;
 using System.Reflection;
 using MvvmCross;
+using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platforms.Android.Core;
+using MvvmCross.Platforms.Android.Presenters;
 using Quattro.Core;
 using Quattro.Core.Interfaces;
 using Quattro.Droid.Services;
 
 namespace Quattro.Droid {
-    public class Setup : MvxAndroidSetup<App> {
+    public class Setup : MvxAppCompatSetup<App> {
 
         protected override void InitializeFirstChance() {
 

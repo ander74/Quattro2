@@ -1,75 +1,56 @@
-﻿using System.Threading.Tasks;
-using Android.App;
-using Android.Content.PM;
+﻿using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Android.Support.Design.Widget;
-using Android.Support.V4.View;
-using Android.Support.V4.Widget;
-using Android.Support.V7.App;
+using Android.Support.V7.Widget;
 using Android.Views;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Platforms.Android.Binding.BindingContext;
+using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Quattro.Core.ViewModels;
-using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 
 namespace Quattro.Droid.Views {
 
-    [Activity(Label = "@string/app_name")]
-    public class CalendarioView : MvxAppCompatActivity<CalendarioViewModel> {
+    [MvxFragmentPresentation(typeof(HomeViewModel), Resource.Id.contenido)]
+    [Register("quattro.droid.views.CalendarioView")]
+    public class CalendarioView : MvxAppCompatDialogFragment<CalendarioViewModel> {
 
-        private IMenuItem menuPrevio;
-        private DrawerLayout drawer;
-        private NavigationView navigationView;
+        private Toolbar toolbar;
+        private MvxActionBarDrawerToggle drawerToggle;
+        public MvxAppCompatActivity ParentActivity {
+            get => (MvxAppCompatActivity)Activity;
+        }
 
-        protected override void OnCreate(Bundle bundle) {
+
+        public override void OnCreate(Bundle bundle) {
             base.OnCreate(bundle);
-            this.SetContentView(Resource.Layout.CalendarioPage);
-
-            // Definimos la ToolBar.
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            this.SetSupportActionBar(toolbar);
-            SupportActionBar?.SetHomeAsUpIndicator(Resource.Drawable.ic_menu);
-            SupportActionBar?.SetDisplayHomeAsUpEnabled(true);
-            SupportActionBar?.SetDisplayShowHomeEnabled(true);
-
-            // Definimos el Drawer
-            drawer = FindViewById<DrawerLayout>(Resource.Id.drawerlayout);
-            var toggle = new ActionBarDrawerToggle(
-                this,
-                drawer,
-                toolbar,
-                Resource.String.OpenDrawerString,
-                Resource.String.CloseDrawerString);
-            drawer.AddDrawerListener(toggle);
-            toggle.SyncState();
-
-            // Definimos el menú del Drawer
-            navigationView = this.FindViewById<NavigationView>(Resource.Id.navigation_view);
-            navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
-
         }
 
-        private void NavigationView_NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e) {
-            if (menuPrevio != null) menuPrevio.SetChecked(false);
-            e.MenuItem.SetChecked(true);
-            e.MenuItem.SetCheckable(true);
-            menuPrevio = e.MenuItem;
-            switch (e.MenuItem.ItemId) {
-                case Resource.Id.nav_calendario:
-                    //NO Hacer nada, ya que estamos
-                    break;
-                case Resource.Id.nav_licencia:
-                    Task.Run(() => ViewModel.GotoLicenciaCommand.Execute(null));
-                    drawer.CloseDrawer(navigationView);
-                    break;
+        public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            var ignore = base.OnCreateView(inflater, container, savedInstanceState);
+            var view = this.BindingInflate(Resource.Layout.CalendarioPage, null);
+
+
+            // Inicializamos la toolbar. DEBE APARECER EN TODOS LOS FRAGMENTS
+            toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
+            if (toolbar != null) {
+                ParentActivity.SetSupportActionBar(toolbar);
+                ParentActivity.SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_menu);
+                ParentActivity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
+                drawerToggle = new MvxActionBarDrawerToggle(
+                    Activity,
+                    ((HomeView)ParentActivity).Drawer,
+                    toolbar,
+                    Resource.String.OpenDrawerString,
+                    Resource.String.CloseDrawerString
+                );
+                drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => ((HomeView)Activity)?.HideSoftKeyboard();
+                ((HomeView)ParentActivity).Drawer.AddDrawerListener(drawerToggle);
             }
+            return view;
         }
 
-        public override bool OnOptionsItemSelected(IMenuItem item) {
-            if (item.ItemId == global::Android.Resource.Id.Home) { OnBackPressed(); }
-            return base.OnOptionsItemSelected(item);
-        }
 
 
 
