@@ -82,7 +82,7 @@ namespace Quattro.Core.ViewModels {
         }
         private void DoCancelar() {
             dialog.Confirmar("Debe aceptar la licencia para usar este programa", "AVISO", "Salir", "Volver", () => { navigation.Close(this); }, null);
-            
+
         }
 
         #endregion

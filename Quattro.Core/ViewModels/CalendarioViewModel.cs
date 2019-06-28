@@ -8,8 +8,8 @@ using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Quattro.Core.Common;
 using Quattro.Core.Interfaces;
-using Quattro.Core.Models;
-using Quattro.Core.Repositories;
+using Quattro.Core.Data.Models;
+using Quattro.Core.Data.Repositories;
 using Xamarin.Essentials;
 
 namespace Quattro.Core.ViewModels {
@@ -54,7 +54,7 @@ namespace Quattro.Core.ViewModels {
 
             // Inicialización de propiedades.
             this.Fecha = DateTime.Now;
-            this.ListaDias = repo.GetMes(Fecha);
+            this.ListaDias = repo.GetMes(Fecha).Select(dce => new DiaCalendario(dce)).ToList();
         }
 
         #endregion
@@ -81,6 +81,7 @@ namespace Quattro.Core.ViewModels {
                 }
                 Vibration.Vibrate(15);
                 RaisePropertyChanged(nameof(Titulo));
+                RaisePropertyChanged(nameof(IsMultipleSelect));
                 return;
             }
             this.dialog.Alert($"Has pulsado el día {dia.Fecha.Day}.", "AVISO", "Aceptar");
@@ -178,15 +179,21 @@ namespace Quattro.Core.ViewModels {
         }
 
 
-        private bool isInselectMode;
+        private bool isInSelectMode;
         public bool IsInSelectMode {
-            get => isInselectMode;
+            get => isInSelectMode;
             set {
-                if (SetProperty(ref isInselectMode, value)) {
+                if (SetProperty(ref isInSelectMode, value)) {
                     RaisePropertyChanged(nameof(Titulo));
                 }
             }
         }
+
+
+        public bool IsMultipleSelect {
+            get => ListaDias.Count(d => d.IsSelected) > 1;
+        }
+
 
         public string Titulo {
             get {

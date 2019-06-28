@@ -5352,8 +5352,6 @@ namespace Quattro.Droid
 			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_reverseLayout = global::Quattro.Droid.Resource.Styleable.RecyclerView_reverseLayout;
 			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_spanCount = global::Quattro.Droid.Resource.Styleable.RecyclerView_spanCount;
 			global::MvvmCross.Droid.Support.V7.RecyclerView.Resource.Styleable.RecyclerView_stackFromEnd = global::Quattro.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
-			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::Quattro.Droid.Resource.String.ApplicationName;
-			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::Quattro.Droid.Resource.String.Hello;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::Quattro.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::Quattro.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::Quattro.Droid.Resource.Attribute.font;
@@ -8646,26 +8644,26 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f020055
 			public const int avd_hide_password = 2130837589;
 			
-			// aapt resource value: 0x7f020080
-			public const int avd_hide_password_1 = 2130837632;
+			// aapt resource value: 0x7f02008b
+			public const int avd_hide_password_1 = 2130837643;
 			
-			// aapt resource value: 0x7f020081
-			public const int avd_hide_password_2 = 2130837633;
+			// aapt resource value: 0x7f02008c
+			public const int avd_hide_password_2 = 2130837644;
 			
-			// aapt resource value: 0x7f020082
-			public const int avd_hide_password_3 = 2130837634;
+			// aapt resource value: 0x7f02008d
+			public const int avd_hide_password_3 = 2130837645;
 			
 			// aapt resource value: 0x7f020056
 			public const int avd_show_password = 2130837590;
 			
-			// aapt resource value: 0x7f020083
-			public const int avd_show_password_1 = 2130837635;
+			// aapt resource value: 0x7f02008e
+			public const int avd_show_password_1 = 2130837646;
 			
-			// aapt resource value: 0x7f020084
-			public const int avd_show_password_2 = 2130837636;
+			// aapt resource value: 0x7f02008f
+			public const int avd_show_password_2 = 2130837647;
 			
-			// aapt resource value: 0x7f020085
-			public const int avd_show_password_3 = 2130837637;
+			// aapt resource value: 0x7f020090
+			public const int avd_show_password_3 = 2130837648;
 			
 			// aapt resource value: 0x7f020057
 			public const int design_bottom_navigation_item_background = 2130837591;
@@ -8737,58 +8735,91 @@ namespace Quattro.Droid
 			public const int ic_siguiente = 2130837613;
 			
 			// aapt resource value: 0x7f02006e
-			public const int mtrl_snackbar_background = 2130837614;
+			public const int icr_almacenar = 2130837614;
 			
 			// aapt resource value: 0x7f02006f
-			public const int mtrl_tabs_default_indicator = 2130837615;
+			public const int icr_anterior = 2130837615;
 			
 			// aapt resource value: 0x7f020070
-			public const int navigation_empty_icon = 2130837616;
+			public const int icr_borrar = 2130837616;
 			
 			// aapt resource value: 0x7f020071
-			public const int notification_action_background = 2130837617;
+			public const int icr_copiar = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int notification_bg = 2130837618;
+			public const int icr_festivo = 2130837618;
 			
 			// aapt resource value: 0x7f020073
-			public const int notification_bg_low = 2130837619;
+			public const int icr_franqueo = 2130837619;
 			
 			// aapt resource value: 0x7f020074
-			public const int notification_bg_low_normal = 2130837620;
+			public const int icr_pegar = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int notification_bg_low_pressed = 2130837621;
+			public const int icr_reloj = 2130837621;
 			
 			// aapt resource value: 0x7f020076
-			public const int notification_bg_normal = 2130837622;
+			public const int icr_repetir = 2130837622;
 			
 			// aapt resource value: 0x7f020077
-			public const int notification_bg_normal_pressed = 2130837623;
+			public const int icr_siguiente = 2130837623;
 			
 			// aapt resource value: 0x7f020078
-			public const int notification_icon_background = 2130837624;
-			
-			// aapt resource value: 0x7f02007e
-			public const int notification_template_icon_bg = 2130837630;
-			
-			// aapt resource value: 0x7f02007f
-			public const int notification_template_icon_low_bg = 2130837631;
+			public const int icr_usuario = 2130837624;
 			
 			// aapt resource value: 0x7f020079
-			public const int notification_tile_bg = 2130837625;
+			public const int mtrl_snackbar_background = 2130837625;
 			
 			// aapt resource value: 0x7f02007a
-			public const int notify_panel_notification_icon_bg = 2130837626;
+			public const int mtrl_tabs_default_indicator = 2130837626;
 			
 			// aapt resource value: 0x7f02007b
-			public const int splash = 2130837627;
+			public const int navigation_empty_icon = 2130837627;
 			
 			// aapt resource value: 0x7f02007c
-			public const int tooltip_frame_dark = 2130837628;
+			public const int notification_action_background = 2130837628;
 			
 			// aapt resource value: 0x7f02007d
-			public const int tooltip_frame_light = 2130837629;
+			public const int notification_bg = 2130837629;
+			
+			// aapt resource value: 0x7f02007e
+			public const int notification_bg_low = 2130837630;
+			
+			// aapt resource value: 0x7f02007f
+			public const int notification_bg_low_normal = 2130837631;
+			
+			// aapt resource value: 0x7f020080
+			public const int notification_bg_low_pressed = 2130837632;
+			
+			// aapt resource value: 0x7f020081
+			public const int notification_bg_normal = 2130837633;
+			
+			// aapt resource value: 0x7f020082
+			public const int notification_bg_normal_pressed = 2130837634;
+			
+			// aapt resource value: 0x7f020083
+			public const int notification_icon_background = 2130837635;
+			
+			// aapt resource value: 0x7f020089
+			public const int notification_template_icon_bg = 2130837641;
+			
+			// aapt resource value: 0x7f02008a
+			public const int notification_template_icon_low_bg = 2130837642;
+			
+			// aapt resource value: 0x7f020084
+			public const int notification_tile_bg = 2130837636;
+			
+			// aapt resource value: 0x7f020085
+			public const int notify_panel_notification_icon_bg = 2130837637;
+			
+			// aapt resource value: 0x7f020086
+			public const int splash = 2130837638;
+			
+			// aapt resource value: 0x7f020087
+			public const int tooltip_frame_dark = 2130837639;
+			
+			// aapt resource value: 0x7f020088
+			public const int tooltip_frame_light = 2130837640;
 			
 			static Drawable()
 			{
@@ -9853,17 +9884,11 @@ namespace Quattro.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f0d0037
-			public const int ApplicationName = 2131558455;
+			// aapt resource value: 0x7f0d003d
+			public const int CloseDrawerString = 2131558461;
 			
-			// aapt resource value: 0x7f0d003f
-			public const int CloseDrawerString = 2131558463;
-			
-			// aapt resource value: 0x7f0d0036
-			public const int Hello = 2131558454;
-			
-			// aapt resource value: 0x7f0d003e
-			public const int OpenDrawerString = 2131558462;
+			// aapt resource value: 0x7f0d003c
+			public const int OpenDrawerString = 2131558460;
 			
 			// aapt resource value: 0x7f0d0000
 			public const int abc_action_bar_home_description = 2131558400;
@@ -9982,17 +10007,17 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0d001a
 			public const int abc_toolbar_collapse_description = 2131558426;
 			
-			// aapt resource value: 0x7f0d003d
-			public const int action_settings = 2131558461;
+			// aapt resource value: 0x7f0d003b
+			public const int action_settings = 2131558459;
+			
+			// aapt resource value: 0x7f0d0038
+			public const int app_name = 2131558456;
+			
+			// aapt resource value: 0x7f0d0039
+			public const int app_name_version = 2131558457;
 			
 			// aapt resource value: 0x7f0d003a
-			public const int app_name = 2131558458;
-			
-			// aapt resource value: 0x7f0d003b
-			public const int app_name_version = 2131558459;
-			
-			// aapt resource value: 0x7f0d003c
-			public const int app_version = 2131558460;
+			public const int app_version = 2131558458;
 			
 			// aapt resource value: 0x7f0d0028
 			public const int appbar_scrolling_view_behavior = 2131558440;
@@ -10006,8 +10031,8 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0d002b
 			public const int character_counter_pattern = 2131558443;
 			
-			// aapt resource value: 0x7f0d0038
-			public const int fab_scroll_shrink_grow_autohide_behavior = 2131558456;
+			// aapt resource value: 0x7f0d0036
+			public const int fab_scroll_shrink_grow_autohide_behavior = 2131558454;
 			
 			// aapt resource value: 0x7f0d002c
 			public const int fab_transformation_scrim_behavior = 2131558444;
@@ -10042,8 +10067,8 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0d0035
 			public const int status_bar_notification_info_overflow = 2131558453;
 			
-			// aapt resource value: 0x7f0d0039
-			public const int view_scroll_translation_autohide_behavior = 2131558457;
+			// aapt resource value: 0x7f0d0037
+			public const int view_scroll_translation_autohide_behavior = 2131558455;
 			
 			static String()
 			{

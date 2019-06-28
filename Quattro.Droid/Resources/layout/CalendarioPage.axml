@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+
     <LinearLayout
         android:id="@+id/header_layout"
         android:layout_width="match_parent"
@@ -28,11 +29,13 @@
 
     </LinearLayout>
 
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center_horizontal"
         android:layout_margin="16dp"
+        local:MvxBind="Visibility InvertedVisibility(IsInSelectMode)"
         local:cardBackgroundColor="#ffffff"
         local:cardCornerRadius="6dp"
         local:cardElevation="4dp">
@@ -52,7 +55,7 @@
                 android:scaleType="fitCenter"
                 android:clickable="true"
                 local:MvxBind="Click AnteriorPulsadoCommand"
-                android:src="@drawable/ic_anterior"/>
+                android:src="@drawable/icr_anterior"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -84,10 +87,161 @@
                 android:layout_margin="5dp"
                 android:scaleType="fitCenter"
                 local:MvxBind="Click SiguientePulsadoCommand"
-                android:src="@drawable/ic_siguiente"/>
+                android:src="@drawable/icr_siguiente"/>
 
         </GridLayout>
     </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_margin="16dp"
+        local:MvxBind="Visibility Visibility(IsInSelectMode)"
+        local:cardBackgroundColor="#ffffff"
+        local:cardCornerRadius="6dp"
+        local:cardElevation="4dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                local:MvxBind="Visibility InvertedVisibility(IsMultipleSelect)"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center|bottom"
+                    android:text="Repetir"
+                    android:textSize="8dp"
+                    android:textColor="#222"
+                    android:background="@drawable/icr_repetir"
+                    local:MvxBind="Click RepetirCommand"
+            />
+
+                <Button
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center|bottom"
+                    android:text="Copiar"
+                    android:textSize="8dp"
+                    android:textColor="#222"
+                    android:background="@drawable/icr_copiar"
+                    local:MvxBind="Click CopiarCommand"
+            />
+
+                <Button
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center|bottom"
+                    android:text="Ajenas"
+                    android:textSize="8dp"
+                    android:textColor="#222"
+                    android:background="@drawable/icr_reloj"
+                    local:MvxBind="Click AjenasCommand"
+            />
+
+                <Button
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center|bottom"
+                    android:text="Guardar"
+                    android:textSize="8dp"
+                    android:textColor="#222"
+                    android:background="@drawable/icr_almacenar"
+                    local:MvxBind="Click GuardarCommand"
+            />
+
+                <Button
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center|bottom"
+                    android:text="Relevo"
+                    android:textSize="8dp"
+                    android:textColor="#222"
+                    android:background="@drawable/icr_usuario"
+                    local:MvxBind="Click RelevoCommand"
+            />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center|bottom"
+                    android:text="Vaciar"
+                    android:textSize="8dp"
+                    android:textColor="#222"
+                    android:background="@drawable/icr_borrar"
+                    local:MvxBind="Click VaciarCommand"
+            />
+
+                <Button
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center|bottom"
+                    android:text="Franqueo"
+                    android:textSize="8dp"
+                    android:textColor="#222"
+                    android:background="@drawable/icr_franqueo"
+                    local:MvxBind="Click FranqueoCommand"
+            />
+
+                <Button
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center|bottom"
+                    android:text="Festivo"
+                    android:textSize="8dp"
+                    android:textColor="#222"
+                    android:background="@drawable/icr_festivo"
+                    local:MvxBind="Click FestivoCommand"
+            />
+
+                <Button
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:gravity="center|bottom"
+                    android:text="Pegar"
+                    android:textSize="8dp"
+                    android:textColor="#222"
+                    android:background="@drawable/icr_pegar"
+                    local:MvxBind="Click PegarCommand"
+            />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+
 
 </android.support.design.widget.CoordinatorLayout>
 

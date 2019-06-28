@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quattro.Droid", "Quattro.Dr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quattro.iOS", "Quattro.iOS\Quattro.iOS.csproj", "{92CBD8D1-5EE2-4A9F-9293-6C859DDE434F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quattro.Core", "Quattro.Core\Quattro.Core.csproj", "{F49FB6B1-A23C-4C92-BB9A-4F580E4B19DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quattro.Core", "Quattro.Core\Quattro.Core.csproj", "{F49FB6B1-A23C-4C92-BB9A-4F580E4B19DB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

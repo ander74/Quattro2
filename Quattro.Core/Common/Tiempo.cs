@@ -3,14 +3,13 @@ using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
-using SQLite.Net;
 
 namespace Quattro.Core.Common {
     /// <summary>
     /// Representa un intervalo de tiempo compuesto de días, horas y minutos.
     /// </summary>
     [JsonConverter(typeof(JsonTiempoConverter))]
-    public class Tiempo : IComparable, IComparable<Tiempo>, IEquatable<Tiempo>, IFormattable, ISerializable<int> {
+    public class Tiempo : IComparable, IComparable<Tiempo>, IEquatable<Tiempo>, IFormattable {
 
         // ====================================================================================================
         #region CONSTANTES

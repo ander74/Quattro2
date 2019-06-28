@@ -1,5 +1,7 @@
-﻿using MvvmCross.IoC;
+﻿using MvvmCross;
+using MvvmCross.IoC;
 using MvvmCross.ViewModels;
+using Quattro.Core.Data;
 using Quattro.Core.ViewModels;
 using Xamarin.Essentials;
 
@@ -20,6 +22,10 @@ namespace Quattro.Core {
                 .EndingWith("Repository")
                 .AsInterfaces()
                 .RegisterAsLazySingleton();
+
+            // Inyecta el QuattroContext
+            Mvx.IoCProvider.RegisterSingleton(new QuattroContext()); //TODO: No se si esto funcionará.
+
 
             // Inicia la aplicación usando el ViewModel indicado.
             // Este se encargará de inicializar la vista, etc.
