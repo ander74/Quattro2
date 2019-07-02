@@ -62,6 +62,7 @@ namespace Quattro.Core.Data.Models {
         // ====================================================================================================
 
         public void FromEntity(HoraAjenaEntity entidad) {
+            if (entidad == null) return;
             this.Fecha = entidad.Fecha;
             this.Horas = entidad.Horas;
             this.Id = entidad.Id;
@@ -70,6 +71,7 @@ namespace Quattro.Core.Data.Models {
         }
 
         public void ToEntity(HoraAjenaEntity entidad) {
+            if (entidad == null) return;
             entidad.Fecha = this.Fecha;
             entidad.Horas = this.Horas;
             entidad.Id = this.Id;

@@ -33,7 +33,7 @@
 
             <TextView
                 android:id="@+id/numeroDia"
-                local:MvxBind="Text Format('{0:00}', Fecha.Day)"
+                local:MvxBind="Text Format('{0:00}', Fecha.Day); TextColor ColorDia(EsDomingoOFestivo)"
                 android:textSize="26sp"
                 android:textAlignment="center"
                 android:textFontWeight="bold"
@@ -49,7 +49,7 @@
 
             <TextView
                 android:id="@+id/textoDia"
-                local:MvxBind="Text DiaSemana"
+                local:MvxBind="Text DiaSemana; TextColor ColorDia(EsDomingoOFestivo)"
                 android:textSize="16sp"
                 android:textAlignment="center"
                 android:layout_width="0dp"

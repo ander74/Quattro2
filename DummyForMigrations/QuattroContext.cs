@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Quattro.Core.Common;
 using Quattro.Core.Data.Entities;
 
-namespace Quattro.Core.Data {
+namespace DummyForMigrations {
 
     public class QuattroContext : DbContext {
 
@@ -54,8 +54,8 @@ namespace Quattro.Core.Data {
         // ====================================================================================================
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
-            string dataBaseFile = Path.Combine(Xamarin.Essentials.FileSystem.AppDataDirectory, "database.qt2"); // Comentada en Dummy
-            //string dataBaseFile = Path.Combine("Datos", "database.qt2"); // Comentada en Core
+            //string dataBaseFile = Path.Combine(Xamarin.Essentials.FileSystem.AppDataDirectory, "database.qt2"); // Comentada en Dummy
+            string dataBaseFile = Path.Combine("Datos", "database.qt2"); // Comentada en Core
             optionsBuilder.UseSqlite($"Filename={dataBaseFile}");
         }
 

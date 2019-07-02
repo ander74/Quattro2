@@ -83,6 +83,7 @@ namespace Quattro.Core.Data.Models {
         // ====================================================================================================
 
         public void FromEntity(ServicioBaseEntity entidad) {
+            if (entidad == null) return;
             this.Id = entidad.Id;
             this.Final = entidad.Final;
             this.Inicio = entidad.Inicio;
@@ -94,6 +95,7 @@ namespace Quattro.Core.Data.Models {
         }
 
         public void ToEntity(ServicioBaseEntity entidad) {
+            if (entidad == null) return;
             entidad.Id = this.Id;
             entidad.Final = this.Final;
             entidad.Inicio = this.Inicio;

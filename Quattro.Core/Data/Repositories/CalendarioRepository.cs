@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using Quattro.Core.Data.Entities;
 
 namespace Quattro.Core.Data.Repositories {
@@ -42,7 +43,13 @@ namespace Quattro.Core.Data.Repositories {
                 }
                 context.SaveChanges();
             }
-            return context.Calendario.Where(c => c.Fecha.Month == fecha.Month && c.Fecha.Year == fecha.Year);
+            return context.Calendario.Where(c => c.Fecha.Month == fecha.Month && c.Fecha.Year == fecha.Year)
+                .Include(c => c.Incidencia)
+                .Include(c => c.Linea)
+                .Include(c => c.Servicios).ThenInclude(s => s.Linea)
+                .Include(c => c.Relevo)
+                .Include(c => c.Susti)
+                .OrderBy(c => c.Fecha);
         }
 
         #endregion

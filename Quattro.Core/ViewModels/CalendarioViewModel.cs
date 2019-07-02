@@ -54,6 +54,7 @@ namespace Quattro.Core.ViewModels {
 
             // Inicialización de propiedades.
             this.Fecha = DateTime.Now;
+            //var lista = repo.GetMes(Fecha).ToList();
             this.ListaDias = repo.GetMes(Fecha).Select(dce => new DiaCalendario(dce)).ToList();
         }
 
@@ -106,6 +107,25 @@ namespace Quattro.Core.ViewModels {
         #endregion
 
 
+        #region DesseleccionarTodo
+        private MvxCommand desseleccionarTodoCommand;
+        public ICommand DesseleccionarTodoCommand {
+            get {
+                desseleccionarTodoCommand = desseleccionarTodoCommand ?? new MvxCommand(DoDesseleccionarTodo);
+                return desseleccionarTodoCommand;
+            }
+        }
+        private void DoDesseleccionarTodo() {
+            foreach(var dia in ListaDias.Where(d => d.IsSelected)) {
+                dia.IsSelected = false;
+            }
+            IsInSelectMode = false;
+            Vibration.Vibrate(30);
+        }
+        #endregion
+
+
+
         #region AnteriorPulsado
         private MvxCommand anteriorPulsadoCommand;
         public ICommand AnteriorPulsadoCommand {
@@ -146,6 +166,41 @@ namespace Quattro.Core.ViewModels {
             await navigation.Navigate<LicenciaViewModel>();
         }
         #endregion
+
+
+        #region Franqueo
+        private MvxCommand franqueoCommand;
+        public ICommand FranqueoCommand {
+            get {
+                franqueoCommand = franqueoCommand ?? new MvxCommand(DoFranqueo);
+                return franqueoCommand;
+            }
+        }
+        private void DoFranqueo() {
+            foreach(var dia in ListaDias.Where(d => d.IsSelected)) {
+                dia.EsFranqueo = !dia.EsFranqueo;
+                //TODO: Guardar cambios.
+            }
+        }
+        #endregion
+
+
+        #region Festivo
+        private MvxCommand festivoCommand;
+        public ICommand FestivoCommand {
+            get {
+                festivoCommand = festivoCommand ?? new MvxCommand(DoFestivo);
+                return festivoCommand;
+            }
+        }
+        private void DoFestivo() {
+            foreach (var dia in ListaDias.Where(d => d.IsSelected)) {
+                dia.EsFestivo = !dia.EsFestivo;
+                //TODO: Guardar cambios.
+            }
+        }
+        #endregion
+
 
 
 
@@ -200,7 +255,7 @@ namespace Quattro.Core.ViewModels {
                 if (IsInSelectMode) {
                     return $"{ListaDias.Count(d => d.IsSelected)} selecc.";
                 }
-                return $"{(MesAbreviado)Fecha.Month} - {Fecha.Year}";
+                return $"{(Mes)Fecha.Month} - {Fecha.Year}".ToUpper();
             }
         }
 

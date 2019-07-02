@@ -12,6 +12,7 @@ namespace Quattro.Core.Common {
     }
 
     public enum Mes {
+        Desconocido,
         Enero,
         Febrero,
         Marzo,
@@ -27,6 +28,7 @@ namespace Quattro.Core.Common {
     }
 
     public enum MesAbreviado {
+        Des,
         Ene,
         Feb,
         Mar,
@@ -39,6 +41,26 @@ namespace Quattro.Core.Common {
         Oct,
         Nov,
         Dic
+    }
+
+    public enum DiaSemana {
+        Domingo,
+        Lunes,
+        Martes,
+        Miércoles,
+        Jueves,
+        Viernes,
+        Sábado,
+    }
+
+    public enum DiaSemanaAbreviado {
+        Dom,
+        Lun,
+        Mar,
+        Mié,
+        Jue,
+        Vie,
+        Sáb,
     }
 
     public enum TipoCompañero {

@@ -28,7 +28,11 @@ namespace Quattro.Core.Data.Models {
         private DateTime fecha;
         public DateTime Fecha {
             get => fecha;
-            set => SetProperty(ref fecha, value);
+            set {
+                if (SetProperty(ref fecha, value)) {
+                    PropiedadCambiada(nameof(EsDomingoOFestivo));
+                }
+            }
         }
 
 
@@ -42,7 +46,11 @@ namespace Quattro.Core.Data.Models {
         private bool esFestivo;
         public bool EsFestivo {
             get => esFestivo;
-            set => SetProperty(ref esFestivo, value);
+            set {
+                if (SetProperty(ref esFestivo, value)) {
+                    PropiedadCambiada(nameof(EsDomingoOFestivo));
+                }
+            }
         }
 
 
@@ -146,6 +154,7 @@ namespace Quattro.Core.Data.Models {
         // ====================================================================================================
 
         public void FromEntity(DiaCalendarioEntity entidad) {
+            if (entidad == null) return;
             base.FromEntity(entidad);
             this.Fecha = entidad.Fecha;
             this.EsFranqueo = entidad.EsFranqueo;
@@ -166,6 +175,7 @@ namespace Quattro.Core.Data.Models {
         }
 
         public void ToEntity(DiaCalendarioEntity entidad) {
+            if (entidad == null) return;
             base.ToEntity(entidad);
             entidad.Fecha = this.Fecha;
             entidad.EsFranqueo = this.EsFranqueo;
@@ -218,18 +228,7 @@ namespace Quattro.Core.Data.Models {
         // ====================================================================================================
 
         public string DiaSemana {
-            get {
-                switch (Fecha.DayOfWeek) {
-                    case DayOfWeek.Monday: return "LUN";
-                    case DayOfWeek.Tuesday: return "MAR";
-                    case DayOfWeek.Wednesday: return "MIE";
-                    case DayOfWeek.Thursday: return "JUE";
-                    case DayOfWeek.Friday: return "VIE";
-                    case DayOfWeek.Saturday: return "SAB";
-                    case DayOfWeek.Sunday: return "DOM";
-                }
-                return "";
-            }
+            get => $"{(DiaSemanaAbreviado)Fecha.DayOfWeek}".ToUpper();
         }
 
 
@@ -237,6 +236,9 @@ namespace Quattro.Core.Data.Models {
             get => Fecha.Day == DateTime.DaysInMonth(Fecha.Year, Fecha.Month);
         }
 
+        public (DateTime, bool) EsDomingoOFestivo {
+            get => (Fecha, EsFestivo);
+        }
 
         public Fondo TipoFondo {
             get {

@@ -62,6 +62,7 @@ namespace Quattro.Core.Data.Models {
         // ====================================================================================================
 
         public void FromEntity(LineaEntity entidad) {
+            if (entidad == null) return;
             this.Id = entidad.Id;
             this.Descripcion = entidad.Descripcion;
             this.Notas = entidad.Notas;
@@ -70,6 +71,7 @@ namespace Quattro.Core.Data.Models {
         }
 
         public void ToEntity(LineaEntity entidad) {
+            if (entidad == null) return;
             entidad.Id = this.Id;
             entidad.Descripcion = this.Descripcion;
             entidad.Notas = this.Notas;

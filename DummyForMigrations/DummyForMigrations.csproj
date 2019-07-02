@@ -1,12 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="licencia.txt" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
@@ -16,15 +13,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="MvvmCross" Version="6.3.1" />
-    <PackageReference Include="MvvmCross.Plugin.Color" Version="6.3.1" />
-    <PackageReference Include="MvvmCross.Plugin.Visibility" Version="6.3.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="licencia.txt" />
+    <ProjectReference Include="..\Quattro.Core\Quattro.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="NotUsedCore\" />
   </ItemGroup>
 
 </Project>

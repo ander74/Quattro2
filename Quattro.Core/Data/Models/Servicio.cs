@@ -55,6 +55,7 @@ namespace Quattro.Core.Data.Models {
         // ====================================================================================================
 
         public void FromEntity(ServicioEntity entidad) {
+            if (entidad == null) return;
             base.FromEntity(entidad);
             this.TomaDeje = entidad.TomaDeje;
             this.Euros = entidad.Euros;
@@ -62,6 +63,7 @@ namespace Quattro.Core.Data.Models {
         }
 
         public void ToEntity(ServicioEntity entidad) {
+            if (entidad == null) return;
             base.ToEntity(entidad);
             entidad.TomaDeje = this.TomaDeje;
             entidad.Euros = this.Euros;

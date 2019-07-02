@@ -30,10 +30,12 @@ namespace Quattro.Core.Data.Models {
         // ====================================================================================================
 
         public void FromEntity(ServicioSecundarioEntity entidad) {
+            if (entidad == null) return;
             base.FromEntity(entidad);
         }
 
         public void ToEntity(ServicioSecundarioEntity entidad) {
+            if (entidad == null) return;
             base.ToEntity(entidad);
         }
 

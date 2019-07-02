@@ -3,6 +3,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
+using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
@@ -47,6 +48,8 @@ namespace Quattro.Droid.Views {
                 );
                 drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => ((HomeView)Activity)?.HideSoftKeyboard();
                 ((HomeView)ParentActivity).Drawer.AddDrawerListener(drawerToggle);
+
+                //this.CreateBindingSet<CalendarioView, CalendarioViewModel>().Bind(toolbar).For(c =>c.Title).To(c => c.Titulo).Apply();
             }
             return view;
         }

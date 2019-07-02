@@ -39,11 +39,13 @@ namespace Quattro.Core.Data.Models {
         // ====================================================================================================
 
         public void FromEntity(ServicioLineaEntity entidad) {
+            if (entidad == null) return;
             base.FromEntity(entidad);
             this.Servicios = entidad.Servicios.Select(s => new ServicioSecundario(s));
         }
 
         public void ToEntity(ServicioLineaEntity entidad) {
+            if (entidad == null) return;
             base.ToEntity(entidad);
             entidad.Servicios = this.Servicios.Select(s => {
                 var sl = new ServicioSecundarioEntity();
