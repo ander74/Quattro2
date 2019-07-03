@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using Quattro.Core.Data.Entities;
 
 namespace Quattro.Core.Data.Models {
 
+    [Table("Lineas")]
     public class Linea : BaseModel {
 
 
@@ -13,7 +15,7 @@ namespace Quattro.Core.Data.Models {
 
         public Linea() { }
 
-        public Linea(LineaEntity entidad) => this.FromEntity(entidad);
+        public Linea(Linea model) => this.FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -27,6 +29,7 @@ namespace Quattro.Core.Data.Models {
 
 
         private string numero;
+        [MaxLength(32)]
         public string Numero {
             get => numero;
             set => SetProperty(ref numero, value);
@@ -34,6 +37,7 @@ namespace Quattro.Core.Data.Models {
 
 
         private string descripcion;
+        [MaxLength(128)]
         public string Descripcion {
             get => descripcion;
             set => SetProperty(ref descripcion, value);
@@ -61,26 +65,23 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS ENTITIES
         // ====================================================================================================
 
-        public void FromEntity(LineaEntity entidad) {
-            if (entidad == null) return;
-            this.Id = entidad.Id;
-            this.Descripcion = entidad.Descripcion;
-            this.Notas = entidad.Notas;
-            this.Numero = entidad.Numero;
-            this.Servicios = entidad.Servicios.Select(s => new ServicioLinea(s));
+        public void FromModel(Linea model) {
+            if (model == null) return;
+            this.Id = model.Id;
+            this.Descripcion = model.Descripcion;
+            this.Notas = model.Notas;
+            this.Numero = model.Numero;
+            this.Servicios = model.Servicios.AsEnumerable();
         }
 
-        public void ToEntity(LineaEntity entidad) {
-            if (entidad == null) return;
-            entidad.Id = this.Id;
-            entidad.Descripcion = this.Descripcion;
-            entidad.Notas = this.Notas;
-            entidad.Numero = this.Numero;
-            entidad.Servicios = this.Servicios.Select(s => {
-                var sl = new ServicioLineaEntity();
-                s.ToEntity(sl);
-                return sl;
-            });
+        public Linea ToModel() {
+            return new Linea {
+                Id = this.Id,
+                Descripcion = this.Descripcion,
+                Notas = this.Notas,
+                Numero = this.Numero,
+                Servicios = this.Servicios.AsEnumerable(),
+            };
         }
 
         #endregion

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Quattro.Core.Data.Entities;
+using Quattro.Core.Data.Models;
 
 namespace Quattro.Core.Data.Repositories {
 
@@ -34,10 +35,10 @@ namespace Quattro.Core.Data.Repositories {
         #region MÉTODOS DE INTERFAZ
         // ====================================================================================================
 
-        public IQueryable<DiaCalendarioEntity> GetMes(DateTime fecha) {
+        public IQueryable<DiaCalendario> GetMes(DateTime fecha) {
             if (!context.Calendario.Any(c => c.Fecha.Month == fecha.Month && c.Fecha.Year == fecha.Year)) {
                 for (int dia = 1; dia <= DateTime.DaysInMonth(fecha.Year, fecha.Month); dia++) {
-                    context.Calendario.Add(new DiaCalendarioEntity {
+                    context.Calendario.Add(new DiaCalendario {
                         Fecha = new DateTime(fecha.Year, fecha.Month, dia),
                     });
                 }
@@ -51,6 +52,13 @@ namespace Quattro.Core.Data.Repositories {
                 .Include(c => c.Susti)
                 .OrderBy(c => c.Fecha);
         }
+
+
+        public async Task GuardarDatosAsync() {
+            await context.SaveChangesAsync();
+        }
+
+
 
         #endregion
         // ====================================================================================================

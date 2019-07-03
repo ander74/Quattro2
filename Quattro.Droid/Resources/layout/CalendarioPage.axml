@@ -19,6 +19,7 @@
             layout="@layout/toolbar" />
 
         <MvvmCross.Droid.Support.V7.RecyclerView.MvxRecyclerView
+            android:id="@+id/lista_calendario"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#cccccc"
@@ -55,7 +56,8 @@
                 android:scaleType="fitCenter"
                 android:clickable="true"
                 local:MvxBind="Click AnteriorPulsadoCommand"
-                android:src="@drawable/icr_anterior"/>
+                android:src="@drawable/ic_anterior"
+                android:tint="@color/colorBotones"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -87,7 +89,8 @@
                 android:layout_margin="5dp"
                 android:scaleType="fitCenter"
                 local:MvxBind="Click SiguientePulsadoCommand"
-                android:src="@drawable/icr_siguiente"/>
+                android:src="@drawable/ic_siguiente"
+                android:tint="@color/colorBotones"/>
 
         </GridLayout>
     </android.support.v7.widget.CardView>
@@ -125,9 +128,9 @@
                     android:text="Repetir"
                     android:textSize="8dp"
                     android:textColor="#222"
-                    android:background="@drawable/icr_repetir"
+                    android:background="@drawable/ic_m_repetir"
                     local:MvxBind="Click RepetirCommand"
-            />
+                    android:backgroundTint="@color/colorBotones"/>
 
                 <Button
                     android:layout_width="48dp"
@@ -137,9 +140,9 @@
                     android:text="Copiar"
                     android:textSize="8dp"
                     android:textColor="#222"
-                    android:background="@drawable/icr_copiar"
+                    android:background="@drawable/ic_m_copiar"
                     local:MvxBind="Click CopiarCommand"
-            />
+                    android:backgroundTint="@color/colorBotones"/>
 
                 <Button
                     android:layout_width="48dp"
@@ -149,9 +152,9 @@
                     android:text="Ajenas"
                     android:textSize="8dp"
                     android:textColor="#222"
-                    android:background="@drawable/icr_reloj"
+                    android:background="@drawable/ic_m_reloj"
                     local:MvxBind="Click AjenasCommand"
-            />
+                    android:backgroundTint="@color/colorBotones"/>
 
                 <Button
                     android:layout_width="48dp"
@@ -161,9 +164,9 @@
                     android:text="Guardar"
                     android:textSize="8dp"
                     android:textColor="#222"
-                    android:background="@drawable/icr_almacenar"
+                    android:background="@drawable/ic_m_almacenar"
                     local:MvxBind="Click GuardarCommand"
-            />
+                    android:backgroundTint="@color/colorBotones"/>
 
                 <Button
                     android:layout_width="48dp"
@@ -173,9 +176,9 @@
                     android:text="Relevo"
                     android:textSize="8dp"
                     android:textColor="#222"
-                    android:background="@drawable/icr_usuario"
+                    android:background="@drawable/ic_m_usuario"
                     local:MvxBind="Click RelevoCommand"
-            />
+                    android:backgroundTint="@color/colorBotones"/>
 
             </LinearLayout>
 
@@ -194,9 +197,9 @@
                     android:text="Vaciar"
                     android:textSize="8dp"
                     android:textColor="#222"
-                    android:background="@drawable/icr_borrar"
+                    android:background="@drawable/ic_m_borrar"
                     local:MvxBind="Click VaciarCommand"
-            />
+                    android:backgroundTint="@color/colorBotones"/>
 
                 <Button
                     android:layout_width="48dp"
@@ -206,9 +209,9 @@
                     android:text="Franqueo"
                     android:textSize="8dp"
                     android:textColor="#222"
-                    android:background="@drawable/icr_franqueo"
+                    android:background="@drawable/ic_m_franqueo"
                     local:MvxBind="Click FranqueoCommand"
-            />
+                    android:backgroundTint="@color/colorBotones"/>
 
                 <Button
                     android:layout_width="48dp"
@@ -218,9 +221,9 @@
                     android:text="Festivo"
                     android:textSize="8dp"
                     android:textColor="#222"
-                    android:background="@drawable/icr_festivo"
+                    android:background="@drawable/ic_m_festivo"
                     local:MvxBind="Click FestivoCommand"
-            />
+                    android:backgroundTint="@color/colorBotones"/>
 
                 <Button
                     android:layout_width="48dp"
@@ -230,9 +233,9 @@
                     android:text="Pegar"
                     android:textSize="8dp"
                     android:textColor="#222"
-                    android:background="@drawable/icr_pegar"
+                    android:background="@drawable/ic_m_pegar"
                     local:MvxBind="Click PegarCommand"
-            />
+                    android:backgroundTint="@color/colorBotones"/>
 
             </LinearLayout>
 

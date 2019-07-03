@@ -83,4 +83,12 @@ namespace Quattro.Core.Common {
         TrabajoSinAcumular,
         JornadaMedia,
     }
+
+    public enum ModelState {
+        SinCambios,
+        NoUsada,
+        Borrado,
+        Modificado,
+        Añadido,
+    }
 }

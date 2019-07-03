@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using Quattro.Core.Data.Entities;
 
 namespace Quattro.Core.Data.Models {
 
+    [Table("ServiciosLinea")]
     public class ServicioLinea : Servicio {
 
         // ====================================================================================================
@@ -12,7 +13,7 @@ namespace Quattro.Core.Data.Models {
 
         public ServicioLinea() { }
 
-        public ServicioLinea(ServicioLineaEntity entidad) => this.FromEntity(entidad);
+        public ServicioLinea(ServicioLinea model) => this.FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -38,20 +39,16 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS ENTITIES
         // ====================================================================================================
 
-        public void FromEntity(ServicioLineaEntity entidad) {
-            if (entidad == null) return;
-            base.FromEntity(entidad);
-            this.Servicios = entidad.Servicios.Select(s => new ServicioSecundario(s));
+        public void FromModel(ServicioLinea model) {
+            if (model == null) return;
+            base.FromModel(model);
+            this.Servicios = model.Servicios.AsEnumerable();
         }
 
-        public void ToEntity(ServicioLineaEntity entidad) {
-            if (entidad == null) return;
-            base.ToEntity(entidad);
-            entidad.Servicios = this.Servicios.Select(s => {
-                var sl = new ServicioSecundarioEntity();
-                s.ToEntity(sl);
-                return sl;
-            });
+        public new ServicioLinea ToModel() {
+            ServicioLinea model = (ServicioLinea)base.ToModel();
+            model.Servicios = this.Servicios.AsEnumerable();
+            return model;
         }
 
         #endregion

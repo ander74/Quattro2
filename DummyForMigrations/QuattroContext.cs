@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Quattro.Core.Common;
-using Quattro.Core.Data.Entities;
+using Quattro.Core.Data.Models;
 
 namespace DummyForMigrations {
 
@@ -29,21 +29,21 @@ namespace DummyForMigrations {
         #region DB SETS
         // ====================================================================================================
 
-        public DbSet<LineaEntity> Lineas { get; set; }
+        public DbSet<Linea> Lineas { get; set; }
 
-        public DbSet<ServicioLineaEntity> ServiciosLinea { get; set; }
+        public DbSet<ServicioLinea> ServiciosLinea { get; set; }
 
-        public DbSet<ServicioSecundarioEntity> ServiciosSecundarios { get; set; }
+        public DbSet<ServicioSecundario> ServiciosSecundarios { get; set; }
 
-        public DbSet<DiaCalendarioEntity> Calendario { get; set; }
+        public DbSet<DiaCalendario> Calendario { get; set; }
 
-        public DbSet<ServicioDiaEntity> ServiciosDia { get; set; }
+        public DbSet<ServicioDia> ServiciosDia { get; set; }
 
-        public DbSet<IncidenciaEntity> Incidencias { get; set; }
+        public DbSet<Incidencia> Incidencias { get; set; }
 
-        public DbSet<HoraAjenaEntity> HorasAjenas { get; set; }
+        public DbSet<HoraAjena> HorasAjenas { get; set; }
 
-        public DbSet<CompañeroEntity> Compañeros { get; set; }
+        public DbSet<Compañero> Compañeros { get; set; }
 
         #endregion
         // ====================================================================================================
@@ -76,22 +76,22 @@ namespace DummyForMigrations {
             );
 
             // Servicios Línea
-            modelBuilder.Entity<ServicioLineaEntity>().Property(sl => sl.Inicio).HasConversion(ConvertidorTiempo);
-            modelBuilder.Entity<ServicioLineaEntity>().Property(sl => sl.Final).HasConversion(ConvertidorTiempo);
-            modelBuilder.Entity<ServicioLineaEntity>().Property(sl => sl.TomaDeje).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<ServicioLinea>().Property(sl => sl.Inicio).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<ServicioLinea>().Property(sl => sl.Final).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<ServicioLinea>().Property(sl => sl.TomaDeje).HasConversion(ConvertidorTiempo);
 
             // Servicios Secundarios
-            modelBuilder.Entity<ServicioSecundarioEntity>().Property(ss => ss.Inicio).HasConversion(ConvertidorTiempo);
-            modelBuilder.Entity<ServicioSecundarioEntity>().Property(ss => ss.Final).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<ServicioSecundario>().Property(ss => ss.Inicio).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<ServicioSecundario>().Property(ss => ss.Final).HasConversion(ConvertidorTiempo);
 
             // Dia Calendario
-            modelBuilder.Entity<DiaCalendarioEntity>().Property(dc => dc.Inicio).HasConversion(ConvertidorTiempo);
-            modelBuilder.Entity<DiaCalendarioEntity>().Property(dc => dc.Final).HasConversion(ConvertidorTiempo);
-            modelBuilder.Entity<DiaCalendarioEntity>().Property(dc => dc.TomaDeje).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<DiaCalendario>().Property(dc => dc.Inicio).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<DiaCalendario>().Property(dc => dc.Final).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<DiaCalendario>().Property(dc => dc.TomaDeje).HasConversion(ConvertidorTiempo);
 
             // Servicios Dia
-            modelBuilder.Entity<ServicioDiaEntity>().Property(sd => sd.Inicio).HasConversion(ConvertidorTiempo);
-            modelBuilder.Entity<ServicioDiaEntity>().Property(sd => sd.Final).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<ServicioDia>().Property(sd => sd.Inicio).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<ServicioDia>().Property(sd => sd.Final).HasConversion(ConvertidorTiempo);
 
             // Incidencias
             //TODO: Crear las incidencias fijas.

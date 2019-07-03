@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Quattro.Core.Common;
-using Quattro.Core.Data.Entities;
 
 namespace Quattro.Core.Data.Models {
 
+    [Table("HorasAjenas")]
     public class HoraAjena : BaseModel {
 
 
@@ -13,7 +15,7 @@ namespace Quattro.Core.Data.Models {
 
         public HoraAjena() { }
 
-        public HoraAjena(HoraAjenaEntity entidad) => this.FromEntity(entidad);
+        public HoraAjena(HoraAjena model) => this.FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -41,6 +43,7 @@ namespace Quattro.Core.Data.Models {
 
 
         private string motivo;
+        [MaxLength(256)]
         public string Motivo {
             get => motivo;
             set => SetProperty(ref motivo, value);
@@ -61,22 +64,23 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS ENTITIES
         // ====================================================================================================
 
-        public void FromEntity(HoraAjenaEntity entidad) {
-            if (entidad == null) return;
-            this.Fecha = entidad.Fecha;
-            this.Horas = entidad.Horas;
-            this.Id = entidad.Id;
-            this.Motivo = entidad.Motivo;
-            this.Tipo = entidad.Tipo;
+        public void FromModel(HoraAjena model) {
+            if (model == null) return;
+            this.Fecha = model.Fecha;
+            this.Horas = model.Horas;
+            this.Id = model.Id;
+            this.Motivo = model.Motivo;
+            this.Tipo = model.Tipo;
         }
 
-        public void ToEntity(HoraAjenaEntity entidad) {
-            if (entidad == null) return;
-            entidad.Fecha = this.Fecha;
-            entidad.Horas = this.Horas;
-            entidad.Id = this.Id;
-            entidad.Motivo = this.Motivo;
-            entidad.Tipo = this.Tipo;
+        public HoraAjena ToModel() {
+            return new HoraAjena {
+                Fecha = this.Fecha,
+                Horas = this.Horas,
+                Id = this.Id,
+                Motivo = this.Motivo,
+                Tipo = this.Tipo,
+            };
         }
 
         #endregion

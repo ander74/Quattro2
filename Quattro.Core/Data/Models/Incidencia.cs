@@ -1,8 +1,10 @@
-﻿using Quattro.Core.Common;
-using Quattro.Core.Data.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Quattro.Core.Common;
 
 namespace Quattro.Core.Data.Models {
 
+    [Table("Incidencias")]
     public class Incidencia : BaseModel {
 
 
@@ -12,7 +14,7 @@ namespace Quattro.Core.Data.Models {
 
         public Incidencia() { }
 
-        public Incidencia(IncidenciaEntity entidad) => this.FromEntity(entidad);
+        public Incidencia(Incidencia model) => this.FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -26,6 +28,7 @@ namespace Quattro.Core.Data.Models {
 
 
         private string descripcion;
+        [MaxLength(64)]
         public string Descripcion {
             get => descripcion;
             set => SetProperty(ref descripcion, value);
@@ -54,20 +57,21 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS ENTITIES
         // ====================================================================================================
 
-        public void FromEntity(IncidenciaEntity entidad) {
-            if (entidad == null) return;
-            this.Descripcion = entidad.Descripcion;
-            this.Id = entidad.Id;
-            this.Notas = entidad.Notas;
-            this.Tipo = entidad.Tipo;
+        public void FromModel(Incidencia model) {
+            if (model == null) return;
+            this.Descripcion = model.Descripcion;
+            this.Id = model.Id;
+            this.Notas = model.Notas;
+            this.Tipo = model.Tipo;
         }
 
-        public void ToEntity(IncidenciaEntity entidad) {
-            if (entidad == null) return;
-            entidad.Descripcion = this.Descripcion;
-            entidad.Id = this.Id;
-            entidad.Notas = this.Notas;
-            entidad.Tipo = this.Tipo;
+        public Incidencia ToEntity() {
+            return new Incidencia {
+                Descripcion = this.Descripcion,
+                Id = this.Id,
+                Notas = this.Notas,
+                Tipo = this.Tipo,
+            };
         }
 
         #endregion

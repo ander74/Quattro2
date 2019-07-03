@@ -16,7 +16,7 @@ namespace DummyForMigrations.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.CompañeroEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.Compañero", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -29,6 +29,8 @@ namespace DummyForMigrations.Migrations
 
                     b.Property<string>("Email");
 
+                    b.Property<int>("Estado");
+
                     b.Property<int>("Matricula");
 
                     b.Property<string>("Nombre");
@@ -39,10 +41,10 @@ namespace DummyForMigrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Companeros");
+                    b.ToTable("Compañeros");
                 });
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.DiaCalendarioEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.DiaCalendario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -61,6 +63,8 @@ namespace DummyForMigrations.Migrations
 
                     b.Property<bool>("EsFranqueo");
 
+                    b.Property<int>("Estado");
+
                     b.Property<decimal>("Euros");
 
                     b.Property<DateTime>("Fecha");
@@ -74,6 +78,8 @@ namespace DummyForMigrations.Migrations
                     b.Property<int?>("IncidenciaId");
 
                     b.Property<int?>("Inicio");
+
+                    b.Property<bool>("IsSelected");
 
                     b.Property<int?>("LineaId");
 
@@ -110,10 +116,12 @@ namespace DummyForMigrations.Migrations
                     b.ToTable("Calendario");
                 });
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.HoraAjenaEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.HoraAjena", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Estado");
 
                     b.Property<DateTime>("Fecha");
 
@@ -128,12 +136,14 @@ namespace DummyForMigrations.Migrations
                     b.ToTable("HorasAjenas");
                 });
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.IncidenciaEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.Incidencia", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Descripcion");
+
+                    b.Property<int>("Estado");
 
                     b.Property<string>("Notas");
 
@@ -144,12 +154,14 @@ namespace DummyForMigrations.Migrations
                     b.ToTable("Incidencias");
                 });
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.LineaEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.Linea", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Descripcion");
+
+                    b.Property<int>("Estado");
 
                     b.Property<string>("Notas");
 
@@ -160,12 +172,14 @@ namespace DummyForMigrations.Migrations
                     b.ToTable("Lineas");
                 });
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.ServicioDiaEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.ServicioDia", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("DiaCalendarioEntityId");
+                    b.Property<int?>("DiaCalendarioId");
+
+                    b.Property<int>("Estado");
 
                     b.Property<int?>("Final");
 
@@ -183,17 +197,19 @@ namespace DummyForMigrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DiaCalendarioEntityId");
+                    b.HasIndex("DiaCalendarioId");
 
                     b.HasIndex("LineaId");
 
                     b.ToTable("ServiciosDia");
                 });
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.ServicioLineaEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.ServicioLinea", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Estado");
 
                     b.Property<decimal>("Euros");
 
@@ -222,10 +238,12 @@ namespace DummyForMigrations.Migrations
                     b.ToTable("ServiciosLinea");
                 });
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.ServicioSecundarioEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.ServicioSecundario", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Estado");
 
                     b.Property<int?>("Final");
 
@@ -239,7 +257,7 @@ namespace DummyForMigrations.Migrations
 
                     b.Property<string>("Servicio");
 
-                    b.Property<int?>("ServicioLineaEntityId");
+                    b.Property<int?>("ServicioLineaId");
 
                     b.Property<int>("Turno");
 
@@ -247,57 +265,57 @@ namespace DummyForMigrations.Migrations
 
                     b.HasIndex("LineaId");
 
-                    b.HasIndex("ServicioLineaEntityId");
+                    b.HasIndex("ServicioLineaId");
 
                     b.ToTable("ServiciosSecundarios");
                 });
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.DiaCalendarioEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.DiaCalendario", b =>
                 {
-                    b.HasOne("Quattro.Core.Data.Entities.IncidenciaEntity", "Incidencia")
+                    b.HasOne("Quattro.Core.Data.Models.Incidencia", "Incidencia")
                         .WithMany()
                         .HasForeignKey("IncidenciaId");
 
-                    b.HasOne("Quattro.Core.Data.Entities.LineaEntity", "Linea")
+                    b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
                         .WithMany()
                         .HasForeignKey("LineaId");
 
-                    b.HasOne("Quattro.Core.Data.Entities.CompañeroEntity", "Relevo")
+                    b.HasOne("Quattro.Core.Data.Models.Compañero", "Relevo")
                         .WithMany()
                         .HasForeignKey("RelevoId");
 
-                    b.HasOne("Quattro.Core.Data.Entities.CompañeroEntity", "Susti")
+                    b.HasOne("Quattro.Core.Data.Models.Compañero", "Susti")
                         .WithMany()
                         .HasForeignKey("SustiId");
                 });
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.ServicioDiaEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.ServicioDia", b =>
                 {
-                    b.HasOne("Quattro.Core.Data.Entities.DiaCalendarioEntity")
+                    b.HasOne("Quattro.Core.Data.Models.DiaCalendario")
                         .WithMany("Servicios")
-                        .HasForeignKey("DiaCalendarioEntityId");
+                        .HasForeignKey("DiaCalendarioId");
 
-                    b.HasOne("Quattro.Core.Data.Entities.LineaEntity", "Linea")
+                    b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
                         .WithMany()
                         .HasForeignKey("LineaId");
                 });
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.ServicioLineaEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.ServicioLinea", b =>
                 {
-                    b.HasOne("Quattro.Core.Data.Entities.LineaEntity", "Linea")
+                    b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
                         .WithMany("Servicios")
                         .HasForeignKey("LineaId");
                 });
 
-            modelBuilder.Entity("Quattro.Core.Data.Entities.ServicioSecundarioEntity", b =>
+            modelBuilder.Entity("Quattro.Core.Data.Models.ServicioSecundario", b =>
                 {
-                    b.HasOne("Quattro.Core.Data.Entities.LineaEntity", "Linea")
+                    b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
                         .WithMany()
                         .HasForeignKey("LineaId");
 
-                    b.HasOne("Quattro.Core.Data.Entities.ServicioLineaEntity")
+                    b.HasOne("Quattro.Core.Data.Models.ServicioLinea")
                         .WithMany("Servicios")
-                        .HasForeignKey("ServicioLineaEntityId");
+                        .HasForeignKey("ServicioLineaId");
                 });
 #pragma warning restore 612, 618
         }

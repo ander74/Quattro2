@@ -1,10 +1,12 @@
-﻿using Android.Content.PM;
+﻿using System;
+using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
 using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Quattro.Core.ViewModels;
@@ -31,7 +33,6 @@ namespace Quattro.Droid.Views {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
             var view = this.BindingInflate(Resource.Layout.CalendarioPage, null);
 
-
             // Inicializamos la toolbar. DEBE APARECER EN TODOS LOS FRAGMENTS
             toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
             if (toolbar != null) {
@@ -51,6 +52,13 @@ namespace Quattro.Droid.Views {
 
                 //this.CreateBindingSet<CalendarioView, CalendarioViewModel>().Bind(toolbar).For(c =>c.Title).To(c => c.Titulo).Apply();
             }
+
+            // Ponemos la lista de días en el día actual.
+            MvxRecyclerView lista = view.FindViewById<MvxRecyclerView>(Resource.Id.lista_calendario);
+            if (ViewModel.Fecha.Year == DateTime.Now.Year && ViewModel.Fecha.Month == DateTime.Now.Month) {
+                lista.ScrollToPosition(DateTime.Now.Day - 1);
+            }
+
             return view;
         }
 

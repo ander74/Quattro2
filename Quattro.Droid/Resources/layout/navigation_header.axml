@@ -4,18 +4,29 @@
     android:layout_width="match_parent"
     android:layout_height="192dp"
     android:background="@drawable/ic_drawer"
-    android:padding="16dp"
+    android:padding="10dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <TextView
+        android:id="@+id/copyright"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:paddingTop="20dp"
+        android:text="A. Herrero - 2019"
+        android:textSize="12sp"
+        local:layout_constraintRight_toRightOf="parent"
+        local:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/versionApp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="15dp"
         android:textColor="@android:color/white"
+        android:paddingTop="20dp"
         android:text="@string/app_version"
         android:textSize="12sp"
-        local:layout_constraintRight_toRightOf="parent"
+        local:layout_constraintLeft_toLeftOf="parent"
         local:layout_constraintTop_toTopOf="parent" />
 
     <TextView

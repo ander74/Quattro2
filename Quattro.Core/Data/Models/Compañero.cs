@@ -1,8 +1,10 @@
-﻿using Quattro.Core.Common;
-using Quattro.Core.Data.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Quattro.Core.Common;
 
 namespace Quattro.Core.Data.Models {
 
+    [Table("Companeros")]
     public class Compañero : BaseModel {
 
 
@@ -12,7 +14,7 @@ namespace Quattro.Core.Data.Models {
 
         public Compañero() { }
 
-        public Compañero(CompañeroEntity entidad) => this.FromEntity(entidad);
+        public Compañero(Compañero model) => this.FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -32,24 +34,28 @@ namespace Quattro.Core.Data.Models {
         }
 
         private string nombre;
+        [MaxLength(64)]
         public string Nombre {
             get => nombre;
             set => SetProperty(ref nombre, value);
         }
 
         private string apellidos;
+        [MaxLength(128)]
         public string Apellidos {
             get => apellidos;
             set => SetProperty(ref apellidos, value);
         }
 
         private string telefono;
+        [MaxLength(64)]
         public string Telefono {
             get => telefono;
             set => SetProperty(ref telefono, value);
         }
 
         private string email;
+        [MaxLength(128)]
         public string Email {
             get => email;
             set => SetProperty(ref email, value);
@@ -78,34 +84,34 @@ namespace Quattro.Core.Data.Models {
 
 
         // ====================================================================================================
-        #region MÉTODOS ENTITIES
+        #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromEntity(CompañeroEntity entidad) {
-            if (entidad == null) return;
-            this.Apellidos = entidad.Apellidos;
-            this.Calificacion = entidad.Calificacion;
-            this.Deuda = entidad.Deuda;
-            this.Email = entidad.Email;
-            this.Id = entidad.Id;
-            this.Matricula = entidad.Matricula;
-            this.Nombre = entidad.Nombre;
-            this.Notas = entidad.Notas;
-            this.Telefono = entidad.Telefono;
+        public void FromModel(Compañero model) {
+            if (model == null) return;
+            this.Apellidos = model.Apellidos;
+            this.Calificacion = model.Calificacion;
+            this.Deuda = model.Deuda;
+            this.Email = model.Email;
+            this.Id = model.Id;
+            this.Matricula = model.Matricula;
+            this.Nombre = model.Nombre;
+            this.Notas = model.Notas;
+            this.Telefono = model.Telefono;
         }
 
-        public void ToEntity(CompañeroEntity entidad) {
-            if (entidad == null) return;
-            entidad.Apellidos = this.Apellidos;
-            entidad.Calificacion = this.Calificacion;
-            entidad.Deuda = this.Deuda;
-            entidad.Email = this.Email;
-            entidad.Id = this.Id;
-            entidad.Matricula = this.Matricula;
-            entidad.Nombre = this.Nombre;
-            entidad.Notas = this.Notas;
-            entidad.Telefono = this.Telefono;
-            
+        public Compañero ToModel() {
+            return new Compañero {
+                Apellidos = this.Apellidos,
+                Calificacion = this.Calificacion,
+                Deuda = this.Deuda,
+                Email = this.Email,
+                Id = this.Id,
+                Matricula = this.Matricula,
+                Nombre = this.Nombre,
+                Notas = this.Notas,
+                Telefono = this.Telefono,
+            };
         }
 
         #endregion

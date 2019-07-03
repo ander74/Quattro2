@@ -19,8 +19,4 @@
     <ProjectReference Include="..\Quattro.Core\Quattro.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NotUsedCore\" />
-  </ItemGroup>
-
 </Project>

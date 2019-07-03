@@ -1,7 +1,8 @@
-﻿using Quattro.Core.Data.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Quattro.Core.Data.Models {
 
+    [Table("ServiciosSecundarios")]
     public class ServicioSecundario : ServicioBase {
 
         // ====================================================================================================
@@ -10,7 +11,7 @@ namespace Quattro.Core.Data.Models {
 
         public ServicioSecundario() { }
 
-        public ServicioSecundario(ServicioSecundarioEntity entidad) => this.FromEntity(entidad);
+        public ServicioSecundario(ServicioSecundario model) => this.FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -29,14 +30,13 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS ENTITIES
         // ====================================================================================================
 
-        public void FromEntity(ServicioSecundarioEntity entidad) {
-            if (entidad == null) return;
-            base.FromEntity(entidad);
+        public void FromModel(ServicioSecundario model) {
+            if (model == null) return;
+            base.FromModel(model);
         }
 
-        public void ToEntity(ServicioSecundarioEntity entidad) {
-            if (entidad == null) return;
-            base.ToEntity(entidad);
+        public new ServicioSecundario ToModel() {
+            return (ServicioSecundario)base.ToModel();
         }
 
         #endregion

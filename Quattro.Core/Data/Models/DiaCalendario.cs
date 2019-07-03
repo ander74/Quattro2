@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using Quattro.Core.Common;
-using Quattro.Core.Data.Entities;
 
 namespace Quattro.Core.Data.Models {
 
+    [Table("Calendario")]
     public class DiaCalendario : Servicio {
 
         // ====================================================================================================
@@ -14,7 +16,7 @@ namespace Quattro.Core.Data.Models {
 
         public DiaCalendario() { }
 
-        public DiaCalendario(DiaCalendarioEntity entidad) => this.FromEntity(entidad);
+        public DiaCalendario(DiaCalendario model) => this.FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -111,6 +113,7 @@ namespace Quattro.Core.Data.Models {
 
 
         private string bus;
+        [MaxLength(32)]
         public string Bus {
             get => bus;
             set => SetProperty(ref bus, value);
@@ -153,53 +156,46 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS ENTITIES
         // ====================================================================================================
 
-        public void FromEntity(DiaCalendarioEntity entidad) {
-            if (entidad == null) return;
-            base.FromEntity(entidad);
-            this.Fecha = entidad.Fecha;
-            this.EsFranqueo = entidad.EsFranqueo;
-            this.EsFestivo = entidad.EsFestivo;
-            this.HuelgaParcial = entidad.HuelgaParcial;
-            this.HorasHuelga = entidad.HorasHuelga;
-            this.Trabajadas = entidad.Trabajadas;
-            this.Acumuladas = entidad.Acumuladas;
-            this.Nocturnas = entidad.Nocturnas;
-            this.Desayuno = entidad.Desayuno;
-            this.Comida = entidad.Comida;
-            this.Cena = entidad.Cena;
-            this.Bus = entidad.Bus;
-            this.Incidencia = new Incidencia(entidad.Incidencia);
-            this.Relevo = new Compañero(entidad.Relevo);
-            this.Susti = new Compañero(entidad.Susti);
-            this.Servicios = entidad.Servicios.Select(s => new ServicioDia(s));
+        public void FromModel(DiaCalendario model) {
+            if (model == null) return;
+            base.FromModel(model);
+            this.Fecha = model.Fecha;
+            this.EsFranqueo = model.EsFranqueo;
+            this.EsFestivo = model.EsFestivo;
+            this.HuelgaParcial = model.HuelgaParcial;
+            this.HorasHuelga = model.HorasHuelga;
+            this.Trabajadas = model.Trabajadas;
+            this.Acumuladas = model.Acumuladas;
+            this.Nocturnas = model.Nocturnas;
+            this.Desayuno = model.Desayuno;
+            this.Comida = model.Comida;
+            this.Cena = model.Cena;
+            this.Bus = model.Bus;
+            this.Incidencia = new Incidencia(model.Incidencia);
+            this.Relevo = new Compañero(model.Relevo);
+            this.Susti = new Compañero(model.Susti);
+            this.Servicios = model.Servicios.AsEnumerable();
         }
 
-        public void ToEntity(DiaCalendarioEntity entidad) {
-            if (entidad == null) return;
-            base.ToEntity(entidad);
-            entidad.Fecha = this.Fecha;
-            entidad.EsFranqueo = this.EsFranqueo;
-            entidad.EsFestivo = this.EsFestivo;
-            entidad.HuelgaParcial = this.HuelgaParcial;
-            entidad.HorasHuelga = this.HorasHuelga;
-            entidad.Trabajadas = this.Trabajadas;
-            entidad.Acumuladas = this.Acumuladas;
-            entidad.Nocturnas = this.Nocturnas;
-            entidad.Desayuno = this.Desayuno;
-            entidad.Comida = this.Comida;
-            entidad.Cena = this.Cena;
-            entidad.Bus = this.Bus;
-            entidad.Incidencia = new IncidenciaEntity();
-            this.Incidencia.ToEntity(entidad.Incidencia);
-            entidad.Relevo = new CompañeroEntity();
-            this.Relevo.ToEntity(entidad.Relevo);
-            entidad.Susti = new CompañeroEntity();
-            this.Susti.ToEntity(entidad.Susti);
-            entidad.Servicios = this.Servicios.Select(s => {
-                var sl = new ServicioDiaEntity();
-                s.ToEntity(sl);
-                return sl;
-            });
+        public new DiaCalendario ToModel() {
+            DiaCalendario model = (DiaCalendario)base.ToModel();
+            model.Fecha = this.Fecha;
+            model.EsFranqueo = this.EsFranqueo;
+            model.EsFestivo = this.EsFestivo;
+            model.HuelgaParcial = this.HuelgaParcial;
+            model.HorasHuelga = this.HorasHuelga;
+            model.Trabajadas = this.Trabajadas;
+            model.Acumuladas = this.Acumuladas;
+            model.Nocturnas = this.Nocturnas;
+            model.Desayuno = this.Desayuno;
+            model.Comida = this.Comida;
+            model.Cena = this.Cena;
+            model.Bus = this.Bus;
+            model.Incidencia = new Incidencia(this.Incidencia);
+            model.Relevo = new Compañero(this.Relevo);
+            model.Susti = new Compañero(this.Susti);
+            model.Servicios = this.Servicios.AsEnumerable();
+            return model;
         }
 
         #endregion
@@ -211,6 +207,7 @@ namespace Quattro.Core.Data.Models {
         // ====================================================================================================
 
         private bool isSelected;
+        [NotMapped]
         public bool IsSelected {
             get => isSelected;
             set {

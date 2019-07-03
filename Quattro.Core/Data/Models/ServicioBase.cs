@@ -1,4 +1,5 @@
-﻿using Quattro.Core.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using Quattro.Core.Common;
 using Quattro.Core.Data.Entities;
 
 namespace Quattro.Core.Data.Models {
@@ -11,7 +12,7 @@ namespace Quattro.Core.Data.Models {
 
         public ServicioBase() { }
 
-        public ServicioBase(ServicioBaseEntity entidad) => this.FromEntity(entidad);
+        public ServicioBase(ServicioBase model) => this.FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -25,6 +26,7 @@ namespace Quattro.Core.Data.Models {
 
 
         private string servivio;
+        [MaxLength(32)]
         public string Servicio {
             get => servivio;
             set => SetProperty(ref servivio, value);
@@ -46,6 +48,7 @@ namespace Quattro.Core.Data.Models {
 
 
         private string lugarInicio;
+        [MaxLength(64)]
         public string LugarInicio {
             get => lugarInicio;
             set => SetProperty(ref lugarInicio, value);
@@ -60,6 +63,7 @@ namespace Quattro.Core.Data.Models {
 
 
         private string lugarFinal;
+        [MaxLength(64)]
         public string LugarFinal {
             get => lugarFinal;
             set => SetProperty(ref lugarFinal, value);
@@ -82,29 +86,29 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS ENTITIES
         // ====================================================================================================
 
-        public void FromEntity(ServicioBaseEntity entidad) {
-            if (entidad == null) return;
-            this.Id = entidad.Id;
-            this.Final = entidad.Final;
-            this.Inicio = entidad.Inicio;
-            this.Linea = new Linea(entidad.Linea);
-            this.LugarFinal = entidad.LugarFinal;
-            this.LugarInicio = entidad.LugarInicio;
-            this.Servicio = entidad.Servicio;
-            this.Turno = entidad.Turno;
+        public void FromModel(ServicioBase model) {
+            if (model == null) return;
+            this.Id = model.Id;
+            this.Final = model.Final;
+            this.Inicio = model.Inicio;
+            this.Linea = new Linea(model.Linea);
+            this.LugarFinal = model.LugarFinal;
+            this.LugarInicio = model.LugarInicio;
+            this.Servicio = model.Servicio;
+            this.Turno = model.Turno;
         }
 
-        public void ToEntity(ServicioBaseEntity entidad) {
-            if (entidad == null) return;
-            entidad.Id = this.Id;
-            entidad.Final = this.Final;
-            entidad.Inicio = this.Inicio;
-            entidad.Linea = new LineaEntity();
-            this.Linea.ToEntity(entidad.Linea);
-            entidad.LugarFinal = this.LugarFinal;
-            entidad.LugarInicio = this.LugarInicio;
-            entidad.Servicio = this.Servicio;
-            entidad.Turno = this.Turno;
+        public ServicioBase ToModel() {
+            return new ServicioBase() {
+                Id = this.Id,
+                Final = this.Final,
+                Inicio = this.Inicio,
+                LugarFinal = this.LugarFinal,
+                LugarInicio = this.LugarInicio,
+                Servicio = this.Servicio,
+                Turno = this.Turno,
+                Linea = new Linea(this.Linea),
+            };
         }
 
         #endregion

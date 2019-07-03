@@ -1,7 +1,8 @@
-﻿using Quattro.Core.Data.Entities;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Quattro.Core.Data.Models {
 
+    [Table("ServiciosDia")]
     public class ServicioDia : ServicioBase {
 
         // ====================================================================================================
@@ -10,7 +11,7 @@ namespace Quattro.Core.Data.Models {
 
         public ServicioDia() { }
 
-        public ServicioDia(ServicioDiaEntity entidad) => this.FromEntity(entidad);
+        public ServicioDia(ServicioDia model) => this.FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -29,14 +30,13 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS ENTITIES
         // ====================================================================================================
 
-        public void FromEntity(ServicioDiaEntity entidad) {
+        public void FromModel(ServicioDia entidad) {
             if (entidad == null) return;
-            base.FromEntity(entidad);
+            base.FromModel(entidad);
         }
 
-        public void ToEntity(ServicioDiaEntity entidad) {
-            if (entidad == null) return;
-            base.ToEntity(entidad);
+        public new ServicioDia ToModel() {
+            return (ServicioDia)base.ToModel();
         }
 
         #endregion

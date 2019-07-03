@@ -1,5 +1,4 @@
 ﻿using Quattro.Core.Common;
-using Quattro.Core.Data.Entities;
 
 namespace Quattro.Core.Data.Models {
 
@@ -12,7 +11,7 @@ namespace Quattro.Core.Data.Models {
 
         public Servicio() { }
 
-        public Servicio(ServicioEntity entidad) => this.FromEntity(entidad);
+        public Servicio(Servicio model) => this.FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -54,20 +53,20 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS ENTITIES
         // ====================================================================================================
 
-        public void FromEntity(ServicioEntity entidad) {
-            if (entidad == null) return;
-            base.FromEntity(entidad);
-            this.TomaDeje = entidad.TomaDeje;
-            this.Euros = entidad.Euros;
-            this.Notas = entidad.Notas;
+        public void FromModel(Servicio model) {
+            if (model == null) return;
+            base.FromModel(model);
+            this.TomaDeje = model.TomaDeje;
+            this.Euros = model.Euros;
+            this.Notas = model.Notas;
         }
 
-        public void ToEntity(ServicioEntity entidad) {
-            if (entidad == null) return;
-            base.ToEntity(entidad);
-            entidad.TomaDeje = this.TomaDeje;
-            entidad.Euros = this.Euros;
-            entidad.Notas = this.Notas;
+        public new Servicio ToModel() {
+            Servicio model = (Servicio)base.ToModel();
+            model.TomaDeje = this.TomaDeje;
+            model.Euros = this.Euros;
+            model.Notas = this.Notas;
+            return model;
         }
 
         #endregion

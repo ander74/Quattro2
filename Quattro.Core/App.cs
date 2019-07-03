@@ -9,6 +9,11 @@ namespace Quattro.Core {
 
     public class App : MvxApplication {
 
+
+        // ====================================================================================================
+        #region MÉTODO INITIALIZE
+        // ====================================================================================================
+
         public override void Initialize() {
 
             // Inyecta cualquier clase que termine en 'Service' como un singleton, por medio de una interfaz.
@@ -32,9 +37,39 @@ namespace Quattro.Core {
             if (Preferences.Get("PrimerInicio", true)) {
                 this.RegisterAppStart<LicenciaViewModel>();
             } else {
-                this.RegisterAppStart<HomeViewModel>();//TODO: Cambiar por el menú.
+                this.RegisterAppStart<HomeViewModel>();
             }
         }
+
+
+        #endregion
+        // ====================================================================================================
+
+
+        // ====================================================================================================
+        #region MÉTODO CREATE DEFAULT VIEWMODELLOCATOR
+        // ====================================================================================================
+
+        protected override IMvxViewModelLocator CreateDefaultViewModelLocator() {
+            return new MyViewModelLocator();
+        }
+
+        #endregion
+        // ====================================================================================================
+
+
+        // ====================================================================================================
+        #region VIEW MODELS
+        // ====================================================================================================
+
+        // Los ViewModels se establecen inicialmente en null y es el ViewModelLocator el que se encarga
+        // de instanciarlos. La primera vez, se instancian por medio del propio framework, el resto de veces
+        // se utiliza el ViewModel estático ya creado.
+
+        public static CalendarioViewModel CalendarioVM { get; set; }
+
+        #endregion
+        // ====================================================================================================
 
     }
 }

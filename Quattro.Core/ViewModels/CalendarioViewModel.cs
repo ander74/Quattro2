@@ -11,6 +11,7 @@ using Quattro.Core.Interfaces;
 using Quattro.Core.Data.Models;
 using Quattro.Core.Data.Repositories;
 using Xamarin.Essentials;
+using Microsoft.EntityFrameworkCore;
 
 namespace Quattro.Core.ViewModels {
     public class CalendarioViewModel : MvxViewModel {
@@ -51,11 +52,10 @@ namespace Quattro.Core.ViewModels {
 
             // Inicialización de variables internas
             this.IsInSelectMode = false;
-
             // Inicialización de propiedades.
-            this.Fecha = DateTime.Now;
-            //var lista = repo.GetMes(Fecha).ToList();
-            this.ListaDias = repo.GetMes(Fecha).Select(dce => new DiaCalendario(dce)).ToList();
+            this.Fecha = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            this.ListaDias = await repo.GetMes(Fecha).ToListAsync();
+
         }
 
         #endregion
@@ -85,6 +85,7 @@ namespace Quattro.Core.ViewModels {
                 RaisePropertyChanged(nameof(IsMultipleSelect));
                 return;
             }
+            //TODO: Navegar al día.
             this.dialog.Alert($"Has pulsado el día {dia.Fecha.Day}.", "AVISO", "Aceptar");
         }
         #endregion
@@ -125,84 +126,89 @@ namespace Quattro.Core.ViewModels {
         #endregion
 
 
-
         #region AnteriorPulsado
-        private MvxCommand anteriorPulsadoCommand;
+        private MvxAsyncCommand anteriorPulsadoCommand;
         public ICommand AnteriorPulsadoCommand {
             get {
-                anteriorPulsadoCommand = anteriorPulsadoCommand ?? new MvxCommand(DoAnteriorPulsado);
+                anteriorPulsadoCommand = anteriorPulsadoCommand ?? new MvxAsyncCommand(DoAnteriorPulsado);
                 return anteriorPulsadoCommand;
             }
         }
-        private void DoAnteriorPulsado() {
-            this.dialog.LongToast("ANTERIOR");
+        private async Task DoAnteriorPulsado() {
+            //TODO: cambiar la instrucción siguiente por la opción
+            var FechaLimite = new DateTime(2019, 1, 1);
+            if (Fecha == FechaLimite) {
+                dialog.LongToast("No se puede retroceder más.");
+                return;
+            }
+            Fecha = Fecha.AddMonths(-1);
+            this.ListaDias = await repo.GetMes(Fecha).ToListAsync();
         }
         #endregion
 
 
         #region SiguientePulsado
-        private MvxCommand comandointernoCommand;
+        private MvxAsyncCommand comandointernoCommand;
         public ICommand SiguientePulsadoCommand {
             get {
-                comandointernoCommand = comandointernoCommand ?? new MvxCommand(DoSiguientePulsado);
+                comandointernoCommand = comandointernoCommand ?? new MvxAsyncCommand(DoSiguientePulsado);
                 return comandointernoCommand;
             }
         }
-        private void DoSiguientePulsado() {
-            this.dialog.LongToast("SIGUIENTE");
-        }
-        #endregion
-
-
-        #region GotoLicencia
-        private MvxAsyncCommand gotoLicenciaCommand;
-        public ICommand GotoLicenciaCommand {
-            get {
-                gotoLicenciaCommand = gotoLicenciaCommand ?? new MvxAsyncCommand(DoGotoLicencia);
-                return gotoLicenciaCommand;
-            }
-        }
-        private async Task DoGotoLicencia() {
-            await navigation.Navigate<LicenciaViewModel>();
+        private async Task DoSiguientePulsado() {
+            Fecha = Fecha.AddMonths(1);
+            this.ListaDias = await repo.GetMes(Fecha).ToListAsync();
         }
         #endregion
 
 
         #region Franqueo
-        private MvxCommand franqueoCommand;
+        private MvxAsyncCommand franqueoCommand;
         public ICommand FranqueoCommand {
             get {
-                franqueoCommand = franqueoCommand ?? new MvxCommand(DoFranqueo);
+                franqueoCommand = franqueoCommand ?? new MvxAsyncCommand(DoFranqueo);
                 return franqueoCommand;
             }
         }
-        private void DoFranqueo() {
+        private async Task DoFranqueo() {
             foreach(var dia in ListaDias.Where(d => d.IsSelected)) {
                 dia.EsFranqueo = !dia.EsFranqueo;
-                //TODO: Guardar cambios.
             }
+            await GuardarDatos();
         }
         #endregion
 
 
         #region Festivo
-        private MvxCommand festivoCommand;
+        private MvxAsyncCommand festivoCommand;
         public ICommand FestivoCommand {
             get {
-                festivoCommand = festivoCommand ?? new MvxCommand(DoFestivo);
+                festivoCommand = festivoCommand ?? new MvxAsyncCommand(DoFestivo);
                 return festivoCommand;
             }
         }
-        private void DoFestivo() {
+        private async Task DoFestivo() {
             foreach (var dia in ListaDias.Where(d => d.IsSelected)) {
                 dia.EsFestivo = !dia.EsFestivo;
-                //TODO: Guardar cambios.
             }
+            await GuardarDatos();
         }
         #endregion
 
 
 
+
+        #endregion
+        // ====================================================================================================
+
+
+        // ====================================================================================================
+        #region MÉTODOS PRIVADOS
+        // ====================================================================================================
+
+        private async Task GuardarDatos() {
+            await repo.GuardarDatosAsync();
+        }
 
         #endregion
         // ====================================================================================================
@@ -227,6 +233,7 @@ namespace Quattro.Core.ViewModels {
             get => fecha.ToString("MMM - yyyy").ToUpper();
         }
 
+        
         IEnumerable<DiaCalendario> listaDias;
         public IEnumerable<DiaCalendario> ListaDias {
             get => listaDias;
