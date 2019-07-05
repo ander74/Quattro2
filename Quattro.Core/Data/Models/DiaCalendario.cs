@@ -228,9 +228,77 @@ namespace Quattro.Core.Data.Models {
             get => $"{(DiaSemanaAbreviado)Fecha.DayOfWeek}".ToUpper();
         }
 
-
         public bool EsUltimoDia {
             get => Fecha.Day == DateTime.DaysInMonth(Fecha.Year, Fecha.Month);
+        }
+
+        public string TextoServicio {
+            get {
+                var resultado = string.Empty;
+                if(Incidencia?.Tipo == TipoIncidencia.Trabajo ||
+                    Incidencia?.Tipo == TipoIncidencia.FranqueoTrabajado ||
+                    Incidencia?.Tipo == TipoIncidencia.TrabajoSinAcumular) {
+                    // Si hay servicio y línea.
+                    if(!string.IsNullOrEmpty(Servicio) && string.IsNullOrEmpty(Linea?.Numero)) {
+                        resultado = $"{Servicio}/{Turno} - {Linea.Numero}";
+                        if (!string.IsNullOrEmpty(Linea.Descripcion)) resultado += $": {Linea.Descripcion}";
+                    } else if(Turno > 0 && Inicio != null && Final != null) {
+                        resultado = $"{Incidencia?.Descripcion} {Turno}";
+                    }
+                }
+                if (Incidencia?.Tipo == TipoIncidencia.FiestaOtroDia ||
+                    Incidencia?.Tipo == TipoIncidencia.Franqueo ||
+                    Incidencia?.Tipo == TipoIncidencia.JornadaMedia) {
+                    resultado = $"{Incidencia?.Descripcion}";
+                }
+                return resultado;
+            }
+        }
+
+
+        public string TextoHorario {
+            get {
+                if (Inicio == null || Final == null) return string.Empty;
+                return $"{Inicio.ToString("hm")} - {Final.ToString("hm")}";
+            }
+        }
+
+        public string TextoRelevo {
+            get {
+                if (Relevo == null) return string.Empty;
+                var resultado = Relevo.Matricula.ToString("0000");
+                if (!string.IsNullOrEmpty(Relevo.Apellidos)) resultado += $": {Relevo.Apellidos}";
+                return resultado;
+            }
+        }
+
+        public bool EsRelevoBueno {
+            get => Relevo?.Calificacion == TipoCompañero.Bueno;
+        }
+
+        public bool EsRelevoMalo {
+            get => Relevo?.Calificacion == TipoCompañero.Malo;
+        }
+
+        public bool MostrarAcumuladas {
+            get {
+                if (Inicio == null || Final == null) {
+                    if (Acumuladas == 0m && Nocturnas == 0m) return false;
+                } else if (Incidencia?.Tipo != TipoIncidencia.Trabajo &&
+                        Incidencia?.Tipo != TipoIncidencia.FranqueoTrabajado &&
+                        Incidencia?.Tipo != TipoIncidencia.FiestaOtroDia) {
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        public bool HayHuelga {
+            get => Incidencia?.Codigo == 15;
+        }
+
+        public bool HayNotas {
+            get => !string.IsNullOrWhiteSpace(Notas);
         }
 
         public (DateTime, bool) EsDomingoOFestivo {

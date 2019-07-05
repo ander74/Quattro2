@@ -1,31 +1,30 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace DummyForMigrations.Migrations
+namespace Quattro.Core.Migrations
 {
     public partial class Inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Compañeros",
+                name: "Companeros",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Estado = table.Column<int>(nullable: false),
                     Matricula = table.Column<int>(nullable: false),
-                    Nombre = table.Column<string>(nullable: true),
-                    Apellidos = table.Column<string>(nullable: true),
-                    Telefono = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
+                    Nombre = table.Column<string>(maxLength: 64, nullable: true),
+                    Apellidos = table.Column<string>(maxLength: 128, nullable: true),
+                    Telefono = table.Column<string>(maxLength: 64, nullable: true),
+                    Email = table.Column<string>(maxLength: 128, nullable: true),
                     Calificacion = table.Column<int>(nullable: false),
                     Deuda = table.Column<int>(nullable: false),
                     Notas = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Compañeros", x => x.Id);
+                    table.PrimaryKey("PK_Companeros", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -34,10 +33,9 @@ namespace DummyForMigrations.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Estado = table.Column<int>(nullable: false),
                     Fecha = table.Column<DateTime>(nullable: false),
                     Horas = table.Column<decimal>(nullable: false),
-                    Motivo = table.Column<string>(nullable: true),
+                    Motivo = table.Column<string>(maxLength: 256, nullable: true),
                     Tipo = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -51,8 +49,8 @@ namespace DummyForMigrations.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Estado = table.Column<int>(nullable: false),
-                    Descripcion = table.Column<string>(nullable: true),
+                    Codigo = table.Column<int>(nullable: false),
+                    Descripcion = table.Column<string>(maxLength: 64, nullable: true),
                     Tipo = table.Column<int>(nullable: false),
                     Notas = table.Column<string>(nullable: true)
                 },
@@ -67,9 +65,8 @@ namespace DummyForMigrations.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Estado = table.Column<int>(nullable: false),
-                    Numero = table.Column<string>(nullable: true),
-                    Descripcion = table.Column<string>(nullable: true),
+                    Numero = table.Column<string>(maxLength: 32, nullable: true),
+                    Descripcion = table.Column<string>(maxLength: 128, nullable: true),
                     Notas = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -83,13 +80,12 @@ namespace DummyForMigrations.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Estado = table.Column<int>(nullable: false),
-                    Servicio = table.Column<string>(nullable: true),
+                    Servicio = table.Column<string>(maxLength: 32, nullable: true),
                     Turno = table.Column<int>(nullable: false),
                     Inicio = table.Column<int>(nullable: true),
-                    LugarInicio = table.Column<string>(nullable: true),
+                    LugarInicio = table.Column<string>(maxLength: 64, nullable: true),
                     Final = table.Column<int>(nullable: true),
-                    LugarFinal = table.Column<string>(nullable: true),
+                    LugarFinal = table.Column<string>(maxLength: 64, nullable: true),
                     LineaId = table.Column<int>(nullable: true),
                     TomaDeje = table.Column<int>(nullable: true),
                     Euros = table.Column<decimal>(nullable: false),
@@ -105,11 +101,10 @@ namespace DummyForMigrations.Migrations
                     Desayuno = table.Column<bool>(nullable: false),
                     Comida = table.Column<bool>(nullable: false),
                     Cena = table.Column<bool>(nullable: false),
-                    Bus = table.Column<string>(nullable: true),
+                    Bus = table.Column<string>(maxLength: 32, nullable: true),
                     IncidenciaId = table.Column<int>(nullable: true),
                     RelevoId = table.Column<int>(nullable: true),
-                    SustiId = table.Column<int>(nullable: true),
-                    IsSelected = table.Column<bool>(nullable: false)
+                    SustiId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -127,15 +122,15 @@ namespace DummyForMigrations.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Calendario_Compañeros_RelevoId",
+                        name: "FK_Calendario_Companeros_RelevoId",
                         column: x => x.RelevoId,
-                        principalTable: "Compañeros",
+                        principalTable: "Companeros",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Calendario_Compañeros_SustiId",
+                        name: "FK_Calendario_Companeros_SustiId",
                         column: x => x.SustiId,
-                        principalTable: "Compañeros",
+                        principalTable: "Companeros",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
@@ -146,13 +141,12 @@ namespace DummyForMigrations.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Estado = table.Column<int>(nullable: false),
-                    Servicio = table.Column<string>(nullable: true),
+                    Servicio = table.Column<string>(maxLength: 32, nullable: true),
                     Turno = table.Column<int>(nullable: false),
                     Inicio = table.Column<int>(nullable: true),
-                    LugarInicio = table.Column<string>(nullable: true),
+                    LugarInicio = table.Column<string>(maxLength: 64, nullable: true),
                     Final = table.Column<int>(nullable: true),
-                    LugarFinal = table.Column<string>(nullable: true),
+                    LugarFinal = table.Column<string>(maxLength: 64, nullable: true),
                     LineaId = table.Column<int>(nullable: true),
                     TomaDeje = table.Column<int>(nullable: true),
                     Euros = table.Column<decimal>(nullable: false),
@@ -175,13 +169,12 @@ namespace DummyForMigrations.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Estado = table.Column<int>(nullable: false),
-                    Servicio = table.Column<string>(nullable: true),
+                    Servicio = table.Column<string>(maxLength: 32, nullable: true),
                     Turno = table.Column<int>(nullable: false),
                     Inicio = table.Column<int>(nullable: true),
-                    LugarInicio = table.Column<string>(nullable: true),
+                    LugarInicio = table.Column<string>(maxLength: 64, nullable: true),
                     Final = table.Column<int>(nullable: true),
-                    LugarFinal = table.Column<string>(nullable: true),
+                    LugarFinal = table.Column<string>(maxLength: 64, nullable: true),
                     LineaId = table.Column<int>(nullable: true),
                     DiaCalendarioId = table.Column<int>(nullable: true)
                 },
@@ -208,13 +201,12 @@ namespace DummyForMigrations.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Estado = table.Column<int>(nullable: false),
-                    Servicio = table.Column<string>(nullable: true),
+                    Servicio = table.Column<string>(maxLength: 32, nullable: true),
                     Turno = table.Column<int>(nullable: false),
                     Inicio = table.Column<int>(nullable: true),
-                    LugarInicio = table.Column<string>(nullable: true),
+                    LugarInicio = table.Column<string>(maxLength: 64, nullable: true),
                     Final = table.Column<int>(nullable: true),
-                    LugarFinal = table.Column<string>(nullable: true),
+                    LugarFinal = table.Column<string>(maxLength: 64, nullable: true),
                     LineaId = table.Column<int>(nullable: true),
                     ServicioLineaId = table.Column<int>(nullable: true)
                 },
@@ -234,6 +226,91 @@ namespace DummyForMigrations.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 1, 0, "Repite día anterior", "Incidencia Protegida.", 0 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 15, 14, "En otro destino", "Incidencia Protegida.", 4 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 14, 13, "Sanción", "Incidencia Protegida.", 4 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 13, 12, "Hacemos el día", "Incidencia Protegida.", 5 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 12, 11, "Nos hacen el día", "Incidencia Protegida.", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 11, 10, "F.N.R. año anterior", "Incidencia Protegida.", 4 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 10, 9, "F.N.R. año actual", "Incidencia Protegida.", 4 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 16, 15, "Huelga", "Incidencia Protegida.", 5 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 9, 8, "Permiso", "Incidencia Protegida.", 6 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 7, 6, "Enferma/o", "Incidencia Protegida.", 4 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 6, 5, "Franqueo a trabajar", "Incidencia Protegida.", 2 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 5, 4, "F.O.D.", "Incidencia Protegida.", 3 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 4, 3, "Vacaciones", "Incidencia Protegida.", 4 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 3, 2, "Franqueo", "Incidencia Protegida.", 4 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 2, 1, "Trabajo", "Incidencia Protegida.", 1 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 8, 7, "Accidentada/o", "Incidencia Protegida.", 4 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 17, 16, "Día por H. Acumuladas", "Incidencia Protegida.", 3 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Calendario_IncidenciaId",
@@ -302,7 +379,7 @@ namespace DummyForMigrations.Migrations
                 name: "Incidencias");
 
             migrationBuilder.DropTable(
-                name: "Compañeros");
+                name: "Companeros");
 
             migrationBuilder.DropTable(
                 name: "Lineas");

@@ -172,9 +172,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\SplashStyle.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\layout\LicenciaPage.axml">
       <SubType>Designer</SubType>
     </AndroidResource>

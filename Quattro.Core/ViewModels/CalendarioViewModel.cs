@@ -14,6 +14,7 @@ using Xamarin.Essentials;
 using Microsoft.EntityFrameworkCore;
 
 namespace Quattro.Core.ViewModels {
+
     public class CalendarioViewModel : MvxViewModel {
 
 
@@ -173,6 +174,10 @@ namespace Quattro.Core.ViewModels {
         private async Task DoFranqueo() {
             foreach(var dia in ListaDias.Where(d => d.IsSelected)) {
                 dia.EsFranqueo = !dia.EsFranqueo;
+                if (dia.EsFranqueo && dia.Incidencia == null) {
+                    dia.Incidencia = await repo.GetIncidencia(2);
+                    dia.PropiedadCambiada(nameof(dia.TextoServicio));
+                }
             }
             await GuardarDatos();
         }

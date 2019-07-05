@@ -94,7 +94,26 @@ namespace DummyForMigrations {
             modelBuilder.Entity<ServicioDia>().Property(sd => sd.Final).HasConversion(ConvertidorTiempo);
 
             // Incidencias
-            //TODO: Crear las incidencias fijas.
+            modelBuilder.Entity<Incidencia>()
+                .HasData(
+                new Incidencia { Id = 01, Codigo = 0, Descripcion = "Repite día anterior", Tipo = TipoIncidencia.Desconocido, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 02, Codigo = 1, Descripcion = "Trabajo", Tipo = TipoIncidencia.Trabajo, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 03, Codigo = 2, Descripcion = "Franqueo", Tipo = TipoIncidencia.Franqueo, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 04, Codigo = 3, Descripcion = "Vacaciones", Tipo = TipoIncidencia.Franqueo, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 05, Codigo = 4, Descripcion = "F.O.D.", Tipo = TipoIncidencia.FiestaOtroDia, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 06, Codigo = 5, Descripcion = "Franqueo a trabajar", Tipo = TipoIncidencia.FranqueoTrabajado, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 07, Codigo = 6, Descripcion = "Enferma/o", Tipo = TipoIncidencia.Franqueo, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 08, Codigo = 7, Descripcion = "Accidentada/o", Tipo = TipoIncidencia.Franqueo, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 09, Codigo = 8, Descripcion = "Permiso", Tipo = TipoIncidencia.JornadaMedia, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 10, Codigo = 9, Descripcion = "F.N.R. año actual", Tipo = TipoIncidencia.Franqueo, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 11, Codigo = 10, Descripcion = "F.N.R. año anterior", Tipo = TipoIncidencia.Franqueo, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 12, Codigo = 11, Descripcion = "Nos hacen el día", Tipo = TipoIncidencia.Trabajo, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 13, Codigo = 12, Descripcion = "Hacemos el día", Tipo = TipoIncidencia.TrabajoSinAcumular, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 14, Codigo = 13, Descripcion = "Sanción", Tipo = TipoIncidencia.Franqueo, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 15, Codigo = 14, Descripcion = "En otro destino", Tipo = TipoIncidencia.Franqueo, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 16, Codigo = 15, Descripcion = "Huelga", Tipo = TipoIncidencia.TrabajoSinAcumular, Notas = "Incidencia Protegida." },
+                new Incidencia { Id = 17, Codigo = 16, Descripcion = "Día por H. Acumuladas", Tipo = TipoIncidencia.FiestaOtroDia, Notas = "Incidencia Protegida." }
+                );
 
             // Horas Ajenas
 

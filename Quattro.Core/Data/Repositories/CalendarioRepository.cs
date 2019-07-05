@@ -32,7 +32,7 @@ namespace Quattro.Core.Data.Repositories {
 
 
         // ====================================================================================================
-        #region MÉTODOS DE INTERFAZ
+        #region MÉTODOS DE CALENDARIO
         // ====================================================================================================
 
         public IQueryable<DiaCalendario> GetMes(DateTime fecha) {
@@ -59,6 +59,18 @@ namespace Quattro.Core.Data.Repositories {
         }
 
 
+
+        #endregion
+        // ====================================================================================================
+
+
+        // ====================================================================================================
+        #region MÉTODOS DE INCIDENCIAS
+        // ====================================================================================================
+
+        public async Task<Incidencia> GetIncidencia(int codigo) {
+            return await context.Incidencias.FirstOrDefaultAsync(i => i.Codigo == codigo);
+        }
 
         #endregion
         // ====================================================================================================

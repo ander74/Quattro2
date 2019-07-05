@@ -27,6 +27,13 @@ namespace Quattro.Core.Data.Models {
         public int Id { get; set; }
 
 
+        private int codigo;
+        public int Codigo {
+            get => codigo;
+            set => SetProperty(ref codigo, value);
+        }
+
+
         private string descripcion;
         [MaxLength(64)]
         public string Descripcion {

@@ -3,12 +3,13 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Quattro.Core.Data;
 
 namespace Quattro.Core.Migrations
 {
     [DbContext(typeof(QuattroContext))]
-    [Migration("20190703061050_Inicial")]
+    [Migration("20190704072533_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,27 +23,29 @@ namespace Quattro.Core.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Apellidos");
+                    b.Property<string>("Apellidos")
+                        .HasMaxLength(128);
 
                     b.Property<int>("Calificacion");
 
                     b.Property<int>("Deuda");
 
-                    b.Property<string>("Email");
-
-                    b.Property<int>("Estado");
+                    b.Property<string>("Email")
+                        .HasMaxLength(128);
 
                     b.Property<int>("Matricula");
 
-                    b.Property<string>("Nombre");
+                    b.Property<string>("Nombre")
+                        .HasMaxLength(64);
 
                     b.Property<string>("Notas");
 
-                    b.Property<string>("Telefono");
+                    b.Property<string>("Telefono")
+                        .HasMaxLength(64);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Compañeros");
+                    b.ToTable("Companeros");
                 });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.DiaCalendario", b =>
@@ -52,7 +55,8 @@ namespace Quattro.Core.Migrations
 
                     b.Property<decimal>("Acumuladas");
 
-                    b.Property<string>("Bus");
+                    b.Property<string>("Bus")
+                        .HasMaxLength(32);
 
                     b.Property<bool>("Cena");
 
@@ -63,8 +67,6 @@ namespace Quattro.Core.Migrations
                     b.Property<bool>("EsFestivo");
 
                     b.Property<bool>("EsFranqueo");
-
-                    b.Property<int>("Estado");
 
                     b.Property<decimal>("Euros");
 
@@ -80,13 +82,13 @@ namespace Quattro.Core.Migrations
 
                     b.Property<int?>("Inicio");
 
-                    b.Property<bool>("IsSelected");
-
                     b.Property<int?>("LineaId");
 
-                    b.Property<string>("LugarFinal");
+                    b.Property<string>("LugarFinal")
+                        .HasMaxLength(64);
 
-                    b.Property<string>("LugarInicio");
+                    b.Property<string>("LugarInicio")
+                        .HasMaxLength(64);
 
                     b.Property<decimal>("Nocturnas");
 
@@ -94,7 +96,8 @@ namespace Quattro.Core.Migrations
 
                     b.Property<int?>("RelevoId");
 
-                    b.Property<string>("Servicio");
+                    b.Property<string>("Servicio")
+                        .HasMaxLength(32);
 
                     b.Property<int?>("SustiId");
 
@@ -122,13 +125,12 @@ namespace Quattro.Core.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Estado");
-
                     b.Property<DateTime>("Fecha");
 
                     b.Property<decimal>("Horas");
 
-                    b.Property<string>("Motivo");
+                    b.Property<string>("Motivo")
+                        .HasMaxLength(256);
 
                     b.Property<int>("Tipo");
 
@@ -142,9 +144,10 @@ namespace Quattro.Core.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Descripcion");
+                    b.Property<int>("Codigo");
 
-                    b.Property<int>("Estado");
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(64);
 
                     b.Property<string>("Notas");
 
@@ -153,6 +156,144 @@ namespace Quattro.Core.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Incidencias");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Codigo = 0,
+                            Descripcion = "Repite día anterior",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Codigo = 1,
+                            Descripcion = "Trabajo",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Codigo = 2,
+                            Descripcion = "Franqueo",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Codigo = 3,
+                            Descripcion = "Vacaciones",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Codigo = 4,
+                            Descripcion = "F.O.D.",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Codigo = 5,
+                            Descripcion = "Franqueo a trabajar",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Codigo = 6,
+                            Descripcion = "Enferma/o",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Codigo = 7,
+                            Descripcion = "Accidentada/o",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Codigo = 8,
+                            Descripcion = "Permiso",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 6
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Codigo = 9,
+                            Descripcion = "F.N.R. año actual",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Codigo = 10,
+                            Descripcion = "F.N.R. año anterior",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Codigo = 11,
+                            Descripcion = "Nos hacen el día",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Codigo = 12,
+                            Descripcion = "Hacemos el día",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 5
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Codigo = 13,
+                            Descripcion = "Sanción",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Codigo = 14,
+                            Descripcion = "En otro destino",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Codigo = 15,
+                            Descripcion = "Huelga",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 5
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Codigo = 16,
+                            Descripcion = "Día por H. Acumuladas",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 3
+                        });
                 });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.Linea", b =>
@@ -160,13 +301,13 @@ namespace Quattro.Core.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Descripcion");
-
-                    b.Property<int>("Estado");
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(128);
 
                     b.Property<string>("Notas");
 
-                    b.Property<string>("Numero");
+                    b.Property<string>("Numero")
+                        .HasMaxLength(32);
 
                     b.HasKey("Id");
 
@@ -180,19 +321,20 @@ namespace Quattro.Core.Migrations
 
                     b.Property<int?>("DiaCalendarioId");
 
-                    b.Property<int>("Estado");
-
                     b.Property<int?>("Final");
 
                     b.Property<int?>("Inicio");
 
                     b.Property<int?>("LineaId");
 
-                    b.Property<string>("LugarFinal");
+                    b.Property<string>("LugarFinal")
+                        .HasMaxLength(64);
 
-                    b.Property<string>("LugarInicio");
+                    b.Property<string>("LugarInicio")
+                        .HasMaxLength(64);
 
-                    b.Property<string>("Servicio");
+                    b.Property<string>("Servicio")
+                        .HasMaxLength(32);
 
                     b.Property<int>("Turno");
 
@@ -210,8 +352,6 @@ namespace Quattro.Core.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Estado");
-
                     b.Property<decimal>("Euros");
 
                     b.Property<int?>("Final");
@@ -220,13 +360,16 @@ namespace Quattro.Core.Migrations
 
                     b.Property<int?>("LineaId");
 
-                    b.Property<string>("LugarFinal");
+                    b.Property<string>("LugarFinal")
+                        .HasMaxLength(64);
 
-                    b.Property<string>("LugarInicio");
+                    b.Property<string>("LugarInicio")
+                        .HasMaxLength(64);
 
                     b.Property<string>("Notas");
 
-                    b.Property<string>("Servicio");
+                    b.Property<string>("Servicio")
+                        .HasMaxLength(32);
 
                     b.Property<int?>("TomaDeje");
 
@@ -244,19 +387,20 @@ namespace Quattro.Core.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Estado");
-
                     b.Property<int?>("Final");
 
                     b.Property<int?>("Inicio");
 
                     b.Property<int?>("LineaId");
 
-                    b.Property<string>("LugarFinal");
+                    b.Property<string>("LugarFinal")
+                        .HasMaxLength(64);
 
-                    b.Property<string>("LugarInicio");
+                    b.Property<string>("LugarInicio")
+                        .HasMaxLength(64);
 
-                    b.Property<string>("Servicio");
+                    b.Property<string>("Servicio")
+                        .HasMaxLength(32);
 
                     b.Property<int?>("ServicioLineaId");
 

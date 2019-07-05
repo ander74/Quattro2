@@ -29,7 +29,7 @@ namespace Quattro.Core {
                 .RegisterAsLazySingleton();
 
             // Inyecta el QuattroContext
-            Mvx.IoCProvider.RegisterSingleton(new QuattroContext()); //TODO: No se si esto funcionará.
+            Mvx.IoCProvider.RegisterSingleton(new QuattroContext());
 
 
             // Inicia la aplicación usando el ViewModel indicado.

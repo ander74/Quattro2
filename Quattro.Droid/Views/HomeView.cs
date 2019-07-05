@@ -4,11 +4,13 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
+using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Views.InputMethods;
 using MvvmCross.Droid.Support.V7.AppCompat;
+using Quattro.Core.Interfaces;
 using Quattro.Core.ViewModels;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
@@ -40,7 +42,7 @@ namespace Quattro.Droid.Views {
                 menuPrevio = itemCalendario;
                 ViewModel.GotoCalendarioCommand.Execute(null);
             }
-
+            
         }
 
         private void NavigationView_NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e) {
@@ -64,8 +66,26 @@ namespace Quattro.Droid.Views {
 
 
         public override bool OnOptionsItemSelected(IMenuItem item) {
-            if (item.ItemId == global::Android.Resource.Id.Home) { OnBackPressed(); }
+            if (item.ItemId == global::Android.Resource.Id.Home) {
+                OnBackPressed();
+            }
             return base.OnOptionsItemSelected(item);
+        }
+
+
+        public override void OnBackPressed() {
+            if (Drawer.IsDrawerOpen(navigationView)) {
+                Drawer.CloseDrawer(navigationView);
+                return;
+            }
+            bool handled = false;
+            foreach (var f in SupportFragmentManager.Fragments) {
+                if (f is IBaseFragment) {
+                    handled = ((IBaseFragment)f).OnBackPressed();
+                    if (handled) break;
+                }
+            }
+            if (!handled) base.OnBackPressed();
         }
 
 
