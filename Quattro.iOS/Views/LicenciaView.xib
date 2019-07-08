@@ -23,7 +23,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LICENCIA GPL - V3" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="149">
-                    <rect key="frame" x="45" y="10" width="230" height="40"/>
+                    <rect key="frame" x="45" y="20" width="230" height="40"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -38,7 +38,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" id="323" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="10" y="60" width="300" height="360"/>
+                    <rect key="frame" x="10" y="70" width="300" height="350"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -65,7 +65,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="150" secondAttribute="trailing" constant="81" id="156"/>
                 <constraint firstItem="150" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="82" id="157"/>
-                <constraint id="685" firstItem="149" firstAttribute="top" secondItem="2" secondAttribute="top" constant="10"/>
+                <constraint id="685" firstItem="149" firstAttribute="top" secondItem="2" secondAttribute="top" constant="20"/>
                 <constraint id="686" firstAttribute="trailing" secondItem="149" secondAttribute="trailing" constant="45"/>
                 <constraint id="687" firstItem="149" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="45"/>
                 <constraint id="689" firstItem="526" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="10"/>
