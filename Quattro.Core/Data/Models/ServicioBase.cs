@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Quattro.Core.Common;
-using Quattro.Core.Data.Entities;
 
 namespace Quattro.Core.Data.Models {
 
@@ -83,12 +82,12 @@ namespace Quattro.Core.Data.Models {
 
 
         // ====================================================================================================
-        #region MÉTODOS ENTITIES
+        #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(ServicioBase model) {
+        public void FromModel(ServicioBase model, bool ignorarId = false) {
             if (model == null) return;
-            this.Id = model.Id;
+            this.Id = ignorarId ? this.Id : model.Id;
             this.Final = model.Final;
             this.Inicio = model.Inicio;
             this.Linea = new Linea(model.Linea);
@@ -98,9 +97,9 @@ namespace Quattro.Core.Data.Models {
             this.Turno = model.Turno;
         }
 
-        public ServicioBase ToModel() {
+        public ServicioBase ToModel(bool ignorarId = false) {
             return new ServicioBase() {
-                Id = this.Id,
+                Id = ignorarId ? 0 : this.Id,
                 Final = this.Final,
                 Inicio = this.Inicio,
                 LugarFinal = this.LugarFinal,

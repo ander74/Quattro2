@@ -61,21 +61,21 @@ namespace Quattro.Core.Data.Models {
 
 
         // ====================================================================================================
-        #region MÉTODOS ENTITIES
+        #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(Incidencia model) {
+        public void FromModel(Incidencia model, bool ignorarId = false) {
             if (model == null) return;
+            this.Id = ignorarId ? this.Id : model.Id;
             this.Descripcion = model.Descripcion;
-            this.Id = model.Id;
             this.Notas = model.Notas;
             this.Tipo = model.Tipo;
         }
 
-        public Incidencia ToEntity() {
+        public Incidencia ToEntity(bool ignorarId = false) {
             return new Incidencia {
+                Id = ignorarId ? 0 : this.Id,
                 Descripcion = this.Descripcion,
-                Id = this.Id,
                 Notas = this.Notas,
                 Tipo = this.Tipo,
             };

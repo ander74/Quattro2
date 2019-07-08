@@ -62,21 +62,21 @@ namespace Quattro.Core.Data.Models {
 
 
         // ====================================================================================================
-        #region MÉTODOS ENTITIES
+        #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(Linea model) {
+        public void FromModel(Linea model, bool ignorarId = false) {
             if (model == null) return;
-            this.Id = model.Id;
+            this.Id = ignorarId ? this.Id : model.Id;
             this.Descripcion = model.Descripcion;
             this.Notas = model.Notas;
             this.Numero = model.Numero;
             this.Servicios = model.Servicios.AsEnumerable();
         }
 
-        public Linea ToModel() {
+        public Linea ToModel(bool ignorarId = false) {
             return new Linea {
-                Id = this.Id,
+                Id = ignorarId ? 0 : this.Id,
                 Descripcion = this.Descripcion,
                 Notas = this.Notas,
                 Numero = this.Numero,

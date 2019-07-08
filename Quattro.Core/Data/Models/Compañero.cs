@@ -87,26 +87,26 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(Compañero model) {
+        public void FromModel(Compañero model, bool ignorarId = false) {
             if (model == null) return;
+            this.Id = ignorarId ? this.Id : model.Id;
             this.Apellidos = model.Apellidos;
             this.Calificacion = model.Calificacion;
             this.Deuda = model.Deuda;
             this.Email = model.Email;
-            this.Id = model.Id;
             this.Matricula = model.Matricula;
             this.Nombre = model.Nombre;
             this.Notas = model.Notas;
             this.Telefono = model.Telefono;
         }
 
-        public Compañero ToModel() {
+        public Compañero ToModel(bool ignorarId = false) {
             return new Compañero {
+                Id = ignorarId ? 0 : this.Id,
                 Apellidos = this.Apellidos,
                 Calificacion = this.Calificacion,
                 Deuda = this.Deuda,
                 Email = this.Email,
-                Id = this.Id,
                 Matricula = this.Matricula,
                 Nombre = this.Nombre,
                 Notas = this.Notas,

@@ -61,23 +61,23 @@ namespace Quattro.Core.Data.Models {
 
 
         // ====================================================================================================
-        #region MÉTODOS ENTITIES
+        #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(HoraAjena model) {
+        public void FromModel(HoraAjena model, bool ignorarId = false) {
             if (model == null) return;
+            this.Id = ignorarId ? this.Id : model.Id;
             this.Fecha = model.Fecha;
             this.Horas = model.Horas;
-            this.Id = model.Id;
             this.Motivo = model.Motivo;
             this.Tipo = model.Tipo;
         }
 
-        public HoraAjena ToModel() {
+        public HoraAjena ToModel(bool ignorarId = false) {
             return new HoraAjena {
+                Id = ignorarId ? 0 : this.Id,
                 Fecha = this.Fecha,
                 Horas = this.Horas,
-                Id = this.Id,
                 Motivo = this.Motivo,
                 Tipo = this.Tipo,
             };

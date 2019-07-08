@@ -153,7 +153,7 @@ namespace Quattro.Core.Data.Models {
 
 
         // ====================================================================================================
-        #region MÉTODOS ENTITIES
+        #region MÉTODOS MODELS
         // ====================================================================================================
 
         public void FromModel(DiaCalendario model) {
@@ -239,7 +239,7 @@ namespace Quattro.Core.Data.Models {
                     Incidencia?.Tipo == TipoIncidencia.FranqueoTrabajado ||
                     Incidencia?.Tipo == TipoIncidencia.TrabajoSinAcumular) {
                     // Si hay servicio y línea.
-                    if(!string.IsNullOrEmpty(Servicio) && string.IsNullOrEmpty(Linea?.Numero)) {
+                    if(!string.IsNullOrEmpty(Servicio) && !string.IsNullOrEmpty(Linea?.Numero)) {
                         resultado = $"{Servicio}/{Turno} - {Linea.Numero}";
                         if (!string.IsNullOrEmpty(Linea.Descripcion)) resultado += $": {Linea.Descripcion}";
                     } else if(Turno > 0 && Inicio != null && Final != null) {
@@ -255,7 +255,6 @@ namespace Quattro.Core.Data.Models {
             }
         }
 
-
         public string TextoHorario {
             get {
                 if (Inicio == null || Final == null) return string.Empty;
@@ -270,6 +269,14 @@ namespace Quattro.Core.Data.Models {
                 if (!string.IsNullOrEmpty(Relevo.Apellidos)) resultado += $": {Relevo.Apellidos}";
                 return resultado;
             }
+        }
+
+        public bool HacemosDia {
+            get => Incidencia?.Codigo == 12;
+        }
+
+        public bool NosHacenDia {
+            get => Incidencia?.Codigo == 11;
         }
 
         public bool EsRelevoBueno {

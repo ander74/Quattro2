@@ -86,7 +86,7 @@
                 android:textAlignment="textStart"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingLeft="2dp"
+                android:paddingLeft="5dp"
                 android:paddingRight="2dp"
                 android:paddingTop="4dp"
                 android:paddingBottom="2dp"
@@ -102,7 +102,7 @@
                 android:textAlignment="textStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
+                android:paddingLeft="5dp"
                 android:paddingRight="2dp"
                 android:paddingTop="2dp"
                 android:paddingBottom="2dp"
@@ -217,7 +217,7 @@
 
             <ImageView
                 android:id="@+id/imgNosHacen"
-                local:MvxBind="Visibility Visibility(Cena)"
+                local:MvxBind="Visibility Visibility(NosHacenDia)"
                 android:src="@drawable/ic_companero"
                 android:tint="#A00"
                 android:layout_width="24dp"
@@ -232,7 +232,7 @@
 
             <ImageView
                 android:id="@+id/imgHacemos"
-                local:MvxBind="Visibility Visibility(Cena)"
+                local:MvxBind="Visibility Visibility(HacemosDia)"
                 android:src="@drawable/ic_companero"
                 android:tint="#0A0"
                 android:layout_width="24dp"
@@ -282,7 +282,7 @@
                 android:textAlignment="textStart"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
+                android:paddingLeft="5dp"
                 android:paddingRight="2dp"
                 android:paddingTop="2dp"
                 android:paddingBottom="4dp"
