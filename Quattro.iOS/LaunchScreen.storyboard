@@ -21,18 +21,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPLASH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="445" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES">
-                                <rect key="frame" x="92" y="230" width="136" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="678" translatesAutoresizingMaskIntoConstraints="NO" image="splash.png">
+                                <rect key="frame" x="16" y="20" width="288" height="460"/>
+                            </imageView>
                         </subviews>
                         <constraints>
-                            <constraint id="446" firstItem="445" firstAttribute="top" secondItem="219" secondAttribute="bottom" constant="210"/>
-                            <constraint id="447" firstAttribute="trailingMargin" secondItem="445" secondAttribute="trailing" constant="108"/>
-                            <constraint id="448" firstItem="445" firstAttribute="leading" secondItem="223" secondAttribute="leadingMargin" constant="108"/>
-                            <constraint id="449" firstItem="220" firstAttribute="top" secondItem="445" secondAttribute="bottom" constant="229"/>
+                            <constraint id="679" firstItem="678" firstAttribute="top" secondItem="219" secondAttribute="bottom"/>
+                            <constraint id="680" firstAttribute="trailingMargin" secondItem="678" secondAttribute="trailing"/>
+                            <constraint id="681" firstItem="678" firstAttribute="leading" secondItem="223" secondAttribute="leadingMargin"/>
+                            <constraint id="682" firstItem="220" firstAttribute="top" secondItem="678" secondAttribute="bottom"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -41,4 +38,7 @@
             <point key="canvasLocation" x="-200" y="-388"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="splash.png" width="848" height="1507"/>
+    </resources>
 </document>
