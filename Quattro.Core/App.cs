@@ -34,6 +34,7 @@ namespace Quattro.Core {
 
             // Inicia la aplicación usando el ViewModel indicado.
             // Este se encargará de inicializar la vista, etc.
+            Preferences.Set("PrimerInicio", true); //TODO: Quitar cuando no se quiera ver la licencia.
             if (Preferences.Get("PrimerInicio", true)) {
                 this.RegisterAppStart<LicenciaViewModel>();
             } else {
