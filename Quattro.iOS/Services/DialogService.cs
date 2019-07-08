@@ -24,25 +24,25 @@ namespace Quattro.iOS.Services {
         // ====================================================================================================
 
         public void Alert(string mensaje, string titulo, string textoBotonOk) {
-            var dialogo = UIAlertController.Create(titulo, mensaje, UIAlertControllerStyle.Alert);
-            dialogo.AddAction(UIAlertAction.Create(textoBotonOk, UIAlertActionStyle.Destructive, (action) => { }));
-            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(dialogo, true, null);
+            var diag = UIAlertController.Create(titulo, mensaje, UIAlertControllerStyle.Alert);
+            diag.AddAction(UIAlertAction.Create(textoBotonOk, UIAlertActionStyle.Destructive, (action) => { }));
+            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(diag, true, null);
             //this.PresentViewController(dialogo, true, null);
         }
 
 
         public void Alert(string mensaje, string titulo, string textoBotonOk, Action confirmar) {
-            var dialogo = UIAlertController.Create(titulo, mensaje, UIAlertControllerStyle.Alert);
-            dialogo.AddAction(UIAlertAction.Create(textoBotonOk, UIAlertActionStyle.Destructive, (action) => { confirmar?.Invoke(); }));
-            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(dialogo, true, null);
+            var diag = UIAlertController.Create(titulo, mensaje, UIAlertControllerStyle.Alert);
+            diag.AddAction(UIAlertAction.Create(textoBotonOk, UIAlertActionStyle.Destructive, (action) => { confirmar?.Invoke(); }));
+            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(diag, true, null);
         }
 
 
         public void Confirmar(string mensaje, string titulo, string textoBotonOk, string textoBotonCancel, Action confirmar, Action cancelar) {
-            var dialogo = UIAlertController.Create(titulo, mensaje, UIAlertControllerStyle.Alert);
-            dialogo.AddAction(UIAlertAction.Create(textoBotonOk, UIAlertActionStyle.Destructive, (action) => { confirmar?.Invoke(); }));
-            dialogo.AddAction(UIAlertAction.Create(textoBotonCancel, UIAlertActionStyle.Destructive, (action) => { cancelar?.Invoke(); }));
-            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(dialogo, true, null);
+            var diag = UIAlertController.Create(titulo, mensaje, UIAlertControllerStyle.Alert);
+            diag.AddAction(UIAlertAction.Create(textoBotonOk, UIAlertActionStyle.Destructive, (action) => { confirmar?.Invoke(); }));
+            diag.AddAction(UIAlertAction.Create(textoBotonCancel, UIAlertActionStyle.Destructive, (action) => { cancelar?.Invoke(); }));
+            UIApplication.SharedApplication.KeyWindow.RootViewController.PresentViewController(diag, true, null);
         }
 
 

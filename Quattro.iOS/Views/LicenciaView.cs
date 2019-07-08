@@ -15,7 +15,9 @@ namespace Quattro.iOS.Views
             base.ViewDidLoad();
 
             var set = this.CreateBindingSet<LicenciaView, LicenciaViewModel>();
-            set.Bind(this.LabelPrueba).To(vm => vm.Prueba);
+            set.Bind(this.LabelLicencia).To(vm => vm.Licencia);
+            set.Bind(this.BtAceptar).To(vm => vm.AceptarCommand);
+            set.Bind(this.BtCancelar).To(vm => vm.CancelarCommand);
             set.Apply();
 
         }

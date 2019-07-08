@@ -74,6 +74,7 @@
     <Compile Include="Views\LicenciaView.designer.cs">
       <DependentUpon>LicenciaView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Setup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
