@@ -106,6 +106,16 @@
       <DependentUpon>LicenciaView.cs</DependentUpon>
     </Compile>
     <Compile Include="Setup.cs" />
+    <InterfaceDefinition Include="Views\CalendarioCell.xib" />
+    <Compile Include="Views\CalendarioCell.cs" />
+    <Compile Include="Views\CalendarioCell.designer.cs">
+      <DependentUpon>CalendarioCell.cs</DependentUpon>
+    </Compile>
+    <InterfaceDefinition Include="Views\CalendarioView.xib" />
+    <Compile Include="Views\CalendarioView.cs" />
+    <Compile Include="Views\CalendarioView.designer.cs">
+      <DependentUpon>CalendarioView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
