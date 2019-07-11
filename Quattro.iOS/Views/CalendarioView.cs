@@ -1,13 +1,11 @@
-﻿using System;
-using MvvmCross.Binding.BindingContext;
-using MvvmCross.Platforms.Ios.Binding.Views;
+﻿using MvvmCross.Binding.BindingContext;
 using MvvmCross.Platforms.Ios.Views;
 using Quattro.Core.ViewModels;
-using UIKit;
+using Quattro.iOS.TableSources;
 
 namespace Quattro.iOS.Views {
 
-    public partial class CalendarioView : MvxViewController<CalendarioViewModel> {
+    public partial class CalendarioView : MvxTableViewController<CalendarioViewModel> {
 
         public CalendarioView() : base("CalendarioView", null) {
         }
@@ -16,7 +14,7 @@ namespace Quattro.iOS.Views {
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
 
-            var source = new MvxSimpleTableViewSource(ListaCalendario, "CalendarioCell", CalendarioCell.Key);
+            var source = new CalendarioTableSource(ListaCalendario);
             ListaCalendario.RowHeight = 75;
             var set = this.CreateBindingSet<CalendarioView, CalendarioViewModel>();
             set.Bind(source).To(vm => vm.ListaDias);
@@ -26,7 +24,7 @@ namespace Quattro.iOS.Views {
 
             ListaCalendario.Source = source;
             ListaCalendario.ReloadData();
-            
+
         }
 
         public override void DidReceiveMemoryWarning() {

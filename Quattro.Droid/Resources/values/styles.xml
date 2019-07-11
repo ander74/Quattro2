@@ -13,5 +13,27 @@
     <item name="android:windowBackground">@drawable/splash</item>
   </style>
 
+  <!-- ================================================== -->
+  <!-- EDIT TEXT -->
+  <!-- ================================================== -->
+  <style name="edit_text">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_margin">5dp</item>
+    <item name="android:gravity">left|center_vertical</item>
+    <item name="android:paddingLeft">8dp</item>
+    <item name="android:paddingRight">8dp</item>
+    <item name="android:paddingTop">5dp</item>
+    <item name="android:paddingBottom">5dp</item>
+    <item name="android:selectAllOnFocus">true</item>
+    <item name="android:maxLines">1</item>
+    <item name="android:inputType">text</item>
+    <item name="android:textSize">18sp</item>
+    <item name="android:background">@drawable/fondoedittext </item>
+  </style>
+
+  <style name="edit_text_hora" parent="edit_text">
+    <item name="android:gravity">center_horizontal|center_vertical</item>
+  </style>
   
 </resources>

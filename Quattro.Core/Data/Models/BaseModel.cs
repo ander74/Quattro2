@@ -20,7 +20,7 @@ namespace Quattro.Core.Data.Models {
         /// <summary>
         /// Establece el objeto como modificado e invoca el evento 'PropertyChanged'.
         /// </summary>
-        public void PropiedadCambiada([CallerMemberName] string prop = "") {
+        public virtual void PropiedadCambiada([CallerMemberName] string prop = "") {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }
 

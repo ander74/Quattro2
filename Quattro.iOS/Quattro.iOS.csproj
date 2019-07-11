@@ -101,6 +101,7 @@
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
     <InterfaceDefinition Include="Views\LicenciaView.xib" />
     <Compile Include="Services\DialogService.cs" />
+    <Compile Include="TableSources\CalendarioTableSource.cs" />
     <Compile Include="Views\LicenciaView.cs" />
     <Compile Include="Views\LicenciaView.designer.cs">
       <DependentUpon>LicenciaView.cs</DependentUpon>
@@ -135,7 +136,7 @@
     <PackageReference Include="MvvmCross.Plugin.Visibility">
       <Version>6.3.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\App Store - 1x.png">

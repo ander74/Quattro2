@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Quattro.Core.Common;
 
 namespace Quattro.Core.Data.Models {
@@ -33,6 +34,8 @@ namespace Quattro.Core.Data.Models {
             set {
                 if (SetProperty(ref fecha, value)) {
                     PropiedadCambiada(nameof(EsDomingoOFestivo));
+                    PropiedadCambiada(nameof(DiaSemana));
+                    PropiedadCambiada(nameof(EsUltimoDia));
                 }
             }
         }
@@ -123,14 +126,28 @@ namespace Quattro.Core.Data.Models {
         private Incidencia incidencia;
         public Incidencia Incidencia {
             get => incidencia;
-            set => SetProperty(ref incidencia, value);
+            set {
+                if (SetProperty(ref incidencia, value)) {
+                    PropiedadCambiada(nameof(TextoServicio));
+                    PropiedadCambiada(nameof(HacemosDia));
+                    PropiedadCambiada(nameof(NosHacenDia));
+                    PropiedadCambiada(nameof(HayHuelga));
+                    PropiedadCambiada(nameof(MostrarAcumuladas));
+                }
+            }
         }
 
 
         private Compañero relevo;
         public Compañero Relevo {
             get => relevo;
-            set => SetProperty(ref relevo, value);
+            set {
+                if (SetProperty(ref relevo, value)) {
+                    PropiedadCambiada(nameof(TextoRelevo));
+                    PropiedadCambiada(nameof(EsRelevoBueno));
+                    PropiedadCambiada(nameof(EsRelevoMalo));
+                }
+            }
         }
 
 
@@ -203,6 +220,33 @@ namespace Quattro.Core.Data.Models {
 
 
         // ====================================================================================================
+        #region MÉTODOS SOBRECARGADOS
+        // ====================================================================================================
+
+        public override void PropiedadCambiada([CallerMemberName] string prop = "") {
+            base.PropiedadCambiada(prop);
+            switch (prop) {
+                case nameof(Servicio):
+                case nameof(Linea):
+                case nameof(Turno):
+                    PropiedadCambiada(nameof(TextoServicio));
+                    break;
+                case nameof(Inicio):
+                case nameof(Final):
+                    PropiedadCambiada(nameof(TextoServicio));
+                    PropiedadCambiada(nameof(TextoHorario));
+                    break;
+                case nameof(Notas):
+                    PropiedadCambiada(nameof(HayNotas));
+                    break;
+            }
+        }
+
+        #endregion
+        // ====================================================================================================
+
+
+        // ====================================================================================================
         #region PROPIEDADES NO GUARDABLES
         // ====================================================================================================
 
@@ -235,14 +279,14 @@ namespace Quattro.Core.Data.Models {
         public string TextoServicio {
             get {
                 var resultado = string.Empty;
-                if(Incidencia?.Tipo == TipoIncidencia.Trabajo ||
+                if (Incidencia?.Tipo == TipoIncidencia.Trabajo ||
                     Incidencia?.Tipo == TipoIncidencia.FranqueoTrabajado ||
                     Incidencia?.Tipo == TipoIncidencia.TrabajoSinAcumular) {
                     // Si hay servicio y línea.
-                    if(!string.IsNullOrEmpty(Servicio) && !string.IsNullOrEmpty(Linea?.Numero)) {
+                    if (!string.IsNullOrEmpty(Servicio) && !string.IsNullOrEmpty(Linea?.Numero)) {
                         resultado = $"{Servicio}/{Turno} - {Linea.Numero}";
                         if (!string.IsNullOrEmpty(Linea.Descripcion)) resultado += $": {Linea.Descripcion}";
-                    } else if(Turno > 0 && Inicio != null && Final != null) {
+                    } else if (Turno > 0 && Inicio != null && Final != null) {
                         resultado = $"{Incidencia?.Descripcion} {Turno}";
                     }
                 }

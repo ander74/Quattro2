@@ -24,11 +24,11 @@ namespace Quattro.Core.Data.Models {
         public int Id { get; set; }
 
 
-        private string servivio;
+        private string servicio;
         [MaxLength(32)]
         public string Servicio {
-            get => servivio;
-            set => SetProperty(ref servivio, value);
+            get => servicio;
+            set => SetProperty(ref servicio, value);
         }
 
 

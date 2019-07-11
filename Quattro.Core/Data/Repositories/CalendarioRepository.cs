@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -59,6 +60,15 @@ namespace Quattro.Core.Data.Repositories {
         }
 
 
+        public DiaCalendario GetDia(DateTime fecha) {
+            return context.Calendario
+                .Include(c => c.Incidencia)
+                .Include(c => c.Linea)
+                .Include(c => c.Servicios).ThenInclude(s => s.Linea)
+                .Include(c => c.Relevo)
+                .Include(c => c.Susti)
+                .FirstOrDefault(d => d.Fecha.Year == fecha.Year && d.Fecha.Month == fecha.Month && d.Fecha.Day == fecha.Day);
+        }
 
         #endregion
         // ====================================================================================================
@@ -70,6 +80,10 @@ namespace Quattro.Core.Data.Repositories {
 
         public async Task<Incidencia> GetIncidencia(int codigo) {
             return await context.Incidencias.FirstOrDefaultAsync(i => i.Codigo == codigo);
+        }
+
+        public async Task<IEnumerable<Incidencia>> GetIncidencias() {
+            return await context.Incidencias.Where(i => i.Codigo > 0).ToListAsync();
         }
 
         #endregion

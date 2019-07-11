@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Microsoft.EntityFrameworkCore;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using Quattro.Core.Common;
-using Quattro.Core.Interfaces;
 using Quattro.Core.Data.Models;
 using Quattro.Core.Data.Repositories;
+using Quattro.Core.Interfaces;
+using Quattro.Core.ViewModels.Args;
 using Xamarin.Essentials;
-using Microsoft.EntityFrameworkCore;
 
 namespace Quattro.Core.ViewModels {
 
@@ -86,8 +87,7 @@ namespace Quattro.Core.ViewModels {
                 RaisePropertyChanged(nameof(IsMultipleSelect));
                 return;
             }
-            //TODO: Navegar al día.
-            this.dialog.Alert($"Has pulsado el día {dia.Fecha.Day}.", "AVISO", "Aceptar");
+            navigation.Navigate<DiaCalendarioViewModel, DiaNavigationArgs>(new DiaNavigationArgs { Fecha = dia.Fecha });
         }
         #endregion
 
@@ -118,7 +118,7 @@ namespace Quattro.Core.ViewModels {
             }
         }
         private void DoDesseleccionarTodo() {
-            foreach(var dia in ListaDias.Where(d => d.IsSelected)) {
+            foreach (var dia in ListaDias.Where(d => d.IsSelected)) {
                 dia.IsSelected = false;
             }
             IsInSelectMode = false;
@@ -172,7 +172,7 @@ namespace Quattro.Core.ViewModels {
             }
         }
         private async Task DoFranqueo() {
-            foreach(var dia in ListaDias.Where(d => d.IsSelected)) {
+            foreach (var dia in ListaDias.Where(d => d.IsSelected)) {
                 dia.EsFranqueo = !dia.EsFranqueo;
                 if (dia.EsFranqueo && dia.Incidencia == null) {
                     dia.Incidencia = await repo.GetIncidencia(2);
@@ -218,6 +218,17 @@ namespace Quattro.Core.ViewModels {
         #endregion
         // ====================================================================================================
 
+        // ====================================================================================================
+        #region MÉTODOS PÚBLICOS
+        // ====================================================================================================
+
+        public DiaCalendario GetDia(int id) {
+            return ListaDias.FirstOrDefault(d => d.Id == id);
+        }
+
+        #endregion
+        // ====================================================================================================
+
 
         // ====================================================================================================
         #region PROPIEDADES
@@ -238,7 +249,7 @@ namespace Quattro.Core.ViewModels {
             get => fecha.ToString("MMM - yyyy").ToUpper();
         }
 
-        
+
         IEnumerable<DiaCalendario> listaDias;
         public IEnumerable<DiaCalendario> ListaDias {
             get => listaDias;
