@@ -56,6 +56,15 @@ namespace Quattro.iOS.Services {
         }
 
 
+        public void Input(string titulo, string botonOk, string botonCancelar, Action<string> confirmar) {
+            //TODO: Implementar.
+        }
+
+
+        public void InputNuevaLinea(Action<string, string> confirmar) {
+            //TODO Implementar
+        }
+
         #endregion
         // ====================================================================================================
 

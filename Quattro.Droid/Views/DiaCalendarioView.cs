@@ -32,7 +32,7 @@ namespace Quattro.Droid.Views {
 
         private void EditInicio_Touch(object sender, View.TouchEventArgs e) {
             if (e.Event.Action == MotionEventActions.Up) {
-                TimePickerDialog timeDialog = new TimePickerDialog(this, TiempoInicio, ViewModel.Dia.Inicio.Horas, ViewModel.Dia.Inicio.Minutos, true);
+                TimePickerDialog timeDialog = new TimePickerDialog(this, TiempoInicio, ViewModel.Dia.Inicio?.Horas ?? 0, ViewModel.Dia.Inicio?.Minutos ?? 0, true);
                 timeDialog.SetMessage("Hora de Inicio");
                 timeDialog.Show();
                 ((EditText)sender).RequestFocus();
@@ -43,7 +43,7 @@ namespace Quattro.Droid.Views {
 
         private void EditFinal_Touch(object sender, View.TouchEventArgs e) {
             if (e.Event.Action == MotionEventActions.Up) {
-                TimePickerDialog timeDialog = new TimePickerDialog(this, TiempoFinal, ViewModel.Dia.Final.Horas, ViewModel.Dia.Final.Minutos, true);
+                TimePickerDialog timeDialog = new TimePickerDialog(this, TiempoFinal, ViewModel.Dia.Final?.Horas ?? 0, ViewModel.Dia.Final?.Minutos ?? 0, true);
                 timeDialog.SetMessage("Hora de Final");
                 timeDialog.Show();
                 ((EditText)sender).RequestFocus();

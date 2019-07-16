@@ -67,14 +67,16 @@ namespace Quattro.Core.Data.Models {
         public void FromModel(Incidencia model, bool ignorarId = false) {
             if (model == null) return;
             this.Id = ignorarId ? this.Id : model.Id;
-            this.Descripcion = model.Descripcion;
-            this.Notas = model.Notas;
-            this.Tipo = model.Tipo;
+            codigo = model.Codigo;
+            descripcion = model.Descripcion;
+            notas = model.Notas;
+            tipo = model.Tipo;
         }
 
         public Incidencia ToEntity(bool ignorarId = false) {
             return new Incidencia {
                 Id = ignorarId ? 0 : this.Id,
+                Codigo = this.Codigo,
                 Descripcion = this.Descripcion,
                 Notas = this.Notas,
                 Tipo = this.Tipo,

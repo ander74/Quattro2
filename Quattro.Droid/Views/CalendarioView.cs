@@ -3,17 +3,16 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.View;
-using Android.Support.V7.View;
 using Android.Support.V7.Widget;
 using Android.Views;
-using MvvmCross.Binding.BindingContext;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using MvvmCross.Droid.Support.V7.RecyclerView;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
 using Quattro.Core.Interfaces;
 using Quattro.Core.ViewModels;
-using static Android.Views.ActionMode;
+using Quattro.Droid.Interfaces;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace Quattro.Droid.Views {
 
@@ -23,6 +22,8 @@ namespace Quattro.Droid.Views {
 
         private Toolbar toolbar;
         private MvxActionBarDrawerToggle drawerToggle;
+        private GestureDetector gestureDetector;
+
         public MvxAppCompatActivity ParentActivity {
             get => (MvxAppCompatActivity)Activity;
         }
@@ -63,11 +64,23 @@ namespace Quattro.Droid.Views {
                 lista.ScrollToPosition(DateTime.Now.Day - 1);
             }
 
+            // Añadimos los comandos Anterior y Siguiente a los gestos Swipe
+            gestureDetector = new GestureDetector(ParentActivity, new GestureListener(SwipeLeft, SwipeRight, null, null));
+            CardView navegador = view.FindViewById<CardView>(Resource.Id.navegador);
+            navegador.Touch += Navegador_Touch;
+
+
             // Registramos el listener de la propiedad IsInSelectionMode.
             ViewModel.PropertyChanged += ViewModel_PropertyChanged;
 
             return view;
         }
+
+        private void Navegador_Touch(object sender, View.TouchEventArgs e) {
+            gestureDetector.OnTouchEvent(e.Event);
+        }
+
+
 
         private void Toolbar_NavigationClick(object sender, Toolbar.NavigationClickEventArgs e) {
             if (ViewModel.IsInSelectMode) {
@@ -85,6 +98,15 @@ namespace Quattro.Droid.Views {
                     ParentActivity.SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_menu);
                 }
             }
+        }
+
+        // GESTOS SWIPE
+        private void SwipeLeft() {
+            ViewModel.SiguientePulsadoCommand.Execute(null);
+        }
+
+        private void SwipeRight() {
+            ViewModel.AnteriorPulsadoCommand.Execute(null);
         }
 
 

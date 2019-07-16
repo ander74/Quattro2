@@ -50,15 +50,15 @@ namespace Quattro.Core.Data.Models {
 
 
         // ====================================================================================================
-        #region MÉTODOS ENTITIES
+        #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(Servicio model) {
+        public void FromModel(Servicio model, bool ignorarId = false) {
             if (model == null) return;
-            base.FromModel(model);
-            this.TomaDeje = model.TomaDeje;
-            this.Euros = model.Euros;
-            this.Notas = model.Notas;
+            base.FromModel(model, ignorarId);
+            tomaDeje = model.TomaDeje;
+            euros = model.Euros;
+            notas = model.Notas;
         }
 
         public new Servicio ToModel() {

@@ -7,7 +7,7 @@ using Quattro.Core.ViewModels;
 
 namespace Quattro.Droid.Views {
 
-    [Activity(Label = "@string/app_name")]
+    [Activity(Label = "@string/app_name", NoHistory = true)]
     public class LicenciaView : MvxActivity<LicenciaViewModel> {
 
         protected override void OnCreate(Bundle bundle) {

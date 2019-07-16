@@ -3,14 +3,12 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using MvvmCross.Droid.Support.V7.AppCompat;
-using MvvmCross.Platforms.Android.Views;
 
 namespace Quattro.Droid.Views {
 
     [Activity(
         Label = "@string/app_name",
         MainLauncher = true,
-        //Icon = "@drawable/icon",
         Theme = "@style/Theme.Splash",
         NoHistory = true,
         ScreenOrientation = ScreenOrientation.Portrait
@@ -18,7 +16,7 @@ namespace Quattro.Droid.Views {
     public class SplashView : MvxSplashScreenAppCompatActivity {
 
         public SplashView() : base(Resource.Layout.SplashPage) {
-            
+
         }
 
         protected override void OnCreate(Bundle bundle) {

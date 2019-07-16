@@ -90,5 +90,23 @@ namespace Quattro.Core.Data.Repositories {
         // ====================================================================================================
 
 
+        // ====================================================================================================
+        #region MÉTODOS LÍNEAS
+        // ====================================================================================================
+
+        public async Task<IEnumerable<Linea>> GetLineas(bool incuirCero = false) {
+            var x = 1;
+            if (incuirCero) x = 0;
+            return await context.Lineas.Where(l => l.Id > x).ToListAsync();
+        }
+
+        public Linea GetLineaByNumero(string numero) {
+            return context.Lineas.FirstOrDefault(l => l.Numero.ToLower() == numero.ToLower());
+        }
+
+        #endregion
+        // ====================================================================================================
+
+
     }
 }

@@ -48,11 +48,14 @@ namespace Quattro.Core.ViewModels {
         public override async Task Initialize() {
             await base.Initialize();
             ListaIncidencias = await repo.GetIncidencias();
+            ListaLineas = await repo.GetLineas(true);
+
         }
 
         public override void Prepare(DiaNavigationArgs parameter) {
             Dia = repo.GetDia(parameter.Fecha);
             IncidenciaSeleccionada = dia.Incidencia;
+            LineaSeleccionada = dia.Linea;
         }
 
 
@@ -80,6 +83,34 @@ namespace Quattro.Core.ViewModels {
         }
         private void DoIncidenciaSeleccionada(Incidencia incidencia) {
             Dia.Incidencia = incidencia;
+        }
+        #endregion
+
+
+
+        #region LineaSeleccionada
+        private MvxCommand<Linea> lineaSeleccionadaCommand;
+        public ICommand LineaSeleccionadaCommand {
+            get {
+                lineaSeleccionadaCommand = lineaSeleccionadaCommand ?? new MvxCommand<Linea>(DoLineaSeleccionada);
+                return lineaSeleccionadaCommand;
+            }
+        }
+        private void DoLineaSeleccionada(Linea linea) {
+            if (linea.Id == 2) {
+                string numero = string.Empty;
+                string descripcion = string.Empty;
+                dialog.InputNuevaLinea((n, d) => {
+                    numero = n; descripcion = d;
+                    if (!string.IsNullOrWhiteSpace(numero)) {
+                        Dia.Linea = new Linea { Numero = numero, Descripcion = descripcion };
+                        ((List<Linea>)ListaLineas).Add(Dia.Linea);
+                        LineaSeleccionada = Dia.Linea;
+                    }
+                });
+            } else {
+                Dia.Linea = linea;
+            }
         }
         #endregion
 
@@ -114,6 +145,16 @@ namespace Quattro.Core.ViewModels {
         public Incidencia IncidenciaSeleccionada {
             get => incidenciaSeleccionada;
             set => SetProperty(ref incidenciaSeleccionada, value);
+        }
+
+
+        public IEnumerable<Linea> ListaLineas { get; set; }
+
+
+        private Linea lineaSeleccionada;
+        public Linea LineaSeleccionada {
+            get => lineaSeleccionada;
+            set => SetProperty(ref lineaSeleccionada, value);
         }
 
 

@@ -9,14 +9,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DummyForMigrations.Migrations
 {
     [DbContext(typeof(QuattroContext))]
-    [Migration("20190704072533_Inicial")]
+    [Migration("20190712064145_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062");
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity("Quattro.Core.Data.Models.Compañero", b =>
                 {
@@ -312,6 +312,14 @@ namespace DummyForMigrations.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lineas");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Descripcion = "Nueva Línea",
+                            Numero = ""
+                        });
                 });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.ServicioDia", b =>

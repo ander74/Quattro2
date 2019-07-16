@@ -88,13 +88,19 @@ namespace Quattro.Core.Data.Models {
         public void FromModel(ServicioBase model, bool ignorarId = false) {
             if (model == null) return;
             this.Id = ignorarId ? this.Id : model.Id;
-            this.Final = model.Final;
-            this.Inicio = model.Inicio;
-            this.Linea = new Linea(model.Linea);
-            this.LugarFinal = model.LugarFinal;
-            this.LugarInicio = model.LugarInicio;
-            this.Servicio = model.Servicio;
-            this.Turno = model.Turno;
+            final = model.Final;
+            inicio = model.Inicio;
+            lugarFinal = model.LugarFinal;
+            lugarInicio = model.LugarInicio;
+            servicio = model.Servicio;
+            turno = model.Turno;
+            //if (model.Linea != null) {
+            //    if (linea == null) linea = new Linea();
+            //    linea.FromModel(model.Linea);
+            //} else {
+            //    linea = null;
+            //}
+            linea = model.Linea;
         }
 
         public ServicioBase ToModel(bool ignorarId = false) {

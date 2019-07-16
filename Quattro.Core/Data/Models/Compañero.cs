@@ -90,14 +90,14 @@ namespace Quattro.Core.Data.Models {
         public void FromModel(Compañero model, bool ignorarId = false) {
             if (model == null) return;
             this.Id = ignorarId ? this.Id : model.Id;
-            this.Apellidos = model.Apellidos;
-            this.Calificacion = model.Calificacion;
-            this.Deuda = model.Deuda;
-            this.Email = model.Email;
-            this.Matricula = model.Matricula;
-            this.Nombre = model.Nombre;
-            this.Notas = model.Notas;
-            this.Telefono = model.Telefono;
+            apellidos = model.Apellidos;
+            calificacion = model.Calificacion;
+            deuda = model.Deuda;
+            email = model.Email;
+            matricula = model.Matricula;
+            nombre = model.Nombre;
+            notas = model.Notas;
+            telefono = model.Telefono;
         }
 
         public Compañero ToModel(bool ignorarId = false) {

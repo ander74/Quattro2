@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             local:MvxItemTemplate="@layout/incidenciaspinnerrow"
-            local:MvxDropDownItemTemplate="@layout/incidenciarow"
+            local:MvxDropDownItemTemplate="@layout/incidenciadroprow"
             local:MvxBind="ItemsSource ListaIncidencias; HandleItemSelected IncidenciaSeleccionadaCommand; SelectedItem IncidenciaSeleccionada"
             local:layout_constraintLeft_toLeftOf="parent"
             local:layout_constraintRight_toRightOf="parent"
@@ -28,12 +28,22 @@
         />
 
         <TextView
+            android:id="@+id/labelLinea"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="Línea"
+            local:layout_constraintLeft_toLeftOf="parent"
+            local:layout_constraintRight_toLeftOf="@+id/labelServicio"
+            local:layout_constraintTop_toBottomOf="@+id/incidencia"/>
+
+        <TextView
             android:id="@+id/labelServicio"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:text="Servicio"
-            local:layout_constraintLeft_toLeftOf="parent"
+            local:layout_constraintLeft_toRightOf="@+id/labelLinea"
             local:layout_constraintRight_toLeftOf="@+id/labelTurno"
             local:layout_constraintTop_toBottomOf="@+id/incidencia"/>
 
@@ -44,18 +54,23 @@
             android:layout_marginLeft="4dp"
             android:text="Turno"
             local:layout_constraintLeft_toRightOf="@+id/labelServicio"
-            local:layout_constraintRight_toLeftOf="@+id/labelLinea"
-            local:layout_constraintTop_toBottomOf="@+id/incidencia"/>
-
-        <TextView
-            android:id="@+id/labelLinea"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:text="Línea"
-            local:layout_constraintLeft_toRightOf="@+id/labelTurno"
             local:layout_constraintRight_toRightOf="parent"
             local:layout_constraintTop_toBottomOf="@+id/incidencia"/>
+
+        <MvxSpinner
+            android:id="@+id/linea"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            local:MvxItemTemplate="@layout/lineaspinnerrow"
+            local:MvxDropDownItemTemplate="@layout/lineadroprow"
+            android:background="@drawable/fondoedittext"
+            android:layout_margin="5dp"
+            android:dropDownWidth="350dp"
+            local:MvxBind="ItemsSource ListaLineas; HandleItemSelected LineaSeleccionadaCommand; SelectedItem LineaSeleccionada"
+            local:layout_constraintLeft_toLeftOf="parent"
+            local:layout_constraintRight_toLeftOf="@+id/editServicio"
+            local:layout_constraintTop_toBottomOf="@+id/labelLinea"
+        />
 
         <EditText
             android:id="@+id/editServicio"
@@ -63,7 +78,7 @@
             android:layout_width="0dp"
             android:layout_margin="5dp"
             local:MvxBind="Text Dia.Servicio"
-            local:layout_constraintLeft_toLeftOf="parent"
+            local:layout_constraintLeft_toRightOf="@+id/linea"
             local:layout_constraintRight_toLeftOf="@+id/editTurno"
             local:layout_constraintTop_toBottomOf="@+id/labelServicio"/>
 
@@ -74,18 +89,9 @@
             android:layout_margin="5dp"
             local:MvxBind="Text Dia.Turno"
             local:layout_constraintLeft_toRightOf="@+id/editServicio"
-            local:layout_constraintRight_toLeftOf="@+id/editLinea"
+            local:layout_constraintRight_toRightOf="parent"
             local:layout_constraintTop_toBottomOf="@+id/labelTurno"/>
 
-        <EditText
-            android:id="@+id/editLinea"
-            style="@style/edit_text"
-            android:layout_width="0dp"
-            android:layout_margin="5dp"
-            local:MvxBind="Text Dia.Linea.Numero"
-            local:layout_constraintLeft_toRightOf="@+id/editTurno"
-            local:layout_constraintRight_toRightOf="parent"
-            local:layout_constraintTop_toBottomOf="@+id/labelLinea"/>
 
         <TextView
             android:id="@+id/labelInicio"
@@ -95,16 +101,43 @@
             android:layout_marginTop="6dp"
             android:text="Inicio"
             local:layout_constraintLeft_toLeftOf="parent"
-            local:layout_constraintTop_toBottomOf="@+id/editServicio"/>
+            local:layout_constraintRight_toLeftOf="@+id/labelLugarInicio"
+            local:layout_constraintTop_toBottomOf="@+id/editServicio"
+            local:layout_constraintHorizontal_weight="3"/>
+
+        <TextView
+            android:id="@+id/labelLugarInicio"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="6dp"
+            android:text="Lugar Inicio"
+            local:layout_constraintLeft_toRightOf="@+id/labelInicio"
+            local:layout_constraintRight_toRightOf="parent"
+            local:layout_constraintTop_toBottomOf="@+id/editServicio"
+            local:layout_constraintHorizontal_weight="6"/>
 
         <EditText
             android:id="@+id/editInicio"
-                style="@style/edit_text_hora"
+            style="@style/edit_text_hora"
             android:layout_width="0dp"
             android:layout_margin="5dp"
             local:MvxBind="Text Tiempo(Dia.Inicio)"
             local:layout_constraintLeft_toLeftOf="parent"
-            local:layout_constraintTop_toBottomOf="@+id/labelInicio"/>
+            local:layout_constraintRight_toLeftOf="@+id/editLugarInicio"
+            local:layout_constraintTop_toBottomOf="@+id/labelInicio"
+        local:layout_constraintHorizontal_weight="3"/>
+
+        <EditText
+            android:id="@+id/editLugarInicio"
+            style="@style/edit_text"
+            android:layout_width="0dp"
+            android:layout_margin="5dp"
+            local:MvxBind="Text Dia.LugarInicio"
+            local:layout_constraintLeft_toRightOf="@+id/editInicio"
+            local:layout_constraintRight_toRightOf="parent"
+            local:layout_constraintTop_toBottomOf="@+id/labelLugarInicio"
+        local:layout_constraintHorizontal_weight="6"/>
 
         <TextView
             android:id="@+id/labelFinal"
@@ -114,16 +147,44 @@
             android:layout_marginTop="6dp"
             android:text="Final"
             local:layout_constraintLeft_toLeftOf="parent"
-            local:layout_constraintTop_toBottomOf="@+id/editInicio"/>
+            local:layout_constraintRight_toLeftOf="@+id/labelLugarFinal"
+            local:layout_constraintTop_toBottomOf="@+id/editInicio"
+        local:layout_constraintHorizontal_weight="3"/>
+
+        <TextView
+            android:id="@+id/labelLugarFinal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="6dp"
+            android:text="Lugar Final"
+            local:layout_constraintLeft_toRightOf="@+id/labelFinal"
+            local:layout_constraintRight_toRightOf="parent"
+            local:layout_constraintTop_toBottomOf="@+id/editInicio"
+        local:layout_constraintHorizontal_weight="6"/>
 
         <EditText
             android:id="@+id/editFinal"
-                style="@style/edit_text_hora"
+            style="@style/edit_text_hora"
             android:layout_width="0dp"
             android:layout_margin="5dp"
             local:MvxBind="Text Tiempo(Dia.Final)"
             local:layout_constraintLeft_toLeftOf="parent"
-            local:layout_constraintTop_toBottomOf="@+id/labelFinal"/>
+            local:layout_constraintRight_toLeftOf="@+id/editLugarFinal"
+            local:layout_constraintTop_toBottomOf="@+id/labelFinal"
+        local:layout_constraintHorizontal_weight="3"/>
+
+        <EditText
+            android:id="@+id/editLugarFinal"
+            style="@style/edit_text"
+            android:layout_width="0dp"
+            android:layout_margin="5dp"
+            local:MvxBind="Text Dia.LugarFinal"
+            local:layout_constraintLeft_toRightOf="@+id/editFinal"
+            local:layout_constraintRight_toRightOf="parent"
+            local:layout_constraintTop_toBottomOf="@+id/labelLugarFinal"
+        local:layout_constraintHorizontal_weight="6"/>
+
 
 
     </android.support.constraint.ConstraintLayout>

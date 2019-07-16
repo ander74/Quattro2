@@ -173,25 +173,46 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS MODELS
         // ====================================================================================================
 
-        public void FromModel(DiaCalendario model) {
+        public void FromModel(DiaCalendario model, bool ignorarId = false) {
             if (model == null) return;
-            base.FromModel(model);
-            this.Fecha = model.Fecha;
-            this.EsFranqueo = model.EsFranqueo;
-            this.EsFestivo = model.EsFestivo;
-            this.HuelgaParcial = model.HuelgaParcial;
-            this.HorasHuelga = model.HorasHuelga;
-            this.Trabajadas = model.Trabajadas;
-            this.Acumuladas = model.Acumuladas;
-            this.Nocturnas = model.Nocturnas;
-            this.Desayuno = model.Desayuno;
-            this.Comida = model.Comida;
-            this.Cena = model.Cena;
-            this.Bus = model.Bus;
-            this.Incidencia = new Incidencia(model.Incidencia);
-            this.Relevo = new Compañero(model.Relevo);
-            this.Susti = new Compañero(model.Susti);
-            this.Servicios = model.Servicios.AsEnumerable();
+            base.FromModel(model, ignorarId);
+            fecha = model.Fecha;
+            esFranqueo = model.EsFranqueo;
+            esFestivo = model.EsFestivo;
+            huelgaParcial = model.HuelgaParcial;
+            horasHuelga = model.HorasHuelga;
+            trabajadas = model.Trabajadas;
+            acumuladas = model.Acumuladas;
+            nocturnas = model.Nocturnas;
+            desayuno = model.Desayuno;
+            comida = model.Comida;
+            cena = model.Cena;
+            bus = model.Bus;
+            //if (model.Incidencia != null) {
+            //    if (incidencia == null) incidencia = new Incidencia();
+            //    incidencia.FromModel(model.Incidencia);
+            //} else {
+            //    incidencia = null;
+            //}
+            incidencia = model.Incidencia;
+
+            //if (model.Relevo != null) {
+            //    if (relevo == null) relevo = new Compañero();
+            //    relevo.FromModel(model.Relevo);
+            //} else {
+            //    relevo = null;
+            //}
+            relevo = model.Relevo;
+
+            //if (model.Susti != null) {
+            //    if (susti == null) susti = new Compañero();
+            //    susti.FromModel(model.Susti);
+            //} else {
+            //    susti = null;
+            //}
+            susti = model.Susti;
+
+            servicios = model.Servicios.AsEnumerable();
         }
 
         public new DiaCalendario ToModel() {

@@ -235,6 +235,11 @@ namespace DummyForMigrations.Migrations
             migrationBuilder.InsertData(
                 table: "Incidencias",
                 columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 16, 15, "Huelga", "Incidencia Protegida.", 5 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
                 values: new object[] { 15, 14, "En otro destino", "Incidencia Protegida.", 4 });
 
             migrationBuilder.InsertData(
@@ -265,12 +270,12 @@ namespace DummyForMigrations.Migrations
             migrationBuilder.InsertData(
                 table: "Incidencias",
                 columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
-                values: new object[] { 16, 15, "Huelga", "Incidencia Protegida.", 5 });
+                values: new object[] { 9, 8, "Permiso", "Incidencia Protegida.", 6 });
 
             migrationBuilder.InsertData(
                 table: "Incidencias",
                 columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
-                values: new object[] { 9, 8, "Permiso", "Incidencia Protegida.", 6 });
+                values: new object[] { 8, 7, "Accidentada/o", "Incidencia Protegida.", 4 });
 
             migrationBuilder.InsertData(
                 table: "Incidencias",
@@ -305,12 +310,12 @@ namespace DummyForMigrations.Migrations
             migrationBuilder.InsertData(
                 table: "Incidencias",
                 columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
-                values: new object[] { 8, 7, "Accidentada/o", "Incidencia Protegida.", 4 });
+                values: new object[] { 17, 16, "Día por H. Acumuladas", "Incidencia Protegida.", 3 });
 
             migrationBuilder.InsertData(
-                table: "Incidencias",
-                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
-                values: new object[] { 17, 16, "Día por H. Acumuladas", "Incidencia Protegida.", 3 });
+                table: "Lineas",
+                columns: new[] { "Id", "Descripcion", "Notas", "Numero" },
+                values: new object[] { 1, "Nueva Línea", null, "" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Calendario_IncidenciaId",

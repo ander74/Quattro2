@@ -8903,17 +8903,17 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0078
 			public const int action_bar_title = 2131361912;
 			
-			// aapt resource value: 0x7f0a00e6
-			public const int action_container = 2131362022;
+			// aapt resource value: 0x7f0a00eb
+			public const int action_container = 2131362027;
 			
 			// aapt resource value: 0x7f0a009d
 			public const int action_context_bar = 2131361949;
 			
-			// aapt resource value: 0x7f0a00f1
-			public const int action_divider = 2131362033;
+			// aapt resource value: 0x7f0a00f6
+			public const int action_divider = 2131362038;
 			
-			// aapt resource value: 0x7f0a00e7
-			public const int action_image = 2131362023;
+			// aapt resource value: 0x7f0a00ec
+			public const int action_image = 2131362028;
 			
 			// aapt resource value: 0x7f0a0003
 			public const int action_menu_divider = 2131361795;
@@ -8930,11 +8930,11 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a007a
 			public const int action_mode_close_button = 2131361914;
 			
-			// aapt resource value: 0x7f0a00e8
-			public const int action_text = 2131362024;
+			// aapt resource value: 0x7f0a00ed
+			public const int action_text = 2131362029;
 			
-			// aapt resource value: 0x7f0a00f2
-			public const int actions = 2131362034;
+			// aapt resource value: 0x7f0a00f7
+			public const int actions = 2131362039;
 			
 			// aapt resource value: 0x7f0a007b
 			public const int activity_chooser_view_content = 2131361915;
@@ -8966,8 +8966,8 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0075
 			public const int blocking = 2131361909;
 			
-			// aapt resource value: 0x7f0a00e0
-			public const int botonesLicencia = 2131362016;
+			// aapt resource value: 0x7f0a00e5
+			public const int botonesLicencia = 2131362021;
 			
 			// aapt resource value: 0x7f0a0046
 			public const int bottom = 2131361862;
@@ -9005,8 +9005,8 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0095
 			public const int checkbox = 2131361941;
 			
-			// aapt resource value: 0x7f0a00f0
-			public const int chronometer = 2131362032;
+			// aapt resource value: 0x7f0a00f5
+			public const int chronometer = 2131362037;
 			
 			// aapt resource value: 0x7f0a0063
 			public const int clip_horizontal = 2131361891;
@@ -9017,11 +9017,11 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0042
 			public const int collapseActionView = 2131361858;
 			
-			// aapt resource value: 0x7f0a00b5
-			public const int container = 2131361973;
+			// aapt resource value: 0x7f0a00b6
+			public const int container = 2131361974;
 			
-			// aapt resource value: 0x7f0a00dd
-			public const int contenido = 2131362013;
+			// aapt resource value: 0x7f0a00e2
+			public const int contenido = 2131362018;
 			
 			// aapt resource value: 0x7f0a0091
 			public const int content = 2131361937;
@@ -9029,11 +9029,11 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0084
 			public const int contentPanel = 2131361924;
 			
-			// aapt resource value: 0x7f0a00b6
-			public const int coordinator = 2131361974;
+			// aapt resource value: 0x7f0a00b7
+			public const int coordinator = 2131361975;
 			
-			// aapt resource value: 0x7f0a00e1
-			public const int copyright = 2131362017;
+			// aapt resource value: 0x7f0a00e6
+			public const int copyright = 2131362022;
 			
 			// aapt resource value: 0x7f0a008b
 			public const int custom = 2131361931;
@@ -9047,20 +9047,20 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a007e
 			public const int default_activity_button = 2131361918;
 			
-			// aapt resource value: 0x7f0a00b8
-			public const int design_bottom_sheet = 2131361976;
+			// aapt resource value: 0x7f0a00b9
+			public const int design_bottom_sheet = 2131361977;
+			
+			// aapt resource value: 0x7f0a00be
+			public const int design_menu_item_action_area = 2131361982;
 			
 			// aapt resource value: 0x7f0a00bd
-			public const int design_menu_item_action_area = 2131361981;
+			public const int design_menu_item_action_area_stub = 2131361981;
 			
 			// aapt resource value: 0x7f0a00bc
-			public const int design_menu_item_action_area_stub = 2131361980;
+			public const int design_menu_item_text = 2131361980;
 			
 			// aapt resource value: 0x7f0a00bb
-			public const int design_menu_item_text = 2131361979;
-			
-			// aapt resource value: 0x7f0a00ba
-			public const int design_navigation_view = 2131361978;
+			public const int design_navigation_view = 2131361979;
 			
 			// aapt resource value: 0x7f0a0071
 			public const int dimensions = 2131361905;
@@ -9071,26 +9071,35 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0029
 			public const int disableHome = 2131361833;
 			
-			// aapt resource value: 0x7f0a00dc
-			public const int drawerlayout = 2131362012;
+			// aapt resource value: 0x7f0a00e1
+			public const int drawerlayout = 2131362017;
 			
-			// aapt resource value: 0x7f0a00e3
-			public const int dropboxUser = 2131362019;
+			// aapt resource value: 0x7f0a00e8
+			public const int dropboxUser = 2131362024;
+			
+			// aapt resource value: 0x7f0a00fb
+			public const int editDescripcion = 2131362043;
+			
+			// aapt resource value: 0x7f0a00cd
+			public const int editFinal = 2131361997;
 			
 			// aapt resource value: 0x7f0a00c9
-			public const int editFinal = 2131361993;
+			public const int editInicio = 2131361993;
 			
-			// aapt resource value: 0x7f0a00c7
-			public const int editInicio = 2131361991;
+			// aapt resource value: 0x7f0a00f9
+			public const int editLinea = 2131362041;
+			
+			// aapt resource value: 0x7f0a00ce
+			public const int editLugarFinal = 2131361998;
+			
+			// aapt resource value: 0x7f0a00ca
+			public const int editLugarInicio = 2131361994;
 			
 			// aapt resource value: 0x7f0a00c5
-			public const int editLinea = 2131361989;
+			public const int editServicio = 2131361989;
 			
-			// aapt resource value: 0x7f0a00c3
-			public const int editServicio = 2131361987;
-			
-			// aapt resource value: 0x7f0a00c4
-			public const int editTurno = 2131361988;
+			// aapt resource value: 0x7f0a00c6
+			public const int editTurno = 2131361990;
 			
 			// aapt resource value: 0x7f0a009e
 			public const int edit_query = 2131361950;
@@ -9140,23 +9149,23 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0090
 			public const int group_divider = 2131361936;
 			
-			// aapt resource value: 0x7f0a0102
-			public const int grupoConfiguracion = 2131362050;
+			// aapt resource value: 0x7f0a010a
+			public const int grupoConfiguracion = 2131362058;
 			
-			// aapt resource value: 0x7f0a00fe
-			public const int grupoHerramientas = 2131362046;
+			// aapt resource value: 0x7f0a0106
+			public const int grupoHerramientas = 2131362054;
 			
-			// aapt resource value: 0x7f0a00f8
-			public const int grupoPrincipal = 2131362040;
+			// aapt resource value: 0x7f0a0100
+			public const int grupoPrincipal = 2131362048;
 			
-			// aapt resource value: 0x7f0a00fd
-			public const int grupoSeparacion = 2131362045;
+			// aapt resource value: 0x7f0a0105
+			public const int grupoSeparacion = 2131362053;
 			
-			// aapt resource value: 0x7f0a0101
-			public const int grupoSeparacion2 = 2131362049;
+			// aapt resource value: 0x7f0a0109
+			public const int grupoSeparacion2 = 2131362057;
 			
-			// aapt resource value: 0x7f0a00d5
-			public const int guionAcumuladas = 2131362005;
+			// aapt resource value: 0x7f0a00da
+			public const int guionAcumuladas = 2131362010;
 			
 			// aapt resource value: 0x7f0a00b1
 			public const int header_layout = 2131361969;
@@ -9170,8 +9179,8 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0080
 			public const int icon = 2131361920;
 			
-			// aapt resource value: 0x7f0a00f3
-			public const int icon_group = 2131362035;
+			// aapt resource value: 0x7f0a00f8
+			public const int icon_group = 2131362040;
 			
 			// aapt resource value: 0x7f0a0043
 			public const int ifRoom = 2131361859;
@@ -9179,38 +9188,38 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a007d
 			public const int image = 2131361917;
 			
-			// aapt resource value: 0x7f0a00d9
-			public const int imgBueno = 2131362009;
-			
-			// aapt resource value: 0x7f0a00d3
-			public const int imgCena = 2131362003;
-			
-			// aapt resource value: 0x7f0a00d2
-			public const int imgComida = 2131362002;
-			
-			// aapt resource value: 0x7f0a00d1
-			public const int imgDesayuno = 2131362001;
+			// aapt resource value: 0x7f0a00de
+			public const int imgBueno = 2131362014;
 			
 			// aapt resource value: 0x7f0a00d8
-			public const int imgHacemos = 2131362008;
-			
-			// aapt resource value: 0x7f0a00cd
-			public const int imgHuelga = 2131361997;
-			
-			// aapt resource value: 0x7f0a00da
-			public const int imgMalo = 2131362010;
+			public const int imgCena = 2131362008;
 			
 			// aapt resource value: 0x7f0a00d7
-			public const int imgNosHacen = 2131362007;
+			public const int imgComida = 2131362007;
 			
-			// aapt resource value: 0x7f0a00d0
-			public const int imgNotas = 2131362000;
+			// aapt resource value: 0x7f0a00d6
+			public const int imgDesayuno = 2131362006;
 			
-			// aapt resource value: 0x7f0a00bf
-			public const int incidencia = 2131361983;
+			// aapt resource value: 0x7f0a00dd
+			public const int imgHacemos = 2131362013;
 			
-			// aapt resource value: 0x7f0a00ec
-			public const int info = 2131362028;
+			// aapt resource value: 0x7f0a00d2
+			public const int imgHuelga = 2131362002;
+			
+			// aapt resource value: 0x7f0a00df
+			public const int imgMalo = 2131362015;
+			
+			// aapt resource value: 0x7f0a00dc
+			public const int imgNosHacen = 2131362012;
+			
+			// aapt resource value: 0x7f0a00d5
+			public const int imgNotas = 2131362005;
+			
+			// aapt resource value: 0x7f0a00c0
+			public const int incidencia = 2131361984;
+			
+			// aapt resource value: 0x7f0a00f1
+			public const int info = 2131362033;
 			
 			// aapt resource value: 0x7f0a0068
 			public const int invisible = 2131361896;
@@ -9221,26 +9230,35 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0000
 			public const int item_touch_helper_previous_elevation = 2131361792;
 			
-			// aapt resource value: 0x7f0a00c8
-			public const int labelFinal = 2131361992;
+			// aapt resource value: 0x7f0a00fa
+			public const int labelDescripcion = 2131362042;
 			
-			// aapt resource value: 0x7f0a00c6
-			public const int labelInicio = 2131361990;
+			// aapt resource value: 0x7f0a00cb
+			public const int labelFinal = 2131361995;
 			
-			// aapt resource value: 0x7f0a00c2
-			public const int labelLinea = 2131361986;
-			
-			// aapt resource value: 0x7f0a00c0
-			public const int labelServicio = 2131361984;
+			// aapt resource value: 0x7f0a00c7
+			public const int labelInicio = 2131361991;
 			
 			// aapt resource value: 0x7f0a00c1
-			public const int labelTurno = 2131361985;
+			public const int labelLinea = 2131361985;
+			
+			// aapt resource value: 0x7f0a00cc
+			public const int labelLugarFinal = 2131361996;
+			
+			// aapt resource value: 0x7f0a00c8
+			public const int labelLugarInicio = 2131361992;
+			
+			// aapt resource value: 0x7f0a00c2
+			public const int labelServicio = 2131361986;
+			
+			// aapt resource value: 0x7f0a00c3
+			public const int labelTurno = 2131361987;
 			
 			// aapt resource value: 0x7f0a0050
 			public const int labeled = 2131361872;
 			
-			// aapt resource value: 0x7f0a00b4
-			public const int largeLabel = 2131361972;
+			// aapt resource value: 0x7f0a00b5
+			public const int largeLabel = 2131361973;
 			
 			// aapt resource value: 0x7f0a0056
 			public const int left = 2131361878;
@@ -9251,6 +9269,9 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a001d
 			public const int line3 = 2131361821;
 			
+			// aapt resource value: 0x7f0a00c4
+			public const int linea = 2131361988;
+			
 			// aapt resource value: 0x7f0a0026
 			public const int listMode = 2131361830;
 			
@@ -9260,11 +9281,11 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a00b2
 			public const int lista_calendario = 2131361970;
 			
-			// aapt resource value: 0x7f0a00ca
-			public const int marcadorFranqueo = 2131361994;
+			// aapt resource value: 0x7f0a00cf
+			public const int marcadorFranqueo = 2131361999;
 			
-			// aapt resource value: 0x7f0a00f7
-			public const int masked = 2131362039;
+			// aapt resource value: 0x7f0a00ff
+			public const int masked = 2131362047;
 			
 			// aapt resource value: 0x7f0a00ab
 			public const int message = 2131361963;
@@ -9284,38 +9305,41 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0031
 			public const int multiply = 2131361841;
 			
-			// aapt resource value: 0x7f0a00fc
-			public const int nav_ajenas = 2131362044;
+			// aapt resource value: 0x7f0a0104
+			public const int nav_ajenas = 2131362052;
 			
-			// aapt resource value: 0x7f0a00f9
-			public const int nav_calendario = 2131362041;
+			// aapt resource value: 0x7f0a0101
+			public const int nav_calendario = 2131362049;
 			
-			// aapt resource value: 0x7f0a00fa
-			public const int nav_companeros = 2131362042;
+			// aapt resource value: 0x7f0a0102
+			public const int nav_companeros = 2131362050;
+			
+			// aapt resource value: 0x7f0a010b
+			public const int nav_configuracion = 2131362059;
+			
+			// aapt resource value: 0x7f0a0107
+			public const int nav_datos = 2131362055;
 			
 			// aapt resource value: 0x7f0a0103
-			public const int nav_configuracion = 2131362051;
+			public const int nav_lineas = 2131362051;
 			
-			// aapt resource value: 0x7f0a00ff
-			public const int nav_datos = 2131362047;
+			// aapt resource value: 0x7f0a0108
+			public const int nav_seguridad = 2131362056;
 			
-			// aapt resource value: 0x7f0a00fb
-			public const int nav_lineas = 2131362043;
+			// aapt resource value: 0x7f0a00b3
+			public const int navegador = 2131361971;
 			
-			// aapt resource value: 0x7f0a0100
-			public const int nav_seguridad = 2131362048;
+			// aapt resource value: 0x7f0a00ba
+			public const int navigation_header_container = 2131361978;
 			
-			// aapt resource value: 0x7f0a00b9
-			public const int navigation_header_container = 2131361977;
-			
-			// aapt resource value: 0x7f0a00de
-			public const int navigation_view = 2131362014;
+			// aapt resource value: 0x7f0a00e3
+			public const int navigation_view = 2131362019;
 			
 			// aapt resource value: 0x7f0a0044
 			public const int never = 2131361860;
 			
-			// aapt resource value: 0x7f0a00e4
-			public const int nombreApp = 2131362020;
+			// aapt resource value: 0x7f0a00e9
+			public const int nombreApp = 2131362025;
 			
 			// aapt resource value: 0x7f0a002b
 			public const int none = 2131361835;
@@ -9323,17 +9347,17 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0027
 			public const int normal = 2131361831;
 			
+			// aapt resource value: 0x7f0a00f3
+			public const int notification_background = 2131362035;
+			
+			// aapt resource value: 0x7f0a00ef
+			public const int notification_main_column = 2131362031;
+			
 			// aapt resource value: 0x7f0a00ee
-			public const int notification_background = 2131362030;
+			public const int notification_main_column_container = 2131362030;
 			
-			// aapt resource value: 0x7f0a00ea
-			public const int notification_main_column = 2131362026;
-			
-			// aapt resource value: 0x7f0a00e9
-			public const int notification_main_column_container = 2131362025;
-			
-			// aapt resource value: 0x7f0a00cb
-			public const int numeroDia = 2131361995;
+			// aapt resource value: 0x7f0a00d0
+			public const int numeroDia = 2131362000;
 			
 			// aapt resource value: 0x7f0a0062
 			public const int outline = 2131361890;
@@ -9371,11 +9395,11 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0057
 			public const int right = 2131361879;
 			
-			// aapt resource value: 0x7f0a00ed
-			public const int right_icon = 2131362029;
+			// aapt resource value: 0x7f0a00f2
+			public const int right_icon = 2131362034;
 			
-			// aapt resource value: 0x7f0a00eb
-			public const int right_side = 2131362027;
+			// aapt resource value: 0x7f0a00f0
+			public const int right_side = 2131362032;
 			
 			// aapt resource value: 0x7f0a000c
 			public const int save_image_matrix = 2131361804;
@@ -9452,8 +9476,8 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a002e
 			public const int showTitle = 2131361838;
 			
-			// aapt resource value: 0x7f0a00b3
-			public const int smallLabel = 2131361971;
+			// aapt resource value: 0x7f0a00b4
+			public const int smallLabel = 2131361972;
 			
 			// aapt resource value: 0x7f0a0016
 			public const int snackbar_action = 2131361814;
@@ -9467,8 +9491,8 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a004d
 			public const int snapMargins = 2131361869;
 			
-			// aapt resource value: 0x7f0a00e5
-			public const int sombraNombreApp = 2131362021;
+			// aapt resource value: 0x7f0a00ea
+			public const int sombraNombreApp = 2131362026;
 			
 			// aapt resource value: 0x7f0a0082
 			public const int spacer = 2131361922;
@@ -9533,8 +9557,8 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a005c
 			public const int textStart = 2131361884;
 			
-			// aapt resource value: 0x7f0a00be
-			public const int text_input_password_toggle = 2131361982;
+			// aapt resource value: 0x7f0a00bf
+			public const int text_input_password_toggle = 2131361983;
 			
 			// aapt resource value: 0x7f0a0018
 			public const int textinput_counter = 2131361816;
@@ -9545,26 +9569,26 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a001a
 			public const int textinput_helper_text = 2131361818;
 			
-			// aapt resource value: 0x7f0a00d6
-			public const int textoAcumuladas = 2131362006;
+			// aapt resource value: 0x7f0a00db
+			public const int textoAcumuladas = 2131362011;
 			
-			// aapt resource value: 0x7f0a00cc
-			public const int textoDia = 2131361996;
-			
-			// aapt resource value: 0x7f0a00cf
-			public const int textoHorario = 2131361999;
+			// aapt resource value: 0x7f0a00d1
+			public const int textoDia = 2131362001;
 			
 			// aapt resource value: 0x7f0a00d4
-			public const int textoNocturnas = 2131362004;
+			public const int textoHorario = 2131362004;
 			
-			// aapt resource value: 0x7f0a00db
-			public const int textoRelevo = 2131362011;
+			// aapt resource value: 0x7f0a00d9
+			public const int textoNocturnas = 2131362009;
 			
-			// aapt resource value: 0x7f0a00ce
-			public const int textoServicio = 2131361998;
+			// aapt resource value: 0x7f0a00e0
+			public const int textoRelevo = 2131362016;
 			
-			// aapt resource value: 0x7f0a00ef
-			public const int time = 2131362031;
+			// aapt resource value: 0x7f0a00d3
+			public const int textoServicio = 2131362003;
+			
+			// aapt resource value: 0x7f0a00f4
+			public const int time = 2131362036;
 			
 			// aapt resource value: 0x7f0a0023
 			public const int title = 2131361827;
@@ -9575,11 +9599,11 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a008d
 			public const int title_template = 2131361933;
 			
-			// aapt resource value: 0x7f0a00df
-			public const int tituloLicencia = 2131362015;
+			// aapt resource value: 0x7f0a00e4
+			public const int tituloLicencia = 2131362020;
 			
-			// aapt resource value: 0x7f0a00f4
-			public const int toolbar = 2131362036;
+			// aapt resource value: 0x7f0a00fc
+			public const int toolbar = 2131362044;
 			
 			// aapt resource value: 0x7f0a0047
 			public const int top = 2131361863;
@@ -9587,8 +9611,8 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a008c
 			public const int topPanel = 2131361932;
 			
-			// aapt resource value: 0x7f0a00b7
-			public const int touch_outside = 2131361975;
+			// aapt resource value: 0x7f0a00b8
+			public const int touch_outside = 2131361976;
 			
 			// aapt resource value: 0x7f0a000f
 			public const int transition_current_scene = 2131361807;
@@ -9605,8 +9629,8 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a0013
 			public const int transition_transform = 2131361811;
 			
-			// aapt resource value: 0x7f0a00f5
-			public const int txtAbTitulo = 2131362037;
+			// aapt resource value: 0x7f0a00fd
+			public const int txtAbTitulo = 2131362045;
 			
 			// aapt resource value: 0x7f0a0036
 			public const int uniform = 2131361846;
@@ -9620,14 +9644,14 @@ namespace Quattro.Droid
 			// aapt resource value: 0x7f0a002f
 			public const int useLogo = 2131361839;
 			
-			// aapt resource value: 0x7f0a00e2
-			public const int versionApp = 2131362018;
+			// aapt resource value: 0x7f0a00e7
+			public const int versionApp = 2131362023;
 			
 			// aapt resource value: 0x7f0a001b
 			public const int view_offset_helper = 2131361819;
 			
-			// aapt resource value: 0x7f0a00f6
-			public const int visible = 2131362038;
+			// aapt resource value: 0x7f0a00fe
+			public const int visible = 2131362046;
 			
 			// aapt resource value: 0x7f0a0045
 			public const int withText = 2131361861;
@@ -9879,7 +9903,7 @@ namespace Quattro.Droid
 			public const int HomePage = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int incidenciaRow = 2130968624;
+			public const int incidenciaDropRow = 2130968624;
 			
 			// aapt resource value: 0x7f040031
 			public const int incidenciaSpinnerRow = 2130968625;
@@ -9888,49 +9912,58 @@ namespace Quattro.Droid
 			public const int LicenciaPage = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int mtrl_layout_snackbar = 2130968627;
+			public const int lineaDropRow = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int mtrl_layout_snackbar_include = 2130968628;
+			public const int lineaSpinnerRow = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int navigation_header = 2130968629;
+			public const int mtrl_layout_snackbar = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int notification_action = 2130968630;
+			public const int mtrl_layout_snackbar_include = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int notification_action_tombstone = 2130968631;
+			public const int navigation_header = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int notification_template_custom_big = 2130968632;
+			public const int notification_action = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int notification_template_icon_group = 2130968633;
+			public const int notification_action_tombstone = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int notification_template_part_chronometer = 2130968634;
+			public const int notification_template_custom_big = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int notification_template_part_time = 2130968635;
+			public const int notification_template_icon_group = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int select_dialog_item_material = 2130968636;
+			public const int notification_template_part_chronometer = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int select_dialog_multichoice_material = 2130968637;
+			public const int notification_template_part_time = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int select_dialog_singlechoice_material = 2130968638;
+			public const int NuevaLineaDialog = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int SplashPage = 2130968639;
+			public const int select_dialog_item_material = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int support_simple_spinner_dropdown_item = 2130968640;
+			public const int select_dialog_multichoice_material = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int Toolbar = 2130968641;
+			public const int select_dialog_singlechoice_material = 2130968641;
+			
+			// aapt resource value: 0x7f040042
+			public const int SplashPage = 2130968642;
+			
+			// aapt resource value: 0x7f040043
+			public const int support_simple_spinner_dropdown_item = 2130968643;
+			
+			// aapt resource value: 0x7f040044
+			public const int Toolbar = 2130968644;
 			
 			static Layout()
 			{

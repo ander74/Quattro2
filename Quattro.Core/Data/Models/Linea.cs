@@ -68,10 +68,10 @@ namespace Quattro.Core.Data.Models {
         public void FromModel(Linea model, bool ignorarId = false) {
             if (model == null) return;
             this.Id = ignorarId ? this.Id : model.Id;
-            this.Descripcion = model.Descripcion;
-            this.Notas = model.Notas;
-            this.Numero = model.Numero;
-            this.Servicios = model.Servicios.AsEnumerable();
+            descripcion = model.Descripcion;
+            notas = model.Notas;
+            numero = model.Numero;
+            servicios = model.Servicios.AsEnumerable();
         }
 
         public Linea ToModel(bool ignorarId = false) {

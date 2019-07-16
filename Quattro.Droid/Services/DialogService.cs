@@ -1,5 +1,6 @@
 ﻿using System;
 using Android.App;
+using Android.Views;
 using Android.Widget;
 using MvvmCross;
 using MvvmCross.Platforms.Android;
@@ -21,7 +22,7 @@ namespace Quattro.Droid.Services {
             var adb = new AlertDialog.Builder(act);
             adb.SetTitle(titulo);
             adb.SetMessage(mensaje);
-            adb.SetPositiveButton(textoBotonOk, (sender, args) => {  });
+            adb.SetPositiveButton(textoBotonOk, (sender, args) => { });
             adb.Create().Show();
         }
 
@@ -57,6 +58,34 @@ namespace Quattro.Droid.Services {
         public void LongToast(string mensaje) {
             Toast.MakeText(Application.Context, mensaje, ToastLength.Long).Show();
         }
+
+
+        public void Input(string titulo, string textoBotonOk, string textoBotonCancel, Action<string> confirmar) {
+            var top = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
+            var act = top.Activity;
+            var adb = new AlertDialog.Builder(act);
+            var entrada = new EditText(act);
+            adb.SetTitle(titulo);
+            adb.SetView(entrada);
+            adb.SetPositiveButton(textoBotonOk, (sender, args) => { if (confirmar != null) confirmar.Invoke(entrada.Text); });
+            adb.SetNegativeButton(textoBotonCancel, (sender, args) => { });
+            adb.Create().Show();
+        }
+
+        public void InputNuevaLinea(Action<string, string> confirmar) {
+            var top = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
+            var act = top.Activity;
+            var adb = new AlertDialog.Builder(act);
+            adb.SetTitle("Nueva Línea");
+            var vista = LayoutInflater.From(act).Inflate(Resource.Layout.NuevaLineaDialog, null);
+            adb.SetView(vista);
+            var editLinea = vista.FindViewById<EditText>(Resource.Id.editLinea);
+            var editDescripcion = vista.FindViewById<EditText>(Resource.Id.editDescripcion);
+            adb.SetPositiveButton("Guardar", (sender, args) => { if (confirmar != null) confirmar.Invoke(editLinea.Text, editDescripcion.Text); });
+            adb.SetNegativeButton("Cancelar", (sender, args) => { });
+            adb.Create().Show();
+        }
+
 
         #endregion
         // ====================================================================================================

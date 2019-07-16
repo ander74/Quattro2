@@ -201,6 +201,79 @@ namespace Quattro.Core.ViewModels {
         #endregion
 
 
+        #region Copiar
+        private MvxCommand copiarCommand;
+        public ICommand CopiarCommand {
+            get {
+                copiarCommand = copiarCommand ?? new MvxCommand(DoCopiar);
+                return copiarCommand;
+            }
+        }
+        private void DoCopiar() {
+            var dia = ListaDias.FirstOrDefault(d => d.IsSelected);
+            if (dia == null) return;
+            if (DiaCopiado == null) DiaCopiado = new DiaCalendario();
+            DiaCopiado.FromModel(dia, true);
+            Vibration.Vibrate(15);
+            dialog.ShortToast("Dia copiado");
+        }
+        #endregion
+
+
+        #region Pegar
+        private MvxAsyncCommand pegarCommand;
+        public ICommand PegarCommand {
+            get {
+                pegarCommand = pegarCommand ?? new MvxAsyncCommand(DoPegar);
+                return pegarCommand;
+            }
+        }
+        private async Task DoPegar() {
+            if (DiaCopiado == null) return;
+            foreach (var dia in ListaDias.Where(d => d.IsSelected)) {
+                var fecha = dia.Fecha;
+                var esFranqueo = dia.EsFranqueo;
+                var esFestivo = dia.EsFestivo;
+                dia.FromModel(DiaCopiado, true);
+                dia.Fecha = fecha;
+                dia.EsFranqueo = esFranqueo;
+                dia.EsFestivo = esFestivo;
+                dia.PropiedadCambiada("");
+            }
+            await GuardarDatos();
+        }
+        #endregion
+
+
+        #region Vaciar
+        private MvxCommand vaciarCommand;
+        public ICommand VaciarCommand {
+            get {
+                vaciarCommand = vaciarCommand ?? new MvxCommand(DoVaciar);
+                return vaciarCommand;
+            }
+        }
+        private void DoVaciar() {
+            dialog.Confirmar("Esta operación borrará el contenido los días seleccionados.\n\n¿Desea continuar?",
+                             "Vaciar días",
+                             "Si",
+                             "Cancelar", async () => {
+                                 foreach (var dia in ListaDias.Where(d => d.IsSelected)) {
+                                     var fecha = dia.Fecha;
+                                     var esFranqueo = dia.EsFranqueo;
+                                     var esFestivo = dia.EsFestivo;
+                                     dia.FromModel(new DiaCalendario(), true);
+                                     dia.Fecha = fecha;
+                                     dia.EsFranqueo = esFranqueo;
+                                     dia.EsFestivo = esFestivo;
+                                     dia.PropiedadCambiada("");
+                                 }
+                                 await GuardarDatos();
+                             },
+                             null);
+        }
+        #endregion
+
 
 
         #endregion
@@ -281,6 +354,10 @@ namespace Quattro.Core.ViewModels {
                 return $"{(Mes)Fecha.Month} - {Fecha.Year}".ToUpper();
             }
         }
+
+
+        public DiaCalendario DiaCopiado { get; set; }
+
 
         #endregion
         // ====================================================================================================

@@ -36,13 +36,13 @@ namespace Quattro.Core.Data.Models {
 
 
         // ====================================================================================================
-        #region MÉTODOS ENTITIES
+        #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(ServicioLinea model) {
+        public void FromModel(ServicioLinea model, bool ignorarId = false) {
             if (model == null) return;
-            base.FromModel(model);
-            this.Servicios = model.Servicios.AsEnumerable();
+            base.FromModel(model, ignorarId);
+            servicios = model.Servicios.AsEnumerable();
         }
 
         public new ServicioLinea ToModel() {

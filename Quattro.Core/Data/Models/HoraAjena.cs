@@ -67,10 +67,10 @@ namespace Quattro.Core.Data.Models {
         public void FromModel(HoraAjena model, bool ignorarId = false) {
             if (model == null) return;
             this.Id = ignorarId ? this.Id : model.Id;
-            this.Fecha = model.Fecha;
-            this.Horas = model.Horas;
-            this.Motivo = model.Motivo;
-            this.Tipo = model.Tipo;
+            fecha = model.Fecha;
+            horas = model.Horas;
+            motivo = model.Motivo;
+            tipo = model.Tipo;
         }
 
         public HoraAjena ToModel(bool ignorarId = false) {

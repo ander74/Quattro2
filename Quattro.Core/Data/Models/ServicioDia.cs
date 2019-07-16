@@ -27,12 +27,12 @@ namespace Quattro.Core.Data.Models {
 
 
         // ====================================================================================================
-        #region MÉTODOS ENTITIES
+        #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(ServicioDia entidad) {
+        public void FromModel(ServicioDia entidad, bool ignorarId = false) {
             if (entidad == null) return;
-            base.FromModel(entidad);
+            base.FromModel(entidad, ignorarId);
         }
 
         public new ServicioDia ToModel() {

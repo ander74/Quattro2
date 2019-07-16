@@ -1,16 +1,12 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Quattro.Core.Migrations
-{
-    public partial class Inicial : Migration
-    {
-        protected override void Up(MigrationBuilder migrationBuilder)
-        {
+namespace Quattro.Core.Migrations {
+    public partial class Inicial : Migration {
+        protected override void Up(MigrationBuilder migrationBuilder) {
             migrationBuilder.CreateTable(
                 name: "Companeros",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Matricula = table.Column<int>(nullable: false),
@@ -22,15 +18,13 @@ namespace Quattro.Core.Migrations
                     Deuda = table.Column<int>(nullable: false),
                     Notas = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Companeros", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "HorasAjenas",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Fecha = table.Column<DateTime>(nullable: false),
@@ -38,15 +32,13 @@ namespace Quattro.Core.Migrations
                     Motivo = table.Column<string>(maxLength: 256, nullable: true),
                     Tipo = table.Column<int>(nullable: false)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_HorasAjenas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Incidencias",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Codigo = table.Column<int>(nullable: false),
@@ -54,30 +46,26 @@ namespace Quattro.Core.Migrations
                     Tipo = table.Column<int>(nullable: false),
                     Notas = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Incidencias", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Lineas",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Numero = table.Column<string>(maxLength: 32, nullable: true),
                     Descripcion = table.Column<string>(maxLength: 128, nullable: true),
                     Notas = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Lineas", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Calendario",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Servicio = table.Column<string>(maxLength: 32, nullable: true),
@@ -106,8 +94,7 @@ namespace Quattro.Core.Migrations
                     RelevoId = table.Column<int>(nullable: true),
                     SustiId = table.Column<int>(nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_Calendario", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Calendario_Incidencias_IncidenciaId",
@@ -137,8 +124,7 @@ namespace Quattro.Core.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ServiciosLinea",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Servicio = table.Column<string>(maxLength: 32, nullable: true),
@@ -152,8 +138,7 @@ namespace Quattro.Core.Migrations
                     Euros = table.Column<decimal>(nullable: false),
                     Notas = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_ServiciosLinea", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ServiciosLinea_Lineas_LineaId",
@@ -165,8 +150,7 @@ namespace Quattro.Core.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ServiciosDia",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Servicio = table.Column<string>(maxLength: 32, nullable: true),
@@ -178,8 +162,7 @@ namespace Quattro.Core.Migrations
                     LineaId = table.Column<int>(nullable: true),
                     DiaCalendarioId = table.Column<int>(nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_ServiciosDia", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ServiciosDia_Calendario_DiaCalendarioId",
@@ -197,8 +180,7 @@ namespace Quattro.Core.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ServiciosSecundarios",
-                columns: table => new
-                {
+                columns: table => new {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Servicio = table.Column<string>(maxLength: 32, nullable: true),
@@ -210,8 +192,7 @@ namespace Quattro.Core.Migrations
                     LineaId = table.Column<int>(nullable: true),
                     ServicioLineaId = table.Column<int>(nullable: true)
                 },
-                constraints: table =>
-                {
+                constraints: table => {
                     table.PrimaryKey("PK_ServiciosSecundarios", x => x.Id);
                     table.ForeignKey(
                         name: "FK_ServiciosSecundarios_Lineas_LineaId",
@@ -231,6 +212,11 @@ namespace Quattro.Core.Migrations
                 table: "Incidencias",
                 columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
                 values: new object[] { 1, 0, "Repite día anterior", "Incidencia Protegida.", 0 });
+
+            migrationBuilder.InsertData(
+                table: "Incidencias",
+                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
+                values: new object[] { 16, 15, "Huelga", "Incidencia Protegida.", 5 });
 
             migrationBuilder.InsertData(
                 table: "Incidencias",
@@ -265,12 +251,12 @@ namespace Quattro.Core.Migrations
             migrationBuilder.InsertData(
                 table: "Incidencias",
                 columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
-                values: new object[] { 16, 15, "Huelga", "Incidencia Protegida.", 5 });
+                values: new object[] { 9, 8, "Permiso", "Incidencia Protegida.", 6 });
 
             migrationBuilder.InsertData(
                 table: "Incidencias",
                 columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
-                values: new object[] { 9, 8, "Permiso", "Incidencia Protegida.", 6 });
+                values: new object[] { 8, 7, "Accidentada/o", "Incidencia Protegida.", 4 });
 
             migrationBuilder.InsertData(
                 table: "Incidencias",
@@ -305,12 +291,17 @@ namespace Quattro.Core.Migrations
             migrationBuilder.InsertData(
                 table: "Incidencias",
                 columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
-                values: new object[] { 8, 7, "Accidentada/o", "Incidencia Protegida.", 4 });
+                values: new object[] { 17, 16, "Día por H. Acumuladas", "Incidencia Protegida.", 3 });
 
             migrationBuilder.InsertData(
-                table: "Incidencias",
-                columns: new[] { "Id", "Codigo", "Descripcion", "Notas", "Tipo" },
-                values: new object[] { 17, 16, "Día por H. Acumuladas", "Incidencia Protegida.", 3 });
+                table: "Lineas",
+                columns: new[] { "Id", "Descripcion", "Notas", "Numero" },
+                values: new object[] { 1, "", null, "" });
+
+            migrationBuilder.InsertData(
+                table: "Lineas",
+                columns: new[] { "Id", "Descripcion", "Notas", "Numero" },
+                values: new object[] { 2, "Nueva Línea", null, "" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Calendario_IncidenciaId",
@@ -358,8 +349,7 @@ namespace Quattro.Core.Migrations
                 column: "ServicioLineaId");
         }
 
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
+        protected override void Down(MigrationBuilder migrationBuilder) {
             migrationBuilder.DropTable(
                 name: "HorasAjenas");
 

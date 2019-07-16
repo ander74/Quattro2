@@ -7,6 +7,11 @@ namespace Quattro.Core {
 
     public class MyViewModelLocator : MvxDefaultViewModelLocator {
 
+        public MyViewModelLocator() : base() {
+            App.CalendarioVM = (CalendarioViewModel)Load(typeof(CalendarioViewModel), null, null, null);
+        }
+
+
         public override IMvxViewModel Load(Type viewModelType, IMvxBundle parameterValues, IMvxBundle savedState, IMvxNavigateEventArgs navigationArgs) {
 
             // CALENDARIO
@@ -19,7 +24,7 @@ namespace Quattro.Core {
 
             // OTROS VIEW MODELS
 
-            
+
             return base.Load(viewModelType, parameterValues, savedState, navigationArgs);
         }
 

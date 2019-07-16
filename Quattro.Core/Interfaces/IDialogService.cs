@@ -14,5 +14,8 @@ namespace Quattro.Core.Interfaces {
 
         void LongToast(string mensaje);
 
+        void Input(string titulo, string textoBotonOk, string textoBotonCancel, Action<string> confirmar);
+
+        void InputNuevaLinea(Action<string, string> confirmar);
     }
 }

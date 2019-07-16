@@ -18,7 +18,7 @@ namespace DummyForMigrations {
         }
 
         public QuattroContext(DbContextOptions<QuattroContext> options) : base(options) {
-            
+
         }
 
         #endregion
@@ -92,6 +92,12 @@ namespace DummyForMigrations {
             // Servicios Dia
             modelBuilder.Entity<ServicioDia>().Property(sd => sd.Inicio).HasConversion(ConvertidorTiempo);
             modelBuilder.Entity<ServicioDia>().Property(sd => sd.Final).HasConversion(ConvertidorTiempo);
+
+            // Líneas
+            modelBuilder.Entity<Linea>()
+                .HasData(
+                new Linea { Id = 01, Numero = "", Descripcion = "Nueva Línea" }
+                );
 
             // Incidencias
             modelBuilder.Entity<Incidencia>()
