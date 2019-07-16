@@ -20,6 +20,8 @@ namespace Quattro.Core.Data.Repositories {
 
         DiaCalendario GetDia(DateTime fecha);
 
+        Task<DiaCalendario> GetDiaAsync(DateTime fecha);
+
         #endregion
         // ====================================================================================================
 
@@ -28,9 +30,9 @@ namespace Quattro.Core.Data.Repositories {
         #region MÉTODOS INCIDENCIAS
         // ====================================================================================================
 
-        Task<Incidencia> GetIncidencia(int codigo);
+        Task<Incidencia> GetIncidenciaAsync(int codigo);
 
-        Task<IEnumerable<Incidencia>> GetIncidencias();
+        Task<IEnumerable<Incidencia>> GetIncidenciasAsync();
 
         #endregion
         // ====================================================================================================
@@ -40,9 +42,9 @@ namespace Quattro.Core.Data.Repositories {
         #region MÉTODOS LÍNEAS
         // ====================================================================================================
 
-        Task<IEnumerable<Linea>> GetLineas(bool incluirCero = false);
+        Task<IEnumerable<Linea>> GetLineasAsync(bool incluirCero = false);
 
-        Linea GetLineaByNumero(string numero);
+        Task<Linea> GetLineaByNumeroAsync(string numero);
 
         #endregion
         // ====================================================================================================

@@ -128,14 +128,15 @@ namespace Quattro.Core.ViewModels {
 
 
         #region AnteriorPulsado
-        private MvxAsyncCommand anteriorPulsadoCommand;
-        public ICommand AnteriorPulsadoCommand {
+        private MvxAsyncCommand anteriorPulsadoAsyncCommand;
+        public ICommand AnteriorPulsadoAsyncCommand {
             get {
-                anteriorPulsadoCommand = anteriorPulsadoCommand ?? new MvxAsyncCommand(DoAnteriorPulsado);
-                return anteriorPulsadoCommand;
+                anteriorPulsadoAsyncCommand = anteriorPulsadoAsyncCommand ?? new MvxAsyncCommand(DoAnteriorPulsadoAsync);
+                return anteriorPulsadoAsyncCommand;
             }
         }
-        private async Task DoAnteriorPulsado() {
+        private async Task DoAnteriorPulsadoAsync() {
+            Vibration.Vibrate(15);
             //TODO: cambiar la instrucción siguiente por la opción
             var FechaLimite = new DateTime(2019, 1, 1);
             if (Fecha == FechaLimite) {
@@ -149,14 +150,15 @@ namespace Quattro.Core.ViewModels {
 
 
         #region SiguientePulsado
-        private MvxAsyncCommand comandointernoCommand;
-        public ICommand SiguientePulsadoCommand {
+        private MvxAsyncCommand siguientePulsadoAsyncCommand;
+        public ICommand SiguientePulsadoAsyncCommand {
             get {
-                comandointernoCommand = comandointernoCommand ?? new MvxAsyncCommand(DoSiguientePulsado);
-                return comandointernoCommand;
+                siguientePulsadoAsyncCommand = siguientePulsadoAsyncCommand ?? new MvxAsyncCommand(DoSiguientePulsadoAsync);
+                return siguientePulsadoAsyncCommand;
             }
         }
-        private async Task DoSiguientePulsado() {
+        private async Task DoSiguientePulsadoAsync() {
+            Vibration.Vibrate(15);
             Fecha = Fecha.AddMonths(1);
             this.ListaDias = await repo.GetMes(Fecha).ToListAsync();
         }
@@ -167,15 +169,16 @@ namespace Quattro.Core.ViewModels {
         private MvxAsyncCommand franqueoCommand;
         public ICommand FranqueoCommand {
             get {
-                franqueoCommand = franqueoCommand ?? new MvxAsyncCommand(DoFranqueo);
+                franqueoCommand = franqueoCommand ?? new MvxAsyncCommand(DoFranqueoAsync);
                 return franqueoCommand;
             }
         }
-        private async Task DoFranqueo() {
+        private async Task DoFranqueoAsync() {
+            Vibration.Vibrate(15);
             foreach (var dia in ListaDias.Where(d => d.IsSelected)) {
                 dia.EsFranqueo = !dia.EsFranqueo;
                 if (dia.EsFranqueo && dia.Incidencia == null) {
-                    dia.Incidencia = await repo.GetIncidencia(2);
+                    dia.Incidencia = await repo.GetIncidenciaAsync(2);
                     dia.PropiedadCambiada(nameof(dia.TextoServicio));
                 }
             }
@@ -188,11 +191,12 @@ namespace Quattro.Core.ViewModels {
         private MvxAsyncCommand festivoCommand;
         public ICommand FestivoCommand {
             get {
-                festivoCommand = festivoCommand ?? new MvxAsyncCommand(DoFestivo);
+                festivoCommand = festivoCommand ?? new MvxAsyncCommand(DoFestivoAsync);
                 return festivoCommand;
             }
         }
-        private async Task DoFestivo() {
+        private async Task DoFestivoAsync() {
+            Vibration.Vibrate(15);
             foreach (var dia in ListaDias.Where(d => d.IsSelected)) {
                 dia.EsFestivo = !dia.EsFestivo;
             }
@@ -210,11 +214,11 @@ namespace Quattro.Core.ViewModels {
             }
         }
         private void DoCopiar() {
+            Vibration.Vibrate(15);
             var dia = ListaDias.FirstOrDefault(d => d.IsSelected);
             if (dia == null) return;
             if (DiaCopiado == null) DiaCopiado = new DiaCalendario();
             DiaCopiado.FromModel(dia, true);
-            Vibration.Vibrate(15);
             dialog.ShortToast("Dia copiado");
         }
         #endregion
@@ -224,11 +228,12 @@ namespace Quattro.Core.ViewModels {
         private MvxAsyncCommand pegarCommand;
         public ICommand PegarCommand {
             get {
-                pegarCommand = pegarCommand ?? new MvxAsyncCommand(DoPegar);
+                pegarCommand = pegarCommand ?? new MvxAsyncCommand(DoPegarAsync);
                 return pegarCommand;
             }
         }
-        private async Task DoPegar() {
+        private async Task DoPegarAsync() {
+            Vibration.Vibrate(15);
             if (DiaCopiado == null) return;
             foreach (var dia in ListaDias.Where(d => d.IsSelected)) {
                 var fecha = dia.Fecha;
@@ -254,6 +259,7 @@ namespace Quattro.Core.ViewModels {
             }
         }
         private void DoVaciar() {
+            Vibration.Vibrate(15);
             dialog.Confirmar("Esta operación borrará el contenido los días seleccionados.\n\n¿Desea continuar?",
                              "Vaciar días",
                              "Si",
@@ -275,6 +281,62 @@ namespace Quattro.Core.ViewModels {
         #endregion
 
 
+        #region GuardarServicio
+        private MvxAsyncCommand guardarServicioCommand;
+        public ICommand GuardarServicioCommand {
+            get {
+                guardarServicioCommand = guardarServicioCommand ?? new MvxAsyncCommand(DoGuardarServicioAsync);
+                return guardarServicioCommand;
+            }
+        }
+        private async Task DoGuardarServicioAsync() {
+            Vibration.Vibrate(15);
+            var dia = ListaDias.FirstOrDefault(d => d.IsSelected);
+            if (dia == null || dia.Linea == null || string.IsNullOrWhiteSpace(dia.Servicio)) return;
+            if (dia.Inicio == null || dia.Final == null) return;
+            var linea = await repo.GetLineaByNumeroAsync(dia.Linea.Numero);
+            if (linea == null) return;
+            var servicio = linea.Servicios.FirstOrDefault(s => s.Servicio.Equals(dia.Servicio) && s.Turno == dia.Turno);
+            if (servicio == null) {
+                servicio = new ServicioLinea();
+                servicio.FromModel(dia);
+                linea.Servicios.Add(servicio);
+            } else {
+                servicio.FromModel(dia);
+            }
+            await GuardarDatos();
+            dialog.ShortToast("Servicio guardado.");
+        }
+        #endregion
+
+
+        #region RepetirDiaAnterior
+        private MvxAsyncCommand repetirDiaAnteriorCommand;
+        public ICommand RepetirDiaAnteriorCommand {
+            get {
+                repetirDiaAnteriorCommand = repetirDiaAnteriorCommand ?? new MvxAsyncCommand(DoRepetirDiaAnteriorAsync);
+                return repetirDiaAnteriorCommand;
+            }
+        }
+        private async Task DoRepetirDiaAnteriorAsync() {
+            Vibration.Vibrate(15);
+            var dia = ListaDias.FirstOrDefault(d => d.IsSelected);
+            if (dia == null) return;
+            var diaAnterior = await repo.GetDiaAsync(dia.Fecha.AddDays(-1));
+            if (diaAnterior == null) return;
+            var fecha = dia.Fecha;
+            var esFranqueo = dia.EsFranqueo;
+            var esFestivo = dia.EsFestivo;
+            dia.FromModel(diaAnterior, true);
+            dia.Fecha = fecha;
+            dia.EsFranqueo = esFranqueo;
+            dia.EsFestivo = esFestivo;
+            dia.PropiedadCambiada("");
+            await GuardarDatos();
+        }
+        #endregion
+
+
 
         #endregion
         // ====================================================================================================
@@ -290,6 +352,7 @@ namespace Quattro.Core.ViewModels {
 
         #endregion
         // ====================================================================================================
+
 
         // ====================================================================================================
         #region MÉTODOS PÚBLICOS
@@ -336,6 +399,7 @@ namespace Quattro.Core.ViewModels {
             set {
                 if (SetProperty(ref isInSelectMode, value)) {
                     RaisePropertyChanged(nameof(Titulo));
+                    RaisePropertyChanged(nameof(IsMultipleSelect));
                 }
             }
         }

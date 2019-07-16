@@ -70,6 +70,16 @@ namespace Quattro.Core.Data.Repositories {
                 .FirstOrDefault(d => d.Fecha.Year == fecha.Year && d.Fecha.Month == fecha.Month && d.Fecha.Day == fecha.Day);
         }
 
+        public async Task<DiaCalendario> GetDiaAsync(DateTime fecha) {
+            return await context.Calendario
+                .Include(c => c.Incidencia)
+                .Include(c => c.Linea)
+                .Include(c => c.Servicios).ThenInclude(s => s.Linea)
+                .Include(c => c.Relevo)
+                .Include(c => c.Susti)
+                .FirstOrDefaultAsync(d => d.Fecha.Year == fecha.Year && d.Fecha.Month == fecha.Month && d.Fecha.Day == fecha.Day);
+        }
+
         #endregion
         // ====================================================================================================
 
@@ -78,11 +88,11 @@ namespace Quattro.Core.Data.Repositories {
         #region MÉTODOS DE INCIDENCIAS
         // ====================================================================================================
 
-        public async Task<Incidencia> GetIncidencia(int codigo) {
+        public async Task<Incidencia> GetIncidenciaAsync(int codigo) {
             return await context.Incidencias.FirstOrDefaultAsync(i => i.Codigo == codigo);
         }
 
-        public async Task<IEnumerable<Incidencia>> GetIncidencias() {
+        public async Task<IEnumerable<Incidencia>> GetIncidenciasAsync() {
             return await context.Incidencias.Where(i => i.Codigo > 0).ToListAsync();
         }
 
@@ -94,14 +104,14 @@ namespace Quattro.Core.Data.Repositories {
         #region MÉTODOS LÍNEAS
         // ====================================================================================================
 
-        public async Task<IEnumerable<Linea>> GetLineas(bool incuirCero = false) {
+        public async Task<IEnumerable<Linea>> GetLineasAsync(bool incuirCero = false) {
             var x = 1;
             if (incuirCero) x = 0;
             return await context.Lineas.Where(l => l.Id > x).ToListAsync();
         }
 
-        public Linea GetLineaByNumero(string numero) {
-            return context.Lineas.FirstOrDefault(l => l.Numero.ToLower() == numero.ToLower());
+        public async Task<Linea> GetLineaByNumeroAsync(string numero) {
+            return await context.Lineas.Include(l => l.Servicios).FirstOrDefaultAsync(l => l.Numero.ToLower() == numero.ToLower());
         }
 
         #endregion

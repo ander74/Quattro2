@@ -102,11 +102,11 @@ namespace Quattro.Droid.Views {
 
         // GESTOS SWIPE
         private void SwipeLeft() {
-            ViewModel.SiguientePulsadoCommand.Execute(null);
+            ViewModel.SiguientePulsadoAsyncCommand.Execute(null);
         }
 
         private void SwipeRight() {
-            ViewModel.AnteriorPulsadoCommand.Execute(null);
+            ViewModel.AnteriorPulsadoAsyncCommand.Execute(null);
         }
 
 

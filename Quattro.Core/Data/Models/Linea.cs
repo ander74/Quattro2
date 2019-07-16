@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace Quattro.Core.Data.Models {
 
@@ -51,8 +50,8 @@ namespace Quattro.Core.Data.Models {
         }
 
 
-        private IEnumerable<ServicioLinea> servicios;
-        public IEnumerable<ServicioLinea> Servicios {
+        private List<ServicioLinea> servicios;
+        public List<ServicioLinea> Servicios {
             get => servicios;
             set => SetProperty(ref servicios, value);
         }
@@ -71,7 +70,7 @@ namespace Quattro.Core.Data.Models {
             descripcion = model.Descripcion;
             notas = model.Notas;
             numero = model.Numero;
-            servicios = model.Servicios.AsEnumerable();
+            servicios = model.Servicios;
         }
 
         public Linea ToModel(bool ignorarId = false) {
@@ -80,7 +79,7 @@ namespace Quattro.Core.Data.Models {
                 Descripcion = this.Descripcion,
                 Notas = this.Notas,
                 Numero = this.Numero,
-                Servicios = this.Servicios.AsEnumerable(),
+                Servicios = this.Servicios,
             };
         }
 

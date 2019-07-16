@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using Quattro.Core.Common;
 
@@ -158,8 +157,8 @@ namespace Quattro.Core.Data.Models {
         }
 
 
-        private IEnumerable<ServicioDia> servicios;
-        public IEnumerable<ServicioDia> Servicios {
+        private List<ServicioDia> servicios;
+        public List<ServicioDia> Servicios {
             get => servicios;
             set => SetProperty(ref servicios, value);
         }
@@ -170,7 +169,7 @@ namespace Quattro.Core.Data.Models {
 
 
         // ====================================================================================================
-        #region MÉTODOS MODELS
+        #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
         public void FromModel(DiaCalendario model, bool ignorarId = false) {
@@ -212,7 +211,7 @@ namespace Quattro.Core.Data.Models {
             //}
             susti = model.Susti;
 
-            servicios = model.Servicios.AsEnumerable();
+            servicios = model.Servicios;
         }
 
         public new DiaCalendario ToModel() {
@@ -232,7 +231,7 @@ namespace Quattro.Core.Data.Models {
             model.Incidencia = new Incidencia(this.Incidencia);
             model.Relevo = new Compañero(this.Relevo);
             model.Susti = new Compañero(this.Susti);
-            model.Servicios = this.Servicios.AsEnumerable();
+            model.Servicios = this.Servicios;
             return model;
         }
 

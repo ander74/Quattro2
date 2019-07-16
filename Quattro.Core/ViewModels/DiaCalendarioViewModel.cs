@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmCross.Commands;
@@ -22,6 +23,7 @@ namespace Quattro.Core.ViewModels {
         private readonly ICalendarioRepository repo;
         private readonly IDialogService dialog;
         private readonly IMvxNavigationService navigation;
+        private DateTime fechaArgs;
 
         #endregion
         // ====================================================================================================
@@ -47,15 +49,17 @@ namespace Quattro.Core.ViewModels {
 
         public override async Task Initialize() {
             await base.Initialize();
-            ListaIncidencias = await repo.GetIncidencias();
-            ListaLineas = await repo.GetLineas(true);
-
+            ListaIncidencias = await repo.GetIncidenciasAsync();
+            ListaLineas = await repo.GetLineasAsync(true);
+            if (fechaArgs.Ticks > 0) {
+                Dia = await repo.GetDiaAsync(fechaArgs);
+                IncidenciaSeleccionada = dia.Incidencia;
+                LineaSeleccionada = dia.Linea;
+            }
         }
 
         public override void Prepare(DiaNavigationArgs parameter) {
-            Dia = repo.GetDia(parameter.Fecha);
-            IncidenciaSeleccionada = dia.Incidencia;
-            LineaSeleccionada = dia.Linea;
+            fechaArgs = parameter.Fecha;
         }
 
 

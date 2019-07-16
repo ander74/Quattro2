@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 
 namespace Quattro.Core.Data.Models {
 
@@ -24,8 +23,8 @@ namespace Quattro.Core.Data.Models {
         // ====================================================================================================
 
 
-        private IEnumerable<ServicioSecundario> servicios;
-        public IEnumerable<ServicioSecundario> Servicios {
+        private List<ServicioSecundario> servicios;
+        public List<ServicioSecundario> Servicios {
             get => servicios;
             set => SetProperty(ref servicios, value);
         }
@@ -42,12 +41,12 @@ namespace Quattro.Core.Data.Models {
         public void FromModel(ServicioLinea model, bool ignorarId = false) {
             if (model == null) return;
             base.FromModel(model, ignorarId);
-            servicios = model.Servicios.AsEnumerable();
+            servicios = model.Servicios;
         }
 
         public new ServicioLinea ToModel() {
             ServicioLinea model = (ServicioLinea)base.ToModel();
-            model.Servicios = this.Servicios.AsEnumerable();
+            model.Servicios = this.Servicios;
             return model;
         }
 

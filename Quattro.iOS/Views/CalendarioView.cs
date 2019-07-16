@@ -18,8 +18,8 @@ namespace Quattro.iOS.Views {
             ListaCalendario.RowHeight = 75;
             var set = this.CreateBindingSet<CalendarioView, CalendarioViewModel>();
             set.Bind(source).To(vm => vm.ListaDias);
-            set.Bind(BtRetroceder).To(vm => vm.AnteriorPulsadoCommand);
-            set.Bind(BtSiguiente).To(vm => vm.SiguientePulsadoCommand);
+            set.Bind(BtRetroceder).To(vm => vm.AnteriorPulsadoAsyncCommand);
+            set.Bind(BtSiguiente).To(vm => vm.SiguientePulsadoAsyncCommand);
             set.Apply();
 
             ListaCalendario.Source = source;
