@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Quattro.Core.Data;
 
 namespace Quattro.Core.Migrations
@@ -9,445 +10,475 @@ namespace Quattro.Core.Migrations
     [DbContext(typeof(QuattroContext))]
     partial class QuattroContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildModel(ModelBuilder modelBuilder) {
+        protected override void BuildModel(ModelBuilder modelBuilder)
+        {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079");
 
             modelBuilder.Entity("Quattro.Core.Data.Models.Compañero", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.Property<string>("Apellidos")
-                    .HasMaxLength(128);
+                    b.Property<string>("Apellidos")
+                        .HasMaxLength(256);
 
-                b.Property<int>("Calificacion");
+                    b.Property<int>("Calificacion");
 
-                b.Property<int>("Deuda");
+                    b.Property<int>("Deuda");
 
-                b.Property<string>("Email")
-                    .HasMaxLength(128);
+                    b.Property<string>("Email")
+                        .HasMaxLength(128);
 
-                b.Property<int>("Matricula");
+                    b.Property<int>("Matricula");
 
-                b.Property<string>("Nombre")
-                    .HasMaxLength(64);
+                    b.Property<string>("Nombre")
+                        .HasMaxLength(128);
 
-                b.Property<string>("Notas");
+                    b.Property<string>("Notas")
+                        .HasMaxLength(1024);
 
-                b.Property<string>("Telefono")
-                    .HasMaxLength(64);
+                    b.Property<string>("Telefono")
+                        .HasMaxLength(64);
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.ToTable("Companeros");
-            });
+                    b.ToTable("Compañeros");
+                });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.DiaCalendario", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.Property<decimal>("Acumuladas");
+                    b.Property<decimal>("Acumuladas");
 
-                b.Property<string>("Bus")
-                    .HasMaxLength(32);
+                    b.Property<string>("Bus")
+                        .HasMaxLength(32);
 
-                b.Property<bool>("Cena");
+                    b.Property<bool>("Cena");
 
-                b.Property<bool>("Comida");
+                    b.Property<bool>("Comida");
 
-                b.Property<bool>("Desayuno");
+                    b.Property<bool>("Desayuno");
 
-                b.Property<bool>("EsFestivo");
+                    b.Property<bool>("EsFestivo");
 
-                b.Property<bool>("EsFranqueo");
+                    b.Property<bool>("EsFranqueo");
 
-                b.Property<decimal>("Euros");
+                    b.Property<decimal>("Euros");
 
-                b.Property<DateTime>("Fecha");
+                    b.Property<DateTime>("Fecha");
 
-                b.Property<int?>("Final");
+                    b.Property<int?>("Final");
 
-                b.Property<decimal>("HorasHuelga");
+                    b.Property<decimal>("HorasHuelga");
 
-                b.Property<bool>("HuelgaParcial");
+                    b.Property<bool>("HuelgaParcial");
 
-                b.Property<int?>("IncidenciaId");
+                    b.Property<int?>("IncidenciaId");
 
-                b.Property<int?>("Inicio");
+                    b.Property<int?>("Inicio");
 
-                b.Property<int?>("LineaId");
+                    b.Property<int?>("LineaId");
 
-                b.Property<string>("LugarFinal")
-                    .HasMaxLength(64);
+                    b.Property<string>("LugarFinal")
+                        .HasMaxLength(128);
 
-                b.Property<string>("LugarInicio")
-                    .HasMaxLength(64);
+                    b.Property<string>("LugarInicio")
+                        .HasMaxLength(128);
 
-                b.Property<decimal>("Nocturnas");
+                    b.Property<decimal>("Nocturnas");
 
-                b.Property<string>("Notas");
+                    b.Property<string>("Notas")
+                        .HasMaxLength(1024);
 
-                b.Property<int?>("RelevoId");
+                    b.Property<int?>("RelevoId");
 
-                b.Property<string>("Servicio")
-                    .HasMaxLength(32);
+                    b.Property<string>("Servicio")
+                        .HasMaxLength(32);
 
-                b.Property<int?>("SustiId");
+                    b.Property<int?>("SustiId");
 
-                b.Property<int?>("TomaDeje");
+                    b.Property<int?>("TomaDeje");
 
-                b.Property<decimal>("Trabajadas");
+                    b.Property<decimal>("Trabajadas");
 
-                b.Property<int>("Turno");
+                    b.Property<int>("Turno");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("IncidenciaId");
+                    b.HasIndex("IncidenciaId");
 
-                b.HasIndex("LineaId");
+                    b.HasIndex("LineaId");
 
-                b.HasIndex("RelevoId");
+                    b.HasIndex("RelevoId");
 
-                b.HasIndex("SustiId");
+                    b.HasIndex("SustiId");
 
-                b.ToTable("Calendario");
-            });
+                    b.ToTable("Calendario");
+                });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.HoraAjena", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.Property<DateTime>("Fecha");
+                    b.Property<DateTime>("Fecha");
 
-                b.Property<decimal>("Horas");
+                    b.Property<decimal>("Horas");
 
-                b.Property<string>("Motivo")
-                    .HasMaxLength(256);
+                    b.Property<string>("Motivo")
+                        .HasMaxLength(256);
 
-                b.Property<int>("Tipo");
+                    b.Property<int>("Tipo");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.ToTable("HorasAjenas");
-            });
+                    b.ToTable("HorasAjenas");
+                });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.Incidencia", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.Property<int>("Codigo");
+                    b.Property<int>("Codigo");
 
-                b.Property<string>("Descripcion")
-                    .HasMaxLength(64);
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(128);
 
-                b.Property<string>("Notas");
+                    b.Property<string>("Notas")
+                        .HasMaxLength(1024);
 
-                b.Property<int>("Tipo");
+                    b.Property<int>("Tipo");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.ToTable("Incidencias");
+                    b.ToTable("Incidencias");
 
-                b.HasData(
-                    new {
-                        Id = 1,
-                        Codigo = 0,
-                        Descripcion = "Repite día anterior",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 0
-                    },
-                    new {
-                        Id = 2,
-                        Codigo = 1,
-                        Descripcion = "Trabajo",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 1
-                    },
-                    new {
-                        Id = 3,
-                        Codigo = 2,
-                        Descripcion = "Franqueo",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 4
-                    },
-                    new {
-                        Id = 4,
-                        Codigo = 3,
-                        Descripcion = "Vacaciones",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 4
-                    },
-                    new {
-                        Id = 5,
-                        Codigo = 4,
-                        Descripcion = "F.O.D.",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 3
-                    },
-                    new {
-                        Id = 6,
-                        Codigo = 5,
-                        Descripcion = "Franqueo a trabajar",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 2
-                    },
-                    new {
-                        Id = 7,
-                        Codigo = 6,
-                        Descripcion = "Enferma/o",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 4
-                    },
-                    new {
-                        Id = 8,
-                        Codigo = 7,
-                        Descripcion = "Accidentada/o",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 4
-                    },
-                    new {
-                        Id = 9,
-                        Codigo = 8,
-                        Descripcion = "Permiso",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 6
-                    },
-                    new {
-                        Id = 10,
-                        Codigo = 9,
-                        Descripcion = "F.N.R. año actual",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 4
-                    },
-                    new {
-                        Id = 11,
-                        Codigo = 10,
-                        Descripcion = "F.N.R. año anterior",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 4
-                    },
-                    new {
-                        Id = 12,
-                        Codigo = 11,
-                        Descripcion = "Nos hacen el día",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 1
-                    },
-                    new {
-                        Id = 13,
-                        Codigo = 12,
-                        Descripcion = "Hacemos el día",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 5
-                    },
-                    new {
-                        Id = 14,
-                        Codigo = 13,
-                        Descripcion = "Sanción",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 4
-                    },
-                    new {
-                        Id = 15,
-                        Codigo = 14,
-                        Descripcion = "En otro destino",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 4
-                    },
-                    new {
-                        Id = 16,
-                        Codigo = 15,
-                        Descripcion = "Huelga",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 5
-                    },
-                    new {
-                        Id = 17,
-                        Codigo = 16,
-                        Descripcion = "Día por H. Acumuladas",
-                        Notas = "Incidencia Protegida.",
-                        Tipo = 3
-                    });
-            });
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Codigo = 0,
+                            Descripcion = "Repite día anterior",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Codigo = 1,
+                            Descripcion = "Trabajo",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Codigo = 2,
+                            Descripcion = "Franqueo",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Codigo = 3,
+                            Descripcion = "Vacaciones",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Codigo = 4,
+                            Descripcion = "F.O.D.",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 3
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Codigo = 5,
+                            Descripcion = "Franqueo a trabajar",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Codigo = 6,
+                            Descripcion = "Enferma/o",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Codigo = 7,
+                            Descripcion = "Accidentada/o",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Codigo = 8,
+                            Descripcion = "Permiso",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 6
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Codigo = 9,
+                            Descripcion = "F.N.R. año actual",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Codigo = 10,
+                            Descripcion = "F.N.R. año anterior",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Codigo = 11,
+                            Descripcion = "Nos hacen el día",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 1
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Codigo = 12,
+                            Descripcion = "Hacemos el día",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 5
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Codigo = 13,
+                            Descripcion = "Sanción",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Codigo = 14,
+                            Descripcion = "En otro destino",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 4
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Codigo = 15,
+                            Descripcion = "Huelga",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 5
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Codigo = 16,
+                            Descripcion = "Día por H. Acumuladas",
+                            Notas = "Incidencia Protegida.",
+                            Tipo = 3
+                        });
+                });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.Linea", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.Property<string>("Descripcion")
-                    .HasMaxLength(128);
+                    b.Property<string>("Descripcion")
+                        .HasMaxLength(128);
 
-                b.Property<string>("Notas");
+                    b.Property<string>("Notas")
+                        .HasMaxLength(1024);
 
-                b.Property<string>("Numero")
-                    .HasMaxLength(32);
+                    b.Property<string>("Numero")
+                        .HasMaxLength(32);
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.ToTable("Lineas");
-
-                b.HasData(
-                    new {
-                        Id = 1,
-                        Descripcion = "Nueva Línea",
-                        Numero = ""
-                    });
-            });
+                    b.ToTable("Lineas");
+                });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.ServicioDia", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.Property<int?>("DiaCalendarioId");
+                    b.Property<int?>("DiaCalendarioId");
 
-                b.Property<int?>("Final");
+                    b.Property<decimal>("Euros");
 
-                b.Property<int?>("Inicio");
+                    b.Property<int?>("Final");
 
-                b.Property<int?>("LineaId");
+                    b.Property<int?>("Inicio");
 
-                b.Property<string>("LugarFinal")
-                    .HasMaxLength(64);
+                    b.Property<int?>("LineaId");
 
-                b.Property<string>("LugarInicio")
-                    .HasMaxLength(64);
+                    b.Property<string>("LugarFinal")
+                        .HasMaxLength(128);
 
-                b.Property<string>("Servicio")
-                    .HasMaxLength(32);
+                    b.Property<string>("LugarInicio")
+                        .HasMaxLength(128);
 
-                b.Property<int>("Turno");
+                    b.Property<string>("Notas")
+                        .HasMaxLength(1024);
 
-                b.HasKey("Id");
+                    b.Property<string>("Servicio")
+                        .HasMaxLength(32);
 
-                b.HasIndex("DiaCalendarioId");
+                    b.Property<int?>("TomaDeje");
 
-                b.HasIndex("LineaId");
+                    b.Property<int>("Turno");
 
-                b.ToTable("ServiciosDia");
-            });
+                    b.HasKey("Id");
+
+                    b.HasIndex("DiaCalendarioId");
+
+                    b.HasIndex("LineaId");
+
+                    b.ToTable("ServiciosDia");
+                });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.ServicioLinea", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.Property<decimal>("Euros");
+                    b.Property<decimal>("Euros");
 
-                b.Property<int?>("Final");
+                    b.Property<int?>("Final");
 
-                b.Property<int?>("Inicio");
+                    b.Property<int?>("Inicio");
 
-                b.Property<int?>("LineaId");
+                    b.Property<int?>("LineaId");
 
-                b.Property<string>("LugarFinal")
-                    .HasMaxLength(64);
+                    b.Property<string>("LugarFinal")
+                        .HasMaxLength(128);
 
-                b.Property<string>("LugarInicio")
-                    .HasMaxLength(64);
+                    b.Property<string>("LugarInicio")
+                        .HasMaxLength(128);
 
-                b.Property<string>("Notas");
+                    b.Property<string>("Notas")
+                        .HasMaxLength(1024);
 
-                b.Property<string>("Servicio")
-                    .HasMaxLength(32);
+                    b.Property<string>("Servicio")
+                        .HasMaxLength(32);
 
-                b.Property<int?>("TomaDeje");
+                    b.Property<int?>("TomaDeje");
 
-                b.Property<int>("Turno");
+                    b.Property<int>("Turno");
 
-                b.HasKey("Id");
+                    b.HasKey("Id");
 
-                b.HasIndex("LineaId");
+                    b.HasIndex("LineaId");
 
-                b.ToTable("ServiciosLinea");
-            });
+                    b.ToTable("ServiciosLinea");
+                });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.ServicioSecundario", b =>
-            {
-                b.Property<int>("Id")
-                    .ValueGeneratedOnAdd();
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                b.Property<int?>("Final");
+                    b.Property<decimal>("Euros");
 
-                b.Property<int?>("Inicio");
+                    b.Property<int?>("Final");
 
-                b.Property<int?>("LineaId");
+                    b.Property<int?>("Inicio");
 
-                b.Property<string>("LugarFinal")
-                    .HasMaxLength(64);
+                    b.Property<int?>("LineaId");
 
-                b.Property<string>("LugarInicio")
-                    .HasMaxLength(64);
+                    b.Property<string>("LugarFinal")
+                        .HasMaxLength(128);
 
-                b.Property<string>("Servicio")
-                    .HasMaxLength(32);
+                    b.Property<string>("LugarInicio")
+                        .HasMaxLength(128);
 
-                b.Property<int?>("ServicioLineaId");
+                    b.Property<string>("Notas")
+                        .HasMaxLength(1024);
 
-                b.Property<int>("Turno");
+                    b.Property<string>("Servicio")
+                        .HasMaxLength(32);
 
-                b.HasKey("Id");
+                    b.Property<int?>("ServicioLineaId");
 
-                b.HasIndex("LineaId");
+                    b.Property<int?>("TomaDeje");
 
-                b.HasIndex("ServicioLineaId");
+                    b.Property<int>("Turno");
 
-                b.ToTable("ServiciosSecundarios");
-            });
+                    b.HasKey("Id");
+
+                    b.HasIndex("LineaId");
+
+                    b.HasIndex("ServicioLineaId");
+
+                    b.ToTable("ServiciosSecundarios");
+                });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.DiaCalendario", b =>
-            {
-                b.HasOne("Quattro.Core.Data.Models.Incidencia", "Incidencia")
-                    .WithMany()
-                    .HasForeignKey("IncidenciaId");
+                {
+                    b.HasOne("Quattro.Core.Data.Models.Incidencia", "Incidencia")
+                        .WithMany()
+                        .HasForeignKey("IncidenciaId");
 
-                b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
-                    .WithMany()
-                    .HasForeignKey("LineaId");
+                    b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
+                        .WithMany()
+                        .HasForeignKey("LineaId");
 
-                b.HasOne("Quattro.Core.Data.Models.Compañero", "Relevo")
-                    .WithMany()
-                    .HasForeignKey("RelevoId");
+                    b.HasOne("Quattro.Core.Data.Models.Compañero", "Relevo")
+                        .WithMany()
+                        .HasForeignKey("RelevoId");
 
-                b.HasOne("Quattro.Core.Data.Models.Compañero", "Susti")
-                    .WithMany()
-                    .HasForeignKey("SustiId");
-            });
+                    b.HasOne("Quattro.Core.Data.Models.Compañero", "Susti")
+                        .WithMany()
+                        .HasForeignKey("SustiId");
+                });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.ServicioDia", b =>
-            {
-                b.HasOne("Quattro.Core.Data.Models.DiaCalendario")
-                    .WithMany("Servicios")
-                    .HasForeignKey("DiaCalendarioId");
+                {
+                    b.HasOne("Quattro.Core.Data.Models.DiaCalendario")
+                        .WithMany("Servicios")
+                        .HasForeignKey("DiaCalendarioId");
 
-                b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
-                    .WithMany()
-                    .HasForeignKey("LineaId");
-            });
+                    b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
+                        .WithMany()
+                        .HasForeignKey("LineaId");
+                });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.ServicioLinea", b =>
-            {
-                b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
-                    .WithMany("Servicios")
-                    .HasForeignKey("LineaId");
-            });
+                {
+                    b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
+                        .WithMany("Servicios")
+                        .HasForeignKey("LineaId");
+                });
 
             modelBuilder.Entity("Quattro.Core.Data.Models.ServicioSecundario", b =>
-            {
-                b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
-                    .WithMany()
-                    .HasForeignKey("LineaId");
+                {
+                    b.HasOne("Quattro.Core.Data.Models.Linea", "Linea")
+                        .WithMany()
+                        .HasForeignKey("LineaId");
 
-                b.HasOne("Quattro.Core.Data.Models.ServicioLinea")
-                    .WithMany("Servicios")
-                    .HasForeignKey("ServicioLineaId");
-            });
+                    b.HasOne("Quattro.Core.Data.Models.ServicioLinea")
+                        .WithMany("Servicios")
+                        .HasForeignKey("ServicioLineaId");
+                });
 #pragma warning restore 612, 618
         }
     }

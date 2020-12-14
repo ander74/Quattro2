@@ -1,11 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Quattro.Core.Common;
 
 namespace Quattro.Core.Data.Models {
 
-    [Table("HorasAjenas")]
     public class HoraAjena : BaseModel {
 
 
@@ -64,23 +62,13 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(HoraAjena model, bool ignorarId = false) {
+        public void FromModel(HoraAjena model) {
             if (model == null) return;
-            this.Id = ignorarId ? this.Id : model.Id;
+            Id = model.Id;
             fecha = model.Fecha;
             horas = model.Horas;
             motivo = model.Motivo;
             tipo = model.Tipo;
-        }
-
-        public HoraAjena ToModel(bool ignorarId = false) {
-            return new HoraAjena {
-                Id = ignorarId ? 0 : this.Id,
-                Fecha = this.Fecha,
-                Horas = this.Horas,
-                Motivo = this.Motivo,
-                Tipo = this.Tipo,
-            };
         }
 
         #endregion

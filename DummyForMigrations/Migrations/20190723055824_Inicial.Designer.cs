@@ -3,14 +3,16 @@ using System;
 using DummyForMigrations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DummyForMigrations.Migrations
 {
     [DbContext(typeof(QuattroContext))]
-    partial class QuattroContextModelSnapshot : ModelSnapshot
+    [Migration("20190723055824_Inicial")]
+    partial class Inicial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

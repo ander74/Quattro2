@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.EntityFrameworkCore;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -23,7 +22,7 @@ namespace Quattro.Core.ViewModels {
         #region CAMPOS PRIVADOS
         // ====================================================================================================
 
-        private readonly ICalendarioRepository repo;
+        private readonly IDataRepository repo;
         private readonly IDialogService dialog;
         private readonly IMvxNavigationService navigation;
 
@@ -35,7 +34,7 @@ namespace Quattro.Core.ViewModels {
         #region CONSTRUCTOR
         // ====================================================================================================
 
-        public CalendarioViewModel(ICalendarioRepository repo, IDialogService dialog, IMvxNavigationService navigation) {
+        public CalendarioViewModel(IDataRepository repo, IDialogService dialog, IMvxNavigationService navigation) {
             this.repo = repo;
             this.dialog = dialog;
             this.navigation = navigation;
@@ -56,7 +55,7 @@ namespace Quattro.Core.ViewModels {
             this.IsInSelectMode = false;
             // Inicialización de propiedades.
             this.Fecha = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            this.ListaDias = await repo.GetMes(Fecha).ToListAsync();
+            this.ListaDias = repo.GetMes(Fecha);
 
         }
 
@@ -84,6 +83,7 @@ namespace Quattro.Core.ViewModels {
                 }
                 Vibration.Vibrate(15);
                 RaisePropertyChanged(nameof(Titulo));
+                RaisePropertyChanged(nameof(IsInSelectMode));
                 RaisePropertyChanged(nameof(IsMultipleSelect));
                 return;
             }
@@ -144,7 +144,7 @@ namespace Quattro.Core.ViewModels {
                 return;
             }
             Fecha = Fecha.AddMonths(-1);
-            this.ListaDias = await repo.GetMes(Fecha).ToListAsync();
+            this.ListaDias = repo.GetMes(Fecha);
         }
         #endregion
 
@@ -160,7 +160,7 @@ namespace Quattro.Core.ViewModels {
         private async Task DoSiguientePulsadoAsync() {
             Vibration.Vibrate(15);
             Fecha = Fecha.AddMonths(1);
-            this.ListaDias = await repo.GetMes(Fecha).ToListAsync();
+            this.ListaDias = repo.GetMes(Fecha);
         }
         #endregion
 
@@ -218,7 +218,7 @@ namespace Quattro.Core.ViewModels {
             var dia = ListaDias.FirstOrDefault(d => d.IsSelected);
             if (dia == null) return;
             if (DiaCopiado == null) DiaCopiado = new DiaCalendario();
-            DiaCopiado.FromModel(dia, true);
+            DiaCopiado.FromModel(dia);
             dialog.ShortToast("Dia copiado");
         }
         #endregion
@@ -236,10 +236,12 @@ namespace Quattro.Core.ViewModels {
             Vibration.Vibrate(15);
             if (DiaCopiado == null) return;
             foreach (var dia in ListaDias.Where(d => d.IsSelected)) {
+                var id = dia.Id;
                 var fecha = dia.Fecha;
                 var esFranqueo = dia.EsFranqueo;
                 var esFestivo = dia.EsFestivo;
-                dia.FromModel(DiaCopiado, true);
+                dia.FromModel(DiaCopiado);
+                dia.Id = id;
                 dia.Fecha = fecha;
                 dia.EsFranqueo = esFranqueo;
                 dia.EsFestivo = esFestivo;
@@ -265,10 +267,12 @@ namespace Quattro.Core.ViewModels {
                              "Si",
                              "Cancelar", async () => {
                                  foreach (var dia in ListaDias.Where(d => d.IsSelected)) {
+                                     var id = dia.Id;
                                      var fecha = dia.Fecha;
                                      var esFranqueo = dia.EsFranqueo;
                                      var esFestivo = dia.EsFestivo;
-                                     dia.FromModel(new DiaCalendario(), true);
+                                     dia.FromModel(new DiaCalendario());
+                                     dia.Id = id;
                                      dia.Fecha = fecha;
                                      dia.EsFranqueo = esFranqueo;
                                      dia.EsFestivo = esFestivo;
@@ -299,10 +303,10 @@ namespace Quattro.Core.ViewModels {
             var servicio = linea.Servicios.FirstOrDefault(s => s.Servicio.Equals(dia.Servicio) && s.Turno == dia.Turno);
             if (servicio == null) {
                 servicio = new ServicioLinea();
-                servicio.FromModel(dia);
+                servicio.FromModel(new ServicioBase(dia));
                 linea.Servicios.Add(servicio);
             } else {
-                servicio.FromModel(dia);
+                servicio.FromModel(new ServicioBase(dia));
             }
             await GuardarDatos();
             dialog.ShortToast("Servicio guardado.");
@@ -327,7 +331,7 @@ namespace Quattro.Core.ViewModels {
             var fecha = dia.Fecha;
             var esFranqueo = dia.EsFranqueo;
             var esFestivo = dia.EsFestivo;
-            dia.FromModel(diaAnterior, true);
+            dia.FromModel(new DiaCalendario(diaAnterior));
             dia.Fecha = fecha;
             dia.EsFranqueo = esFranqueo;
             dia.EsFestivo = esFestivo;
@@ -381,9 +385,9 @@ namespace Quattro.Core.ViewModels {
             }
         }
 
-        public string FechaTexto {
-            get => fecha.ToString("MMM - yyyy").ToUpper();
-        }
+        //public string FechaTexto {
+        //    get => fecha.ToString("MMM - yyyy").ToUpper();
+        //}
 
 
         IEnumerable<DiaCalendario> listaDias;

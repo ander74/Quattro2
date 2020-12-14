@@ -1,18 +1,19 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using Quattro.Core.Common;
+using Quattro.Core.Data.Models;
 
-namespace Quattro.Core.Data.Models {
+namespace Quattro.Core.Data.SQLiteEntities {
 
-    public class Linea : BaseModel {
+    public class CompañeroEntity {
 
 
         // ====================================================================================================
-        #region CONSTRUCTOR
+        #region CONSTRUCTORES
         // ====================================================================================================
 
-        public Linea() { }
+        public CompañeroEntity() { }
 
-        public Linea(Linea model) => this.FromModel(model);
+        public CompañeroEntity(Compañero model) => FromModel(model);
+
 
         #endregion
         // ====================================================================================================
@@ -24,36 +25,22 @@ namespace Quattro.Core.Data.Models {
 
         public int Id { get; set; }
 
+        public int Matricula { get; set; }
 
-        private string numero;
-        [MaxLength(32)]
-        public string Numero {
-            get => numero;
-            set => SetProperty(ref numero, value);
-        }
+        public string Nombre { get; set; }
 
+        public string Apellidos { get; set; }
 
-        private string descripcion;
-        [MaxLength(128)]
-        public string Descripcion {
-            get => descripcion;
-            set => SetProperty(ref descripcion, value);
-        }
+        public string Telefono { get; set; }
 
+        public string Email { get; set; }
 
-        private string notas;
-        [MaxLength(1024)]
-        public string Notas {
-            get => notas;
-            set => SetProperty(ref notas, value);
-        }
+        public TipoCompañero Calificacion { get; set; }
 
+        public int Deuda { get; set; }
 
-        private List<ServicioLinea> servicios;
-        public List<ServicioLinea> Servicios {
-            get => servicios;
-            set => SetProperty(ref servicios, value);
-        }
+        public string Notas { get; set; }
+
 
         #endregion
         // ====================================================================================================
@@ -63,17 +50,24 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(Linea model) {
+        public void FromModel(Compañero model) {
             if (model == null) return;
             Id = model.Id;
-            numero = model.Numero;
-            descripcion = model.Descripcion;
-            notas = model.Notas;
-            servicios = model.Servicios;
+            Matricula = model.Matricula;
+            Nombre = model.Nombre;
+            Apellidos = model.Apellidos;
+            Telefono = model.Telefono;
+            Email = model.Email;
+            Calificacion = model.Calificacion;
+            Deuda = model.Deuda;
+            Notas = model.Notas;
         }
 
         #endregion
         // ====================================================================================================
+
+
+
 
     }
 }

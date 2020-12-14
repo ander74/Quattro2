@@ -1,37 +1,49 @@
-﻿namespace Quattro.Core.Data.Models {
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Quattro.Core.Data.Models;
 
-    public class ServicioDia : ServicioBase {
+namespace Quattro.Core.Data.Repositories {
+
+    public interface IDataRepository {
 
 
         // ====================================================================================================
-        #region CONSTRUCTOR
+        #region MÉTODOS CALENDARIO
         // ====================================================================================================
 
-        public ServicioDia() { }
+        IEnumerable<DiaCalendario> GetMes(DateTime fecha);
 
-        public ServicioDia(ServicioDia model) => this.FromModel(model);
+        Task GuardarDatosAsync();
+
+        DiaCalendario GetDia(DateTime fecha);
+
+        Task<DiaCalendario> GetDiaAsync(DateTime fecha);
+
 
         #endregion
         // ====================================================================================================
 
 
         // ====================================================================================================
-        #region PROPIEDADES
+        #region MÉTODOS INCIDENCIAS
         // ====================================================================================================
 
+        Task<Incidencia> GetIncidenciaAsync(int codigo);
+
+        Task<IEnumerable<Incidencia>> GetIncidenciasAsync();
 
         #endregion
         // ====================================================================================================
 
 
         // ====================================================================================================
-        #region MÉTODOS PÚBLICOS
+        #region MÉTODOS LÍNEAS
         // ====================================================================================================
 
-        public void FromModel(ServicioDia model) {
-            if (model == null) return;
-            base.FromModel(model);
-        }
+        Task<IEnumerable<Linea>> GetLineasAsync(bool incluirCero = false);
+
+        Task<Linea> GetLineaByNumeroAsync(string numero);
 
         #endregion
         // ====================================================================================================

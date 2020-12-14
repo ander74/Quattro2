@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using Quattro.Core.Data.Models;
 
-namespace Quattro.Core.Data.Models {
+namespace Quattro.Core.Data.SQLiteEntities {
 
-    public class Linea : BaseModel {
+    public class LineaEntity {
 
 
         // ====================================================================================================
-        #region CONSTRUCTOR
+        #region CONSTRUCTORES
         // ====================================================================================================
 
-        public Linea() { }
+        public LineaEntity() { }
 
-        public Linea(Linea model) => this.FromModel(model);
+        public LineaEntity(Linea model) => FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -24,36 +25,14 @@ namespace Quattro.Core.Data.Models {
 
         public int Id { get; set; }
 
+        public string Numero { get; set; }
 
-        private string numero;
-        [MaxLength(32)]
-        public string Numero {
-            get => numero;
-            set => SetProperty(ref numero, value);
-        }
+        public string Descripcion { get; set; }
 
+        public string Notas { get; set; }
 
-        private string descripcion;
-        [MaxLength(128)]
-        public string Descripcion {
-            get => descripcion;
-            set => SetProperty(ref descripcion, value);
-        }
+        public IEnumerable<ServicioLineaEntity> Servicios { get; set; }
 
-
-        private string notas;
-        [MaxLength(1024)]
-        public string Notas {
-            get => notas;
-            set => SetProperty(ref notas, value);
-        }
-
-
-        private List<ServicioLinea> servicios;
-        public List<ServicioLinea> Servicios {
-            get => servicios;
-            set => SetProperty(ref servicios, value);
-        }
 
         #endregion
         // ====================================================================================================
@@ -65,15 +44,17 @@ namespace Quattro.Core.Data.Models {
 
         public void FromModel(Linea model) {
             if (model == null) return;
-            Id = model.Id;
-            numero = model.Numero;
-            descripcion = model.Descripcion;
-            notas = model.Notas;
-            servicios = model.Servicios;
+            this.Id = model.Id;
+            Numero = model.Numero;
+            Descripcion = model.Descripcion;
+            Notas = model.Notas;
+            Servicios = model.Servicios.Select(s => new ServicioLineaEntity(s));
         }
 
         #endregion
         // ====================================================================================================
+
+
 
     }
 }

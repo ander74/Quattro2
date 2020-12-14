@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Quattro.Core.Data.Models {
 
-    [Table("ServiciosLinea")]
-    public class ServicioLinea : Servicio {
+    public class ServicioLinea : ServicioBase {
 
         // ====================================================================================================
         #region CONSTRUCTOR
@@ -38,16 +36,10 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(ServicioLinea model, bool ignorarId = false) {
+        public void FromModel(ServicioLinea model) {
             if (model == null) return;
-            base.FromModel(model, ignorarId);
+            base.FromModel(model);
             servicios = model.Servicios;
-        }
-
-        public new ServicioLinea ToModel() {
-            ServicioLinea model = (ServicioLinea)base.ToModel();
-            model.Servicios = this.Servicios;
-            return model;
         }
 
         #endregion

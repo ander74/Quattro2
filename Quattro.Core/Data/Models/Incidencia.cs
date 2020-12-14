@@ -1,10 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Quattro.Core.Common;
 
 namespace Quattro.Core.Data.Models {
 
-    [Table("Incidencias")]
     public class Incidencia : BaseModel {
 
 
@@ -35,7 +33,7 @@ namespace Quattro.Core.Data.Models {
 
 
         private string descripcion;
-        [MaxLength(64)]
+        [MaxLength(128)]
         public string Descripcion {
             get => descripcion;
             set => SetProperty(ref descripcion, value);
@@ -50,6 +48,7 @@ namespace Quattro.Core.Data.Models {
 
 
         private string notas;
+        [MaxLength(1024)]
         public string Notas {
             get => notas;
             set => SetProperty(ref notas, value);
@@ -64,24 +63,15 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(Incidencia model, bool ignorarId = false) {
+        public void FromModel(Incidencia model) {
             if (model == null) return;
-            this.Id = ignorarId ? this.Id : model.Id;
+            Id = model.Id;
             codigo = model.Codigo;
             descripcion = model.Descripcion;
             notas = model.Notas;
             tipo = model.Tipo;
         }
 
-        public Incidencia ToEntity(bool ignorarId = false) {
-            return new Incidencia {
-                Id = ignorarId ? 0 : this.Id,
-                Codigo = this.Codigo,
-                Descripcion = this.Descripcion,
-                Notas = this.Notas,
-                Tipo = this.Tipo,
-            };
-        }
 
         #endregion
         // ====================================================================================================

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using MvvmCross.Commands;
@@ -20,7 +21,7 @@ namespace Quattro.Core.ViewModels {
         #region CAMPOS PRIVADOS
         // ====================================================================================================
 
-        private readonly ICalendarioRepository repo;
+        private readonly IDataRepository repo;
         private readonly IDialogService dialog;
         private readonly IMvxNavigationService navigation;
         private DateTime fechaArgs;
@@ -33,7 +34,7 @@ namespace Quattro.Core.ViewModels {
         #region CONSTRUCTOR
         // ====================================================================================================
 
-        public DiaCalendarioViewModel(ICalendarioRepository repo, IDialogService dialog, IMvxNavigationService navigation) {
+        public DiaCalendarioViewModel(IDataRepository repo, IDialogService dialog, IMvxNavigationService navigation) {
             this.repo = repo;
             this.dialog = dialog;
             this.navigation = navigation;
@@ -49,10 +50,13 @@ namespace Quattro.Core.ViewModels {
 
         public override async Task Initialize() {
             await base.Initialize();
-            ListaIncidencias = await repo.GetIncidenciasAsync();
-            ListaLineas = await repo.GetLineasAsync(true);
+            ListaIncidencias = (await repo.GetIncidenciasAsync()).ToList();
+            ListaLineas = (await repo.GetLineasAsync(true)).ToList();
+            ListaLineas.Insert(0, new Linea { Id = -1, Descripcion = "Nueva Linea" });
+            ListaLineas.Insert(0, new Linea { Id = -2, Descripcion = "" });
             if (fechaArgs.Ticks > 0) {
-                Dia = await repo.GetDiaAsync(fechaArgs);
+                Dia = repo.GetDia(fechaArgs);
+                //Dia = App.CalendarioVM.ListaDias.FirstOrDefault(d => d.Fecha == fechaArgs);
                 IncidenciaSeleccionada = dia.Incidencia;
                 LineaSeleccionada = dia.Linea;
             }
@@ -86,7 +90,7 @@ namespace Quattro.Core.ViewModels {
             }
         }
         private void DoIncidenciaSeleccionada(Incidencia incidencia) {
-            Dia.Incidencia = incidencia;
+            if (Dia != null) Dia.Incidencia = incidencia;
         }
         #endregion
 
@@ -101,7 +105,7 @@ namespace Quattro.Core.ViewModels {
             }
         }
         private void DoLineaSeleccionada(Linea linea) {
-            if (linea.Id == 2) {
+            if (linea.Id == -1) {
                 string numero = string.Empty;
                 string descripcion = string.Empty;
                 dialog.InputNuevaLinea((n, d) => {
@@ -112,11 +116,29 @@ namespace Quattro.Core.ViewModels {
                         LineaSeleccionada = Dia.Linea;
                     }
                 });
+            } else if (linea.Id == -2) {
+                if (Dia != null) Dia.Linea = null;
             } else {
-                Dia.Linea = linea;
+                if (Dia != null) Dia.Linea = linea;
             }
         }
         #endregion
+
+
+
+        #region InicioPulsado
+        private MvxCommand inicioPulsadoCommand;
+        public ICommand InicioPulsadoCommand {
+            get {
+                inicioPulsadoCommand = inicioPulsadoCommand ?? new MvxCommand(DoInicioPulsado);
+                return inicioPulsadoCommand;
+            }
+        }
+        private void DoInicioPulsado() {
+            dialog.InputTiempo("Inicio", Dia.Inicio, (i) => Dia.Inicio = i);
+        }
+        #endregion
+
 
 
         #endregion
@@ -142,7 +164,7 @@ namespace Quattro.Core.ViewModels {
             get => $"{(DiaSemana)Dia.Fecha.DayOfWeek}, {Dia.Fecha.Day.ToString("00")} - {(Mes)Dia.Fecha.Month}";
         }
 
-        public IEnumerable<Incidencia> ListaIncidencias { get; set; }
+        public List<Incidencia> ListaIncidencias { get; set; }
 
 
         private Incidencia incidenciaSeleccionada;
@@ -152,7 +174,7 @@ namespace Quattro.Core.ViewModels {
         }
 
 
-        public IEnumerable<Linea> ListaLineas { get; set; }
+        public List<Linea> ListaLineas { get; set; }
 
 
         private Linea lineaSeleccionada;

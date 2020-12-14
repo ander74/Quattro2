@@ -4,6 +4,7 @@ using Android.Views;
 using Android.Widget;
 using MvvmCross;
 using MvvmCross.Platforms.Android;
+using Quattro.Core.Common;
 using Quattro.Core.Interfaces;
 
 namespace Quattro.Droid.Services {
@@ -86,6 +87,24 @@ namespace Quattro.Droid.Services {
             adb.Create().Show();
         }
 
+
+        public void InputTiempo(string titulo, Tiempo hora, Action<Tiempo> confirmar) {
+            var top = Mvx.IoCProvider.Resolve<IMvxAndroidCurrentTopActivity>();
+            var act = top.Activity;
+            var adb = new AlertDialog.Builder(act);
+            adb.SetTitle(titulo);
+            var vista = LayoutInflater.From(act).Inflate(Resource.Layout.TiempoDialog, null);
+            adb.SetView(vista);
+            var selector = vista.FindViewById<TimePicker>(Resource.Id.selectorTiempo);
+            selector.SetIs24HourView(Java.Lang.Boolean.True);
+            selector.Hour = hora.Horas;
+            selector.Minute = hora.Minutos;
+
+            adb.SetPositiveButton("Aceptar", (sender, args) => { if (confirmar != null) confirmar.Invoke(new Tiempo(selector.Hour, selector.Minute)); });
+            adb.SetNegativeButton("Cancelar", (sender, args) => { });
+            adb.Create().Show();
+
+        }
 
         #endregion
         // ====================================================================================================

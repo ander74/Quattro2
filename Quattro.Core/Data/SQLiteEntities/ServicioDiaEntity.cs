@@ -1,17 +1,17 @@
-﻿using Quattro.Core.Common;
+﻿using Quattro.Core.Data.Models;
 
-namespace Quattro.Core.Data.Models {
+namespace Quattro.Core.Data.SQLiteEntities {
 
-    public class Servicio : ServicioBase {
+    public class ServicioDiaEntity : ServicioBaseEntity {
 
 
         // ====================================================================================================
         #region CONSTRUCTOR
         // ====================================================================================================
 
-        public Servicio() { }
+        public ServicioDiaEntity() { }
 
-        public Servicio(Servicio model) => this.FromModel(model);
+        public ServicioDiaEntity(ServicioDia model) => FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -21,29 +21,7 @@ namespace Quattro.Core.Data.Models {
         #region PROPIEDADES
         // ====================================================================================================
 
-
-        private Tiempo tomaDeje;
-        public Tiempo TomaDeje {
-            get => tomaDeje;
-            set => SetProperty(ref tomaDeje, value);
-        }
-
-
-        private decimal euros;
-        public decimal Euros {
-            get => euros;
-            set => SetProperty(ref euros, value);
-        }
-
-
-        private string notas;
-        public string Notas {
-            get => notas;
-            set => SetProperty(ref notas, value);
-        }
-
-
-
+        public int IdDiaCalendario { get; set; }
 
         #endregion
         // ====================================================================================================
@@ -53,24 +31,16 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(Servicio model, bool ignorarId = false) {
+        public void FromModel(ServicioDia model) {
             if (model == null) return;
-            base.FromModel(model, ignorarId);
-            tomaDeje = model.TomaDeje;
-            euros = model.Euros;
-            notas = model.Notas;
-        }
-
-        public new Servicio ToModel() {
-            Servicio model = (Servicio)base.ToModel();
-            model.TomaDeje = this.TomaDeje;
-            model.Euros = this.Euros;
-            model.Notas = this.Notas;
-            return model;
+            //IdDiaCalendario = model.IdDiaCalendario;
+            base.FromModel(model);
         }
 
         #endregion
         // ====================================================================================================
+
+
 
 
     }

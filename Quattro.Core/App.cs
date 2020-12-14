@@ -2,6 +2,7 @@
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 using Quattro.Core.Data;
+using Quattro.Core.Data.Repositories;
 using Quattro.Core.ViewModels;
 using Xamarin.Essentials;
 
@@ -23,14 +24,18 @@ namespace Quattro.Core {
                 .RegisterAsLazySingleton();
 
             // Inyecta cualquier clase que termine en 'Repository' como un singleton, por medio de una interfaz.
-            this.CreatableTypes()
-                .EndingWith("Repository")
-                .AsInterfaces()
-                .RegisterAsLazySingleton();
+            //this.CreatableTypes()
+            //    .EndingWith("Repository")
+            //    .AsInterfaces()
+            //    .RegisterAsLazySingleton();
 
             // Inyecta el QuattroContext
             Mvx.IoCProvider.RegisterSingleton(new QuattroContext());
+            //Mvx.IoCProvider.RegisterSingleton(new SQLiteContext());
 
+            // Inyecta el repositorio.
+            Mvx.IoCProvider.RegisterType<IDataRepository, EFDataRepository>();
+            //Mvx.IoCProvider.RegisterType<IDataRepository, MocDataRepository>();
 
             // Inicia la aplicación usando el ViewModel indicado.
             // Este se encargará de inicializar la vista, etc.

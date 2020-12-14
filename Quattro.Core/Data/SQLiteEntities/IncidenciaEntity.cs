@@ -1,18 +1,17 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using Quattro.Core.Common;
+using Quattro.Core.Data.Models;
 
-namespace Quattro.Core.Data.Models {
+namespace Quattro.Core.Data.SQLiteEntities {
 
-    public class Linea : BaseModel {
-
+    public class IncidenciaEntity {
 
         // ====================================================================================================
-        #region CONSTRUCTOR
+        #region CONSTRUCTORES
         // ====================================================================================================
 
-        public Linea() { }
+        public IncidenciaEntity() { }
 
-        public Linea(Linea model) => this.FromModel(model);
+        public IncidenciaEntity(Incidencia model) => FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -24,36 +23,15 @@ namespace Quattro.Core.Data.Models {
 
         public int Id { get; set; }
 
-
-        private string numero;
-        [MaxLength(32)]
-        public string Numero {
-            get => numero;
-            set => SetProperty(ref numero, value);
-        }
+        public int Codigo { get; set; }
 
 
-        private string descripcion;
-        [MaxLength(128)]
-        public string Descripcion {
-            get => descripcion;
-            set => SetProperty(ref descripcion, value);
-        }
+        public string Descripcion { get; set; }
 
+        public TipoIncidencia Tipo { get; set; }
 
-        private string notas;
-        [MaxLength(1024)]
-        public string Notas {
-            get => notas;
-            set => SetProperty(ref notas, value);
-        }
+        public string Notas { get; set; }
 
-
-        private List<ServicioLinea> servicios;
-        public List<ServicioLinea> Servicios {
-            get => servicios;
-            set => SetProperty(ref servicios, value);
-        }
 
         #endregion
         // ====================================================================================================
@@ -63,17 +41,19 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(Linea model) {
+        public void FromModel(Incidencia model) {
             if (model == null) return;
             Id = model.Id;
-            numero = model.Numero;
-            descripcion = model.Descripcion;
-            notas = model.Notas;
-            servicios = model.Servicios;
+            Codigo = model.Codigo;
+            Descripcion = model.Descripcion;
+            Tipo = model.Tipo;
+            Notas = model.Notas;
         }
 
         #endregion
         // ====================================================================================================
+
+
 
     }
 }

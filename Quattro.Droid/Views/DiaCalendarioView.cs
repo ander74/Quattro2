@@ -4,8 +4,10 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using MvvmCross;
 using MvvmCross.Droid.Support.V7.AppCompat;
 using Quattro.Core.Common;
+using Quattro.Core.Interfaces;
 using Quattro.Core.ViewModels;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
@@ -30,16 +32,27 @@ namespace Quattro.Droid.Views {
 
         }
 
+        //private void EditInicio_Touch(object sender, View.TouchEventArgs e) {
+        //    if (e.Event.Action == MotionEventActions.Up) {
+        //        TimePickerDialog timeDialog = new TimePickerDialog(this, TiempoInicio, ViewModel.Dia.Inicio?.Horas ?? 0, ViewModel.Dia.Inicio?.Minutos ?? 0, true);
+        //        timeDialog.SetMessage("Hora de Inicio");
+        //        timeDialog.Show();
+        //        ((EditText)sender).RequestFocus();
+        //        ((EditText)sender).SetSelection(0);
+        //        e.Handled = true;
+        //    }
+        //}
+
         private void EditInicio_Touch(object sender, View.TouchEventArgs e) {
             if (e.Event.Action == MotionEventActions.Up) {
-                TimePickerDialog timeDialog = new TimePickerDialog(this, TiempoInicio, ViewModel.Dia.Inicio?.Horas ?? 0, ViewModel.Dia.Inicio?.Minutos ?? 0, true);
-                timeDialog.SetMessage("Hora de Inicio");
-                timeDialog.Show();
-                ((EditText)sender).RequestFocus();
-                ((EditText)sender).SetSelection(0);
+                Mvx.IoCProvider.Resolve<IDialogService>().InputTiempo("Inicio", ViewModel.Dia.Inicio, (i) => ViewModel.Dia.Inicio = i);
                 e.Handled = true;
             }
         }
+
+
+
+
 
         private void EditFinal_Touch(object sender, View.TouchEventArgs e) {
             if (e.Event.Action == MotionEventActions.Up) {

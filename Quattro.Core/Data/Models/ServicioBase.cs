@@ -47,7 +47,7 @@ namespace Quattro.Core.Data.Models {
 
 
         private string lugarInicio;
-        [MaxLength(64)]
+        [MaxLength(128)]
         public string LugarInicio {
             get => lugarInicio;
             set => SetProperty(ref lugarInicio, value);
@@ -62,11 +62,34 @@ namespace Quattro.Core.Data.Models {
 
 
         private string lugarFinal;
-        [MaxLength(64)]
+        [MaxLength(128)]
         public string LugarFinal {
             get => lugarFinal;
             set => SetProperty(ref lugarFinal, value);
         }
+
+
+        private Tiempo tomaDeje;
+        public Tiempo TomaDeje {
+            get => tomaDeje;
+            set => SetProperty(ref tomaDeje, value);
+        }
+
+
+        private decimal euros;
+        public decimal Euros {
+            get => euros;
+            set => SetProperty(ref euros, value);
+        }
+
+
+        private string notas;
+        [MaxLength(1024)]
+        public string Notas {
+            get => notas;
+            set => SetProperty(ref notas, value);
+        }
+
 
 
         private Linea linea;
@@ -85,35 +108,19 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(ServicioBase model, bool ignorarId = false) {
+        public void FromModel(ServicioBase model) {
             if (model == null) return;
-            this.Id = ignorarId ? this.Id : model.Id;
-            final = model.Final;
-            inicio = model.Inicio;
-            lugarFinal = model.LugarFinal;
-            lugarInicio = model.LugarInicio;
+            Id = model.Id;
             servicio = model.Servicio;
             turno = model.Turno;
-            //if (model.Linea != null) {
-            //    if (linea == null) linea = new Linea();
-            //    linea.FromModel(model.Linea);
-            //} else {
-            //    linea = null;
-            //}
+            inicio = model.Inicio;
+            lugarInicio = model.LugarInicio;
+            final = model.Final;
+            lugarFinal = model.LugarFinal;
+            tomaDeje = model.TomaDeje;
+            euros = model.Euros;
+            notas = model.Notas;
             linea = model.Linea;
-        }
-
-        public ServicioBase ToModel(bool ignorarId = false) {
-            return new ServicioBase() {
-                Id = ignorarId ? 0 : this.Id,
-                Final = this.Final,
-                Inicio = this.Inicio,
-                LugarFinal = this.LugarFinal,
-                LugarInicio = this.LugarInicio,
-                Servicio = this.Servicio,
-                Turno = this.Turno,
-                Linea = new Linea(this.Linea),
-            };
         }
 
         #endregion

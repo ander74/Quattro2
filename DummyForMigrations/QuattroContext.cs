@@ -83,6 +83,7 @@ namespace DummyForMigrations {
             // Servicios Secundarios
             modelBuilder.Entity<ServicioSecundario>().Property(ss => ss.Inicio).HasConversion(ConvertidorTiempo);
             modelBuilder.Entity<ServicioSecundario>().Property(ss => ss.Final).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<ServicioSecundario>().Property(sl => sl.TomaDeje).HasConversion(ConvertidorTiempo);
 
             // Dia Calendario
             modelBuilder.Entity<DiaCalendario>().Property(dc => dc.Inicio).HasConversion(ConvertidorTiempo);
@@ -92,12 +93,14 @@ namespace DummyForMigrations {
             // Servicios Dia
             modelBuilder.Entity<ServicioDia>().Property(sd => sd.Inicio).HasConversion(ConvertidorTiempo);
             modelBuilder.Entity<ServicioDia>().Property(sd => sd.Final).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<ServicioDia>().Property(dc => dc.TomaDeje).HasConversion(ConvertidorTiempo);
 
             // Líneas
-            modelBuilder.Entity<Linea>()
-                .HasData(
-                new Linea { Id = 01, Numero = "", Descripcion = "Nueva Línea" }
-                );
+            //modelBuilder.Entity<Linea>()
+            //    .HasData(
+            //    new Linea { Id = 01, Numero = "", Descripcion = "" },
+            //    new Linea { Id = 02, Numero = "", Descripcion = "Nueva Línea" }
+            //    );
 
             // Incidencias
             modelBuilder.Entity<Incidencia>()
@@ -120,6 +123,8 @@ namespace DummyForMigrations {
                 new Incidencia { Id = 16, Codigo = 15, Descripcion = "Huelga", Tipo = TipoIncidencia.TrabajoSinAcumular, Notas = "Incidencia Protegida." },
                 new Incidencia { Id = 17, Codigo = 16, Descripcion = "Día por H. Acumuladas", Tipo = TipoIncidencia.FiestaOtroDia, Notas = "Incidencia Protegida." }
                 );
+
+
 
             // Horas Ajenas
 

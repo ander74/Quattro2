@@ -1,9 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿namespace Quattro.Core.Data.Models {
 
-namespace Quattro.Core.Data.Models {
-
-    [Table("ServiciosSecundarios")]
     public class ServicioSecundario : ServicioBase {
+
 
         // ====================================================================================================
         #region CONSTRUCTOR
@@ -30,13 +28,9 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(ServicioSecundario model, bool ignorarId = false) {
+        public void FromModel(ServicioSecundario model) {
             if (model == null) return;
-            base.FromModel(model, ignorarId);
-        }
-
-        public new ServicioSecundario ToModel() {
-            return (ServicioSecundario)base.ToModel();
+            base.FromModel(model);
         }
 
         #endregion

@@ -1,15 +1,18 @@
-﻿namespace Quattro.Core.Data.Models {
+﻿using System.Collections.Generic;
+using System.Linq;
+using Quattro.Core.Data.Models;
 
-    public class ServicioDia : ServicioBase {
+namespace Quattro.Core.Data.SQLiteEntities {
 
+    public class ServicioLineaEntity : ServicioBaseEntity {
 
         // ====================================================================================================
-        #region CONSTRUCTOR
+        #region CONSTRUCTORES
         // ====================================================================================================
 
-        public ServicioDia() { }
+        public ServicioLineaEntity() { }
 
-        public ServicioDia(ServicioDia model) => this.FromModel(model);
+        public ServicioLineaEntity(ServicioLinea model) => FromModel(model);
 
         #endregion
         // ====================================================================================================
@@ -18,6 +21,10 @@
         // ====================================================================================================
         #region PROPIEDADES
         // ====================================================================================================
+
+        public int IdLinea { get; set; }
+
+        public IEnumerable<ServicioSecundarioEntity> Servicios { get; set; }
 
 
         #endregion
@@ -28,13 +35,15 @@
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(ServicioDia model) {
-            if (model == null) return;
+        public void FromModel(ServicioLinea model) {
             base.FromModel(model);
+            //IdLinea = model.IdLinea;
+            Servicios = model.Servicios.Select(s => new ServicioSecundarioEntity(s));
         }
 
         #endregion
         // ====================================================================================================
+
 
     }
 }

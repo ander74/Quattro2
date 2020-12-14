@@ -83,6 +83,7 @@ namespace Quattro.Core.Data {
             // Servicios Secundarios
             modelBuilder.Entity<ServicioSecundario>().Property(ss => ss.Inicio).HasConversion(ConvertidorTiempo);
             modelBuilder.Entity<ServicioSecundario>().Property(ss => ss.Final).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<ServicioSecundario>().Property(sl => sl.TomaDeje).HasConversion(ConvertidorTiempo);
 
             // Dia Calendario
             modelBuilder.Entity<DiaCalendario>().Property(dc => dc.Inicio).HasConversion(ConvertidorTiempo);
@@ -92,13 +93,14 @@ namespace Quattro.Core.Data {
             // Servicios Dia
             modelBuilder.Entity<ServicioDia>().Property(sd => sd.Inicio).HasConversion(ConvertidorTiempo);
             modelBuilder.Entity<ServicioDia>().Property(sd => sd.Final).HasConversion(ConvertidorTiempo);
+            modelBuilder.Entity<ServicioDia>().Property(dc => dc.TomaDeje).HasConversion(ConvertidorTiempo);
 
             // Líneas
-            modelBuilder.Entity<Linea>()
-                .HasData(
-                new Linea { Id = 01, Numero = "", Descripcion = "" },
-                new Linea { Id = 02, Numero = "", Descripcion = "Nueva Línea" }
-                );
+            //modelBuilder.Entity<Linea>()
+            //    .HasData(
+            //    new Linea { Id = 01, Numero = "", Descripcion = "" },
+            //    new Linea { Id = 02, Numero = "", Descripcion = "Nueva Línea" }
+            //    );
 
             // Incidencias
             modelBuilder.Entity<Incidencia>()

@@ -1,5 +1,6 @@
 ﻿using System;
 using Foundation;
+using Quattro.Core.Common;
 using Quattro.Core.Interfaces;
 using UIKit;
 
@@ -63,6 +64,10 @@ namespace Quattro.iOS.Services {
 
         public void InputNuevaLinea(Action<string, string> confirmar) {
             //TODO Implementar
+        }
+
+        public void InputTiempo(string titulo, Tiempo hora, Action<Tiempo> confirmar) {
+            //TODO: Implementar
         }
 
         #endregion

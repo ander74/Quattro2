@@ -1,10 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Quattro.Core.Common;
 
 namespace Quattro.Core.Data.Models {
 
-    [Table("Companeros")]
     public class Compañero : BaseModel {
 
 
@@ -34,14 +32,14 @@ namespace Quattro.Core.Data.Models {
         }
 
         private string nombre;
-        [MaxLength(64)]
+        [MaxLength(128)]
         public string Nombre {
             get => nombre;
             set => SetProperty(ref nombre, value);
         }
 
         private string apellidos;
-        [MaxLength(128)]
+        [MaxLength(256)]
         public string Apellidos {
             get => apellidos;
             set => SetProperty(ref apellidos, value);
@@ -74,6 +72,7 @@ namespace Quattro.Core.Data.Models {
         }
 
         private string notas;
+        [MaxLength(1024)]
         public string Notas {
             get => notas;
             set => SetProperty(ref notas, value);
@@ -87,9 +86,9 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(Compañero model, bool ignorarId = false) {
+        public void FromModel(Compañero model) {
             if (model == null) return;
-            this.Id = ignorarId ? this.Id : model.Id;
+            Id = model.Id;
             apellidos = model.Apellidos;
             calificacion = model.Calificacion;
             deuda = model.Deuda;
@@ -98,20 +97,6 @@ namespace Quattro.Core.Data.Models {
             nombre = model.Nombre;
             notas = model.Notas;
             telefono = model.Telefono;
-        }
-
-        public Compañero ToModel(bool ignorarId = false) {
-            return new Compañero {
-                Id = ignorarId ? 0 : this.Id,
-                Apellidos = this.Apellidos,
-                Calificacion = this.Calificacion,
-                Deuda = this.Deuda,
-                Email = this.Email,
-                Matricula = this.Matricula,
-                Nombre = this.Nombre,
-                Notas = this.Notas,
-                Telefono = this.Telefono,
-            };
         }
 
         #endregion

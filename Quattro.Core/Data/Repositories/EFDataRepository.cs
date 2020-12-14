@@ -7,7 +7,8 @@ using Quattro.Core.Data.Models;
 
 namespace Quattro.Core.Data.Repositories {
 
-    public class CalendarioRepository : ICalendarioRepository {
+    public class EFDataRepository : IDataRepository {
+
 
         // ====================================================================================================
         #region CAMPOS PRIVADOS
@@ -23,7 +24,7 @@ namespace Quattro.Core.Data.Repositories {
         #region CONSTRUCTOR
         // ====================================================================================================
 
-        public CalendarioRepository(QuattroContext context) {
+        public EFDataRepository(QuattroContext context) {
             this.context = context;
             context.Database.EnsureCreated();
         }
@@ -36,7 +37,7 @@ namespace Quattro.Core.Data.Repositories {
         #region MÉTODOS DE CALENDARIO
         // ====================================================================================================
 
-        public IQueryable<DiaCalendario> GetMes(DateTime fecha) {
+        public IEnumerable<DiaCalendario> GetMes(DateTime fecha) {
             if (!context.Calendario.Any(c => c.Fecha.Month == fecha.Month && c.Fecha.Year == fecha.Year)) {
                 for (int dia = 1; dia <= DateTime.DaysInMonth(fecha.Year, fecha.Month); dia++) {
                     context.Calendario.Add(new DiaCalendario {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Quattro.Core.Common;
 
 namespace Quattro.Core.Interfaces {
 
@@ -17,5 +18,7 @@ namespace Quattro.Core.Interfaces {
         void Input(string titulo, string textoBotonOk, string textoBotonCancel, Action<string> confirmar);
 
         void InputNuevaLinea(Action<string, string> confirmar);
+
+        void InputTiempo(string titulo, Tiempo hora, Action<Tiempo> confirmar);
     }
 }

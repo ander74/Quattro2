@@ -8,13 +8,15 @@ using Quattro.Core.Common;
 namespace Quattro.Core.Data.Models {
 
     [Table("Calendario")]
-    public class DiaCalendario : Servicio {
+    public class DiaCalendario : ServicioBase {
 
         // ====================================================================================================
         #region CONSTRUCTOR
         // ====================================================================================================
 
         public DiaCalendario() { }
+
+        public DiaCalendario(DateTime fecha) => this.fecha = fecha;
 
         public DiaCalendario(DiaCalendario model) => this.FromModel(model);
 
@@ -172,9 +174,9 @@ namespace Quattro.Core.Data.Models {
         #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        public void FromModel(DiaCalendario model, bool ignorarId = false) {
+        public void FromModel(DiaCalendario model) {
             if (model == null) return;
-            base.FromModel(model, ignorarId);
+            base.FromModel(model);
             fecha = model.Fecha;
             esFranqueo = model.EsFranqueo;
             esFestivo = model.EsFestivo;
@@ -187,52 +189,10 @@ namespace Quattro.Core.Data.Models {
             comida = model.Comida;
             cena = model.Cena;
             bus = model.Bus;
-            //if (model.Incidencia != null) {
-            //    if (incidencia == null) incidencia = new Incidencia();
-            //    incidencia.FromModel(model.Incidencia);
-            //} else {
-            //    incidencia = null;
-            //}
-            incidencia = model.Incidencia;
-
-            //if (model.Relevo != null) {
-            //    if (relevo == null) relevo = new Compañero();
-            //    relevo.FromModel(model.Relevo);
-            //} else {
-            //    relevo = null;
-            //}
-            relevo = model.Relevo;
-
-            //if (model.Susti != null) {
-            //    if (susti == null) susti = new Compañero();
-            //    susti.FromModel(model.Susti);
-            //} else {
-            //    susti = null;
-            //}
-            susti = model.Susti;
-
+            incidencia = model.Incidencia;// == null ? null : new Incidencia(model.Incidencia);
+            relevo = model.Relevo;// == null ? null : new Compañero(model.Relevo);
+            susti = model.Susti;// == null ? null : new Compañero(model.Susti);
             servicios = model.Servicios;
-        }
-
-        public new DiaCalendario ToModel() {
-            DiaCalendario model = (DiaCalendario)base.ToModel();
-            model.Fecha = this.Fecha;
-            model.EsFranqueo = this.EsFranqueo;
-            model.EsFestivo = this.EsFestivo;
-            model.HuelgaParcial = this.HuelgaParcial;
-            model.HorasHuelga = this.HorasHuelga;
-            model.Trabajadas = this.Trabajadas;
-            model.Acumuladas = this.Acumuladas;
-            model.Nocturnas = this.Nocturnas;
-            model.Desayuno = this.Desayuno;
-            model.Comida = this.Comida;
-            model.Cena = this.Cena;
-            model.Bus = this.Bus;
-            model.Incidencia = new Incidencia(this.Incidencia);
-            model.Relevo = new Compañero(this.Relevo);
-            model.Susti = new Compañero(this.Susti);
-            model.Servicios = this.Servicios;
-            return model;
         }
 
         #endregion

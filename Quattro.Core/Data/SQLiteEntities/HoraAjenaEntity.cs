@@ -1,53 +1,58 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Quattro.Core.Common;
 using Quattro.Core.Data.Models;
 
-namespace Quattro.Core.Data.Repositories {
+namespace Quattro.Core.Data.SQLiteEntities {
 
-    public interface ICalendarioRepository {
-
+    public class HoraAjenaEntity {
 
         // ====================================================================================================
-        #region MÉTODOS CALENDARIO
+        #region CONSTRUCTORES
         // ====================================================================================================
 
-        IQueryable<DiaCalendario> GetMes(DateTime fecha);
+        public HoraAjenaEntity() { }
 
-        Task GuardarDatosAsync();
-
-
-        DiaCalendario GetDia(DateTime fecha);
-
-        Task<DiaCalendario> GetDiaAsync(DateTime fecha);
+        public HoraAjenaEntity(HoraAjena model) => FromModel(model);
 
         #endregion
         // ====================================================================================================
 
 
         // ====================================================================================================
-        #region MÉTODOS INCIDENCIAS
+        #region PROPIEDADES
         // ====================================================================================================
 
-        Task<Incidencia> GetIncidenciaAsync(int codigo);
+        public int Id { get; set; }
 
-        Task<IEnumerable<Incidencia>> GetIncidenciasAsync();
+        public DateTime Fecha { get; set; }
+
+        public decimal Horas { get; set; }
+
+        public string Motivo { get; set; }
+
+        public TipoHoraAjena Tipo { get; set; }
 
         #endregion
         // ====================================================================================================
 
 
         // ====================================================================================================
-        #region MÉTODOS LÍNEAS
+        #region MÉTODOS PÚBLICOS
         // ====================================================================================================
 
-        Task<IEnumerable<Linea>> GetLineasAsync(bool incluirCero = false);
-
-        Task<Linea> GetLineaByNumeroAsync(string numero);
+        public void FromModel(HoraAjena model) {
+            if (model == null) return;
+            Id = model.Id;
+            Fecha = model.Fecha;
+            Horas = model.Horas;
+            Motivo = model.Motivo;
+            Tipo = model.Tipo;
+        }
 
         #endregion
         // ====================================================================================================
+
+
 
     }
 }
